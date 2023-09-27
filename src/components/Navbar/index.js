@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled, { keyframes, css } from "styled-components";
 import profileImage from "./profile-image.jpeg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { ROUTES } from "../Routes";
 import { FaGithub, FaLinkedin, FaGoogle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -98,10 +100,11 @@ const Nav = styled.nav`
   }
 `;
 
-const ProfileImage = styled.img`
+const ProfileLazyImage = styled(LazyLoadImage)`
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  object-fit: contain;
   margin-right: 10px;
   border: 3px solid #2c3e50;
 
@@ -372,7 +375,7 @@ const Navbar = () => {
   return (
     <Nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <StyledLink className="navbar-brand" to="/">
-        <ProfileImage src={profileImage} alt="Profil" />
+        <ProfileLazyImage src={profileImage} alt="Profil" effect="blur" />
         Hekimcan AKTAŞ
       </StyledLink>
       <button
