@@ -41,6 +41,9 @@ import EleventhProject1 from "./projects-images/eleventh-project/photo-1.jpg";
 import EleventhProject2 from "./projects-images/eleventh-project/photo-2.jpg";
 import EleventhProject3 from "./projects-images/eleventh-project/photo-3.jpg";
 import EleventhProject4 from "./projects-images/eleventh-project/photo-4.jpg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 const ProjectsContainer = styled.div`
   padding: 40px 0;
   display: flex;
@@ -186,7 +189,7 @@ const TechnologyItem = styled.li`
   border-radius: 4px;
   font-size: 12px;
 `;
-const ProjectImage = styled.img`
+const ProjectImage = styled(LazyLoadImage)`
   width: 100%;
   height: 200px;
   object-fit: cover;
@@ -227,7 +230,7 @@ const ModalContainer = styled.div`
   padding: 20px;
 `;
 
-const ModalImage = styled.img`
+const ModalImage = styled(LazyLoadImage)`
   width: 100%;
   max-width: 100%;
   height: auto;
@@ -375,8 +378,8 @@ const sampleProjects = [
   {
     id: 3,
     title: {
-      tr: "Basic Chat App-Frontend",
-      en: "Basic Chat App-Frontend",
+      tr: "E-Commerce Website - Checkout Page-Frontend",
+      en: "E-Commerce Website - Checkout Page-Frontend",
     },
     images: [ChatApp1, ChatApp2, ChatApp3],
     category: "JS",
@@ -998,7 +1001,9 @@ const MyProjects = () => {
                 <ProjectImage
                   src={project.images[0]}
                   alt={`${project.title} image`}
+                  effect="blur" // optional: resim yüklenene kadar blur efekti uygular
                 />
+
                 <ProjectInfo>
                   <ProjectTitle theme={theme}>
                     {project.title[language]}
@@ -1031,6 +1036,7 @@ const MyProjects = () => {
                     <ModalImage
                       src={image}
                       alt={`${selectedProject.title} image`}
+                      effect="blur"
                     />
                   </div>
                 ))}
