@@ -13,6 +13,9 @@ import {
   FaGit,
   FaDatabase,
 } from "react-icons/fa";
+import lightReactRouterIcon from "./react-router-color.png"; // Light tema için ikonun path'ini yazmalısınız
+import darkReactRouterIcon from "./react-router-color-inverted.png"; // Dark tema için ikonun path'ini yazmalısınız
+
 import { useSelector } from "react-redux";
 
 const fadeIn = keyframes`
@@ -27,12 +30,12 @@ const fadeIn = keyframes`
 `;
 const SkillsContainer = styled.div`
   animation: ${fadeIn} 0.5s ease-out;
-  padding: 50px;
+  padding: 30px; // 50px'den 30px'e düşürüldü
+  max-width: 1200px;
   background: ${({ theme }) => (theme === "light" ? "#f5f5f5" : "#2b2b2b")};
   border-radius: 12px;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
   margin: 20px auto;
-  max-width: 1000px;
   transition: box-shadow 0.3s ease;
 
   &:hover {
@@ -74,7 +77,7 @@ const iconRotate = keyframes`
 const SkillItem = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   transition: all 0.3s ease;
   padding: 10px;
   border-radius: 10px;
@@ -101,8 +104,8 @@ const SkillIcon = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10px;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
 
   &:hover {
     animation: ${iconRotate} 0.6s ease-in-out;
@@ -196,10 +199,11 @@ const Skills = () => {
   const titles = {
     tr: {
       "Front-End": "Front-End",
-      "Kütüphaneler & Frameworkler": "Kütüphaneler & Frameworkler",
+      "Kütüphaneler & Frameworkler": "Kütüphaneler ve  Frameworkler",
       "Back-End": "Back-End",
       Veritabanları: "Veritabanları",
       "Versiyon(Sürüm) Kontrolü": "Versiyon Kontrolü",
+      "Mobil Uygulama": "Mobil Uygulama Geliştirme",
       explanation: "Diller ve Araçlar",
     },
     en: {
@@ -208,6 +212,7 @@ const Skills = () => {
       "Back-End": "Back-End",
       Veritabanları: "Databases",
       "Versiyon(Sürüm) Kontrolü": "Version Control",
+      "Mobil Uygulama": "Mobile App Development",
       explanation: "Languages and Tools",
     },
   };
@@ -246,13 +251,25 @@ const Skills = () => {
       },
       {
         name: "jQuery",
-        icon: <FaJsSquare />,
+        icon: (
+          <img
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jquery/jquery-original-wordmark.svg"
+            alt="jQuery"
+            style={{ width: "0.9em", height: "0.9em" }}
+          />
+        ),
         proficiency: 80,
         color: "#0769AD",
       },
       {
         name: "TypeScript",
-        icon: <FaJsSquare />,
+        icon: (
+          <img
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg"
+            alt="TypeScript"
+            style={{ width: "0.9em", height: "0.9em" }}
+          />
+        ),
         proficiency: 75,
         color: "#3178C6",
       },
@@ -268,10 +285,82 @@ const Skills = () => {
         proficiency: 75,
         color: "#61DAFB",
       },
-      { name: "Next.js", icon: <FaReact />, proficiency: 70, color: "#61DAFB" },
+
+      {
+        name: "React Router",
+        icon: (
+          <img
+            src={theme === "light" ? lightReactRouterIcon : darkReactRouterIcon}
+            alt="React Router"
+            style={{ width: "0.9em", height: "0.9em" }}
+          />
+        ),
+        proficiency: 75,
+        color: "#CA4245", // Eğer renk ayarlamak isterseniz
+      },
+      {
+        name: "Redux",
+        icon: (
+          <img
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg"
+            alt="Redux"
+            style={{ width: "0.9em", height: "0.9em" }}
+          />
+        ),
+        proficiency: 80,
+        color: "#61DAFB",
+      },
+      ,
+      {
+        name: "Next.js",
+        icon: (
+          <img
+            src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg"
+            alt="Next.js"
+            style={{ width: "0.9em", height: "0.9em" }}
+          />
+        ),
+        proficiency: 70,
+        color: "#61DAFB",
+      },
     ],
     "Back-End": [
-      { name: "Python", icon: <FaPython />, proficiency: 85, color: "#3776AB" },
+      {
+        name: "C",
+        icon: (
+          <img
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
+            alt="C"
+            style={{ width: "0.9em", height: "0.9em" }}
+          />
+        ),
+        proficiency: 70,
+        color: "#A8B9CC",
+      },
+      {
+        name: "C++",
+        icon: (
+          <img
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg"
+            alt="C++"
+            style={{ width: "0.9em", height: "0.9em" }}
+          />
+        ),
+        proficiency: 70,
+        color: "#00599C",
+      },
+      {
+        name: "Python",
+        icon: (
+          <img
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
+            alt="Python"
+            style={{ width: "0.9em", height: "0.9em" }}
+          />
+        ),
+        proficiency: 85,
+        color: "#3776AB",
+      },
       {
         name: "Node.js (Express.js)",
         icon: <FaNodeJs />,
@@ -282,13 +371,57 @@ const Skills = () => {
     Veritabanları: [
       {
         name: "MongoDB",
-        icon: <FaDatabase />,
+        icon: (
+          <img
+            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg"
+            alt="MongoDB"
+            style={{ width: "0.9em", height: "0.9em" }}
+          />
+        ),
         proficiency: 70,
         color: "#514D64",
       },
     ],
+
+    "Mobil Uygulama": [
+      {
+        name: "Flutter",
+        icon: (
+          <img
+            src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg"
+            alt="Flutter"
+            style={{ width: "0.9em", height: "0.9em" }}
+          />
+        ),
+        proficiency: 30,
+        color: "#02569B",
+      },
+      {
+        name: "React Native",
+        icon: (
+          <img
+            src="https://reactnative.dev/img/header_logo.svg"
+            alt="React Native"
+            style={{ width: "0.9em", height: "0.9em" }}
+          />
+        ),
+        proficiency: 40,
+        color: "#61DBFB",
+      },
+    ],
     "Versiyon(Sürüm) Kontrolü": [
-      { name: "Git", icon: <FaGit />, proficiency: 90, color: "#F1502F" },
+      {
+        name: "Git",
+        icon: (
+          <img
+            src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg"
+            alt="Flutter"
+            style={{ width: "0.9em", height: "0.9em" }}
+          />
+        ),
+        proficiency: 90,
+        color: "#F1502F",
+      },
     ],
   };
 
