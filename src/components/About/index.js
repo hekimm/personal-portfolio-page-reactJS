@@ -3,6 +3,8 @@ import styled from "styled-components";
 import profileImage from "./profile-image.jpeg";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import lightReactRouterIcon from "./react-router-color.png"; // Light tema için ikonun path'ini yazmalısınız
+import darkReactRouterIcon from "./react-router-color-inverted.png"; // Dark tema için ikonun path'ini yazmalısınız
 
 import {
   FaHtml5,
@@ -99,14 +101,14 @@ const SkillIcon = styled.span`
   font-size: 3em;
   display: inline-flex;
 
-  svg {
+  svg,
+  img {
     transition:
       transform 0.3s ease-in-out,
       color 0.3s ease-in-out;
 
     &:hover {
       transform: scale(1.2);
-      color: #add8e6;
     }
   }
 `;
@@ -119,6 +121,15 @@ const About = () => {
     part1: translations.part1[language],
     part2: translations.part2[language],
     part3: translations.part3[language],
+  };
+  const sectionTitles = {
+    frontEnd: translations.sectionTitles.frontEnd[language],
+    librariesFrameworks:
+      translations.sectionTitles.librariesFrameworks[language],
+    backEnd: translations.sectionTitles.backEnd[language],
+    databases: translations.sectionTitles.databases[language],
+    mobileDevelopment: translations.sectionTitles.mobileDevelopment[language],
+    versionControl: translations.sectionTitles.versionControl[language],
   };
 
   return (
@@ -143,7 +154,7 @@ const About = () => {
         </Article>
         <Article>
           <Card theme={theme}>
-            <SectionTitle theme={theme}>Front-End</SectionTitle>
+            <SectionTitle theme={theme}>{sectionTitles.frontEnd}</SectionTitle>
             <SkillsList>
               <Skill>
                 <SkillIcon color="#E34F26">
@@ -174,7 +185,9 @@ const About = () => {
         </Article>
         <Article>
           <Card theme={theme}>
-            <SectionTitle theme={theme}>Libraries & Frameworks</SectionTitle>
+            <SectionTitle theme={theme}>
+              {sectionTitles.librariesFrameworks}
+            </SectionTitle>
             <SkillsList>
               <Skill>
                 <SkillIcon color="#7952B3">
@@ -184,13 +197,21 @@ const About = () => {
               </Skill>
               <Skill>
                 <SkillIcon color="#0769AD">
-                  <FaJsSquare />
+                  <img
+                    src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jquery/jquery-original-wordmark.svg"
+                    alt="jQuery"
+                    style={{ width: "60px", height: "60px" }}
+                  />
                 </SkillIcon>
                 jQuery
               </Skill>
               <Skill>
                 <SkillIcon color="#3178C6">
-                  <FaJsSquare />
+                  <img
+                    src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg"
+                    alt="TypeScript"
+                    style={{ width: "60px", height: "60px" }}
+                  />
                 </SkillIcon>
                 TypeScript
               </Skill>
@@ -206,9 +227,38 @@ const About = () => {
                 </SkillIcon>
                 React.js
               </Skill>
+
               <Skill>
-                <SkillIcon color="#61DAFB">
-                  <FaReact />
+                <SkillIcon color="#764ABC">
+                  <img
+                    src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg"
+                    alt="Redux"
+                    style={{ width: "60px", height: "60px" }}
+                  />
+                </SkillIcon>
+                Redux
+              </Skill>
+              <Skill>
+                <SkillIcon color="#3178C6">
+                  <img
+                    src={
+                      theme === "light"
+                        ? lightReactRouterIcon
+                        : darkReactRouterIcon
+                    }
+                    alt="React Router"
+                    style={{ width: "40px", height: "40px" }}
+                  />
+                </SkillIcon>
+                React Router
+              </Skill>
+              <Skill>
+                <SkillIcon color="#000000">
+                  <img
+                    src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg"
+                    alt="NextJs"
+                    style={{ width: "60px", height: "60px" }}
+                  />
                 </SkillIcon>
                 Next.js
               </Skill>
@@ -217,11 +267,35 @@ const About = () => {
         </Article>
         <Article>
           <Card theme={theme}>
-            <SectionTitle theme={theme}>Back-End</SectionTitle>
+            <SectionTitle theme={theme}>{sectionTitles.backEnd}</SectionTitle>
             <SkillsList>
               <Skill>
+                <SkillIcon color="#A8B9CC">
+                  <img
+                    src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
+                    alt="C"
+                    style={{ width: "60px", height: "60px" }}
+                  />
+                </SkillIcon>
+                C
+              </Skill>
+              <Skill>
+                <SkillIcon color="#00599C">
+                  <img
+                    src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg"
+                    alt="C++"
+                    style={{ width: "60px", height: "60px" }}
+                  />
+                </SkillIcon>
+                C++
+              </Skill>
+              <Skill>
                 <SkillIcon color="#3776AB">
-                  <FaPython />
+                  <img
+                    src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
+                    alt="Python"
+                    style={{ width: "60px", height: "60px" }}
+                  />
                 </SkillIcon>
                 Python
               </Skill>
@@ -236,24 +310,65 @@ const About = () => {
         </Article>
         <Article>
           <Card theme={theme}>
-            <SectionTitle theme={theme}>Databases</SectionTitle>
+            <SectionTitle theme={theme}>{sectionTitles.databases}</SectionTitle>
+
             <SkillsList>
               <Skill>
                 <SkillIcon color="#514D64">
-                  <FaDatabase />
+                  <img
+                    src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg"
+                    alt="MongoDB"
+                    style={{ width: "60px", height: "60px" }}
+                  />
                 </SkillIcon>
                 MongoDB
               </Skill>
             </SkillsList>
           </Card>
         </Article>
+
         <Article>
           <Card theme={theme}>
-            <SectionTitle theme={theme}>Version Control</SectionTitle>
+            <SectionTitle theme={theme}>
+              {sectionTitles.mobileDevelopment}
+            </SectionTitle>
+            <SkillsList>
+              <Skill>
+                <SkillIcon color="#61DAFB">
+                  <img
+                    src="https://reactnative.dev/img/header_logo.svg"
+                    alt="React Native"
+                    style={{ width: "60px", height: "60px" }}
+                  />
+                </SkillIcon>
+                React Native
+              </Skill>
+              <Skill>
+                <SkillIcon color="#02569B">
+                  <img
+                    src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg"
+                    alt="Flutter"
+                    style={{ width: "60px", height: "60px" }}
+                  />
+                </SkillIcon>
+                Flutter
+              </Skill>
+            </SkillsList>
+          </Card>
+        </Article>
+        <Article>
+          <Card theme={theme}>
+            <SectionTitle theme={theme}>
+              {sectionTitles.versionControl}
+            </SectionTitle>
             <SkillsList>
               <Skill>
                 <SkillIcon color="#F1502F">
-                  <FaGit />
+                  <img
+                    src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg"
+                    alt="Git"
+                    style={{ width: "60px", height: "60px" }}
+                  />
                 </SkillIcon>
                 Git
               </Skill>
