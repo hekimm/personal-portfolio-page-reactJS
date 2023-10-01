@@ -27,11 +27,17 @@ const MenuText = styled.span`
   display: ${(props) => (props.isOpen ? "inline" : "none")};
   color: white;
   font-weight: bold;
-  animation: ${blink} 1s infinite;
+  animation: ${(props) =>
+    !props.isOpen &&
+    css`
+      ${blink} 1s infinite
+    `};
   &:hover {
-    animation:
-      ${blink} 1s infinite,
-      ${rotate} 2s infinite linear;
+    animation: ${(props) =>
+      !props.isOpen &&
+      css`
+        ${blink} 1s infinite, ${rotate} 2s infinite linear
+      `};
   }
 
   @media (max-width: 768px) {
@@ -48,9 +54,13 @@ const rotate = keyframes`
     transform: rotate(360deg);
   }
 `;
-
 const AnimatedFaArrowLeft = styled(FaArrowLeft)`
-  animation: ${blink} 2s infinite linear;
+  animation: ${(props) =>
+    !props.isOpen
+      ? css`
+          ${blink} 1s infinite linear
+        `
+      : "none"};
 `;
 
 const LanguageIcon = styled(RiGlobalLine)`
@@ -455,7 +465,7 @@ const Navbar = () => {
         )}
         <MenuText isOpen={isOpen}>
           {isOpen ? NAV_TEXTS[language].CLOSE_MENU : NAV_TEXTS[language].MENU}{" "}
-          <AnimatedFaArrowLeft />
+          <AnimatedFaArrowLeft isOpen={isOpen} />
         </MenuText>
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
