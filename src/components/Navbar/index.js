@@ -12,6 +12,46 @@ import { FaSun, FaMoon } from "react-icons/fa";
 import { FaTimes, FaCheck } from "react-icons/fa";
 import { setLanguage, selectLanguage } from "../../reducers/languageSlice"; // Import setLanguage ve selectLanguage
 import { RiGlobalLine } from "react-icons/ri";
+import { FaArrowLeft } from "react-icons/fa";
+
+const blink = keyframes`
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+`;
+
+const MenuText = styled.span`
+  display: ${(props) => (props.isOpen ? "inline" : "none")};
+  color: white;
+  font-weight: bold;
+  animation: ${blink} 1s infinite;
+  &:hover {
+    animation:
+      ${blink} 1s infinite,
+      ${rotate} 2s infinite linear;
+  }
+
+  @media (max-width: 768px) {
+    display: inline;
+    margin-left: 10px;
+  }
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const AnimatedFaArrowLeft = styled(FaArrowLeft)`
+  animation: ${blink} 2s infinite linear;
+`;
 
 const LanguageIcon = styled(RiGlobalLine)`
   font-size: 24px;
@@ -313,6 +353,8 @@ const NAV_TEXTS = {
     PROJECTS: "Projelerim",
     EXPERTISE_AREA: "Yazılım ve Programlama Alanım",
     CONTACT: "İletişim",
+    MENU: "Menü",
+    CLOSE_MENU: "Menüyü Kapatmak için Tıklayınız",
   },
   en: {
     ABOUT: "About",
@@ -321,10 +363,17 @@ const NAV_TEXTS = {
     PROJECTS: "My Projects",
     EXPERTISE_AREA: "Software & Programming Area",
     CONTACT: "Contact",
+    MENU: "Menu",
+    CLOSE_MENU: "Click to Close the Menu",
   },
 };
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
   const language = useSelector(selectLanguage);
 
   const handleLanguageToggle = () => {
@@ -381,13 +430,33 @@ const Navbar = () => {
       <button
         className="navbar-toggler"
         type="button"
+        onClick={handleToggle}
         data-toggle="collapse"
         data-target="#navbarNav"
         aria-controls="navbarNav"
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span className="navbar-toggler-icon"></span>
+        {isOpen ? (
+          <FaTimes
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+          />
+        ) : (
+          <span
+            className="navbar-toggler-icon"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+          />
+        )}
+        <MenuText isOpen={isOpen}>
+          {isOpen ? NAV_TEXTS[language].CLOSE_MENU : NAV_TEXTS[language].MENU}{" "}
+          <AnimatedFaArrowLeft />
+        </MenuText>
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ml-auto">
