@@ -378,8 +378,8 @@ const sampleProjects = [
   {
     id: 3,
     title: {
-      tr: "E-Commerce Website - Checkout Page-Frontend",
-      en: "E-Commerce Website - Checkout Page-Frontend",
+      tr: "Basic Chat Uygulaması-Frontend",
+      en: "Basic Chat App-Frontend",
     },
     images: [ChatApp1, ChatApp2, ChatApp3],
     category: "JS",
