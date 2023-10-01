@@ -12,5 +12,32 @@ const translations = {
     tr: 'Makine Mühendisliği derslerine ve Makine Mühendisliği konularına pek ilgim yoktu. Sonra ana dalımı "Yazılım Mühendisliği" olarak değiştirmeye karar verdim, okulumu değiştirdim ve Manisa Celal Bayar Üniversitesi Teknoloji Fakültesi Yazılım Mühendisliği Bölümü\'ne geçtim Kendimi geliştiriyorum ve yeni Yazılım Teknolojileri öğreniyorum.',
     en: 'I was not very interested in Mechanical Engineering courses and topics. Then I decided to change my major to "Software Engineering", changed my school, and transferred to the Software Engineering Department of the Faculty of Technology at Manisa Celal Bayar University. I am improving myself and learning new Software Technologies.',
   },
+
+  sectionTitles: {
+    frontEnd: {
+      en: "Front-End",
+      tr: "Front-End",
+    },
+    librariesFrameworks: {
+      en: "Libraries & Frameworks",
+      tr: "Kütüphaneler ve Frameworkler",
+    },
+    backEnd: {
+      en: "Back-End",
+      tr: "Back-End",
+    },
+    databases: {
+      en: "Databases",
+      tr: "Veritabanları",
+    },
+    mobileDevelopment: {
+      en: "Mobile App Development",
+      tr: "Mobil Uygulama Geliştirme",
+    },
+    versionControl: {
+      en: "Version Control",
+      tr: "Versiyon Kontrolü",
+    },
+  },
 };
 export default translations;
