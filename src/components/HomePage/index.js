@@ -3,19 +3,17 @@ import styled from "styled-components";
 import profileImage from "./profile-image.jpeg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-
+import firstCardImage from "./first-card-image.jpeg";
+import secondCardImage from "./second-card-image.jpeg";
+import thirdCardImage from "./teog-sonuc.png";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../Routes";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from ".././../actions/loadingActions";
 import { languageDescriptions } from "./LanguageDescriptions";
 import Loading from "../Loading/index";
-import {
-  updateText,
-  updateIndex,
-  setReverse,
-  setTyping,
-} from "../../reducers/typingSlice";
 
 import {
   FaCss3Alt,
@@ -24,17 +22,100 @@ import {
   FaAngular,
   FaReact,
   FaNodeJs,
+  FaProjectDiagram,
+  FaArrowRight,
 } from "react-icons/fa";
 
-const HomeContainer = styled.div`
+const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 40px 0;
   background-color: #282c34;
-  height: 100vh;
-  justify-content: center;
+  min-height: 100vh; /* Her zaman tüm ekranı kaplaması için minimum yükseklik değerini ayarladık. */
+  justify-content: space-between; /* Navbar ve Footer arasında içeriği merkezlemek için. */
 `;
+
+const Card = styled.article`
+  background-color: #64ccc5;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px 0;
+  transition:
+    transform 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+    background-color: #176b87;
+  }
+`;
+const CardContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const ButtonBase = styled.button`
+  margin-top: 20px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition:
+    background-color 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+
+  svg {
+    margin-right: 10px;
+    font-size: 20px; // iyi bir denge sağlamak için ikonun boyutunu ayarladık
+  }
+
+  &:hover {
+    transform: translateY(
+      -2px
+    ); // butonun hafifçe yukarı doğru hareket etmesini sağlar
+  }
+
+  &:active {
+    transform: translateY(
+      1px
+    ); // butona tıklanıldığında aşağıya doğru hafif hareket
+  }
+`;
+
+const AboutButton = styled(ButtonBase)`
+  background-color: #64ccc5;
+  color: white;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+const ProjectButton = styled(ButtonBase)`
+  background-color: #64ccc5;
+  color: white;
+
+  &:hover {
+    background-color: #218838;
+  }
+`;
+
+const MainCard = styled.div`
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
 const ProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -64,41 +145,12 @@ const ProfileName = styled.h2`
   color: #61dafb;
   font-size: 24px;
 `;
-
-const TypingEffect = styled.span`
-  color: #61dafb;
-  font-size: 24px;
-  font-family: "Courier New", Courier, monospace;
-  padding: 10px 20px;
-  border-radius: 5px;
-  background-color: #1f2023;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  line-height: 1.5em;
-  height: auto;
-  white-space: pre-wrap;
-  word-break: break-word;
-  display: inline-block;
-  vertical-align: middle;
-  @keyframes blinkingCursor {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-  &::after {
-    content: "";
-    display: inline-block;
-    width: 4px;
-    height: 1em;
-    background-color: #61dafb;
-    animation: blinkingCursor 1s infinite;
-  }
+const ProfileTitle = styled.h3`
+  color: #ffffff; // Beyaz renk
+  font-size: 18px; // Font boyutu
+  text-align: center; // Merkez hizalama
 `;
+
 const TechnologyIcons = styled.div`
   margin-top: 40px;
   display: flex;
@@ -180,11 +232,78 @@ const CloseButton = styled.button`
   }
 `;
 
+const ImageOverlay = styled.div`
+  position: absolute;
+  bottom: -20px; /* overlay'i resmin altına taşıyın */
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-size: 12px; /* font boyutunu küçültün */
+  border-radius: 0 0 10px 10px; /* yalnızca alt köşeleri yuvarlayın */
+  opacity: 0; /* başlangıçta görünmez yapın */
+  transition: opacity 0.3s ease;
+  position: absolute;
+  bottom: 0; /* altına değil, üstüne yerleştirin */
+  &:hover {
+    opacity: 1; /* hover durumunda görünür yapın */
+  }
+`;
+
+const ImageCard = styled.div`
+  min-width: 90px;
+  min-height: 90px;
+  max-width: 150px; // ya da ihtiyacınıza göre bir değer
+  max-height: 150px; // ya da ihtiyacınıza göre bir değer
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+  transition:
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out; // transition ekledik
+  &:hover {
+    transform: scale(1.15); // daha büyük bir scale değeri
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.3); // daha belirgin bir shadow
+  }
+`;
+
+const StyledLazyLoadImage = styled(LazyLoadImage)`
+  width: 100%; // Resmin genişliği parent elementine göre ayarlanır.
+  height: 100%; // Resmin yüksekliği parent elementine göre ayarlanır.
+  object-fit: cover; // Resmin, parent elementini dolduracak şekilde ayarlanır.
+  border-radius: 10px;
+`;
+const CardContentText = styled.p`
+  white-space: pre-line;
+`;
+const ThirdCardImage = styled(StyledLazyLoadImage)`
+  transition:
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05); // Belirgin bir scale değeri
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.3); // Daha belirgin bir shadow
+  }
+`;
+
 const HomePage = () => {
+  const [showArticles, setShowArticles] = useState(false);
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
   const navigate = useNavigate();
 
   const navigateToAbout = () => {
     navigate(ROUTES.ABOUT);
+  };
+
+  const navigateToProjects = () => {
+    navigate(ROUTES.PROJECTS); // Varsayımsal bir ROUTE, uygun rota ile değiştirilmelidir
   };
 
   const [modalContent, setModalContent] = useState("");
@@ -197,51 +316,8 @@ const HomePage = () => {
     setShowModal(true);
   };
 
-  const { text, index, reverse, typing } = useSelector((state) => state.typing);
-
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const messages =
-      language === "tr"
-        ? [
-            "Ben bir Yazılım Mühendisliği Öğrencisi",
-            "Ben bir Software Developer",
-          ]
-        : ["I'm a Software Engineering Student", "I'm a Software Developer"];
-
-    if (text.length === messages[index].length && !reverse) {
-      setTimeout(() => {
-        dispatch(setTyping(false));
-        dispatch(setReverse(true));
-      }, 1000);
-    } else if (reverse && text === "") {
-      let nextIndex = index + 1;
-      if (nextIndex === messages.length) nextIndex = 0;
-      dispatch(setTyping(true));
-      dispatch(setReverse(false));
-      dispatch(updateIndex(nextIndex));
-    }
-
-    const timer = setTimeout(() => {
-      if (typing && !reverse) {
-        if (text.length < messages[index].length) {
-          dispatch(updateText(text + messages[index][text.length]));
-        }
-      } else if (reverse) {
-        dispatch(updateText(text.substring(0, text.length - 1)));
-      }
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, [text, reverse, index, typing, dispatch]);
-
-  useEffect(() => {
-    dispatch(setTyping(true));
-    dispatch(updateText(""));
-    dispatch(updateIndex(0));
-    dispatch(setReverse(false));
-  }, [language, dispatch]);
+  const [hovered, setHovered] = useState(false);
 
   const isLoading = useSelector((state) => state.loading.isLoading);
 
@@ -259,37 +335,108 @@ const HomePage = () => {
 
   return (
     <HomeContainer>
-      <ProfileContainer>
-        <ProfileImage
-          src={profileImage}
-          alt="Hekimcan AKTAŞ"
-          onClick={navigateToAbout}
-          effect="blur"
-        />
-        <ProfileName>Hekimcan AKTAŞ</ProfileName>
-      </ProfileContainer>
+      <MainCard>
+        <ProfileContainer>
+          <ProfileImage
+            src={profileImage}
+            alt="Hekimcan AKTAŞ"
+            onClick={navigateToAbout}
+            effect="blur"
+          />
+          <ProfileName>Hekimcan AKTAŞ</ProfileName>
+          <ProfileTitle>
+            {languageDescriptions.profileTitle[language]}
+          </ProfileTitle>
 
-      <TypingEffect>{text}</TypingEffect>
-      <TechnologyIcons>
-        <FaCss3Alt size={50} onClick={() => openModal("CSS")} />
-        <FaBootstrap size={50} onClick={() => openModal("Bootstrap")} />
-        <FaJsSquare size={50} onClick={() => openModal("JavaScript")} />
-        <FaAngular size={50} onClick={() => openModal("Angular")} />
-        <FaReact size={50} onClick={() => openModal("React.js")} />
-        <FaNodeJs size={50} onClick={() => openModal("Node.js")} />
-      </TechnologyIcons>
-      <ModalOverlay show={showModal} onClick={() => setShowModal(false)}>
-        <Modal onClick={(e) => e.stopPropagation()}>
-          <CloseButton onClick={() => setShowModal(false)}>X</CloseButton>
-          <ModalHeader>
-            {language === "tr"
-              ? "Dil/Framework Tanıtımı"
-              : "Language/Framework Introduction"}
-          </ModalHeader>
+          <TechnologyIcons>
+            <FaCss3Alt size={50} onClick={() => openModal("CSS")} />
+            <FaBootstrap size={50} onClick={() => openModal("Bootstrap")} />
+            <FaJsSquare size={50} onClick={() => openModal("JavaScript")} />
+            <FaAngular size={50} onClick={() => openModal("Angular")} />
+            <FaReact size={50} onClick={() => openModal("React.js")} />
+            <FaNodeJs size={50} onClick={() => openModal("Node.js")} />
+          </TechnologyIcons>
+          <ModalOverlay show={showModal} onClick={() => setShowModal(false)}>
+            <Modal onClick={(e) => e.stopPropagation()}>
+              <CloseButton onClick={() => setShowModal(false)}>X</CloseButton>
+              <ModalHeader>
+                {language === "tr"
+                  ? "Dil/Framework Tanıtımı"
+                  : "Language/Framework Introduction"}
+              </ModalHeader>
 
-          <ModalContent>{modalContent}</ModalContent>
-        </Modal>
-      </ModalOverlay>
+              <ModalContent>{modalContent}</ModalContent>
+            </Modal>
+          </ModalOverlay>
+          <ProjectButton onClick={navigateToProjects}>
+            <FaProjectDiagram /> {languageDescriptions.projectsButton[language]}
+          </ProjectButton>
+          <AboutButton onClick={() => setShowArticles(!showArticles)}>
+            {languageDescriptions.startJourneyButton[language]} <FaArrowRight />
+          </AboutButton>
+        </ProfileContainer>
+
+        {showArticles && (
+          <>
+            <Card data-aos="fade-up">
+              <CardContent>
+                <ImageCard
+                  onMouseEnter={() => setHovered(true)} // onMouseEnter ve onMouseLeave kullanın
+                  onMouseLeave={() => setHovered(false)}
+                >
+                  <StyledLazyLoadImage
+                    src={firstCardImage}
+                    alt="First Card"
+                    effect="blur"
+                  />
+                  {hovered && (
+                    <ImageOverlay>Image by storyset on Freepik</ImageOverlay>
+                  )}
+                  {/* Bu satır eklenmiştir */}
+                </ImageCard>
+                <CardContentText>
+                  {languageDescriptions.card1[language]}
+                </CardContentText>
+              </CardContent>
+            </Card>
+            <Card data-aos="fade-up">
+              <CardContent>
+                <ImageCard
+                  onMouseEnter={() => setHovered(true)} // onMouseEnter ve onMouseLeave kullanın
+                  onMouseLeave={() => setHovered(false)}
+                >
+                  <StyledLazyLoadImage
+                    src={secondCardImage}
+                    alt="Second Card"
+                    effect="blur"
+                  />
+                  {hovered && (
+                    <ImageOverlay>
+                      Designed by vectorpouch on Freepik
+                    </ImageOverlay>
+                  )}
+                  {/* Bu satır eklenmiştir */}
+                </ImageCard>
+                <CardContentText>
+                  {languageDescriptions.card2[language]}
+                </CardContentText>
+              </CardContent>
+            </Card>
+            <Card data-aos="fade-up">
+              <CardContent>
+                <ThirdCardImage
+                  src={thirdCardImage}
+                  alt="Third Card"
+                  effect="blur"
+                />
+                <CardContentText>
+                  {languageDescriptions.card3[language]}
+                </CardContentText>
+              </CardContent>
+            </Card>
+          </>
+        )}
+      </MainCard>
     </HomeContainer>
   );
 };
