@@ -266,7 +266,7 @@ Due to its non-blocking nature, Node.js is particularly suitable for tasks that 
   },
 
   startJourneyButton: {
-    tr: "Yazılım Yolculuğum Nasıl Başladı?",
-    en: "How Did My Software Journey Begin?", // İsterseniz başka dilleri de ekleyebilirsiniz.
+    tr: "Yazılım  Geliştirme  ve Programlama Yolculuğum Nasıl Başladı?",
+    en: "How Did My Software Development and Programming Journey Begin?", // İsterseniz başka dilleri de ekleyebilirsiniz.
   },
 };
