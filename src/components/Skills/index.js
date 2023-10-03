@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import {
   FaHtml5,
   FaCss3Alt,
@@ -193,6 +196,13 @@ const Explanation = styled.p`
 `;
 
 const Skills = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+    });
+    // ...
+  }, []);
+
   const theme = useSelector((state) => state.theme.theme);
   const language = useSelector((state) => state.language.value);
 
@@ -428,12 +438,12 @@ const Skills = () => {
   return (
     <SkillsContainer theme={theme}>
       {Object.entries(skillCategories).map(([category, skills]) => (
-        <CategoryContainer key={category}>
+        <CategoryContainer data-aos="fade-up" key={category}>
           <CategoryTitle theme={theme}>
             {titles[language][category]}
           </CategoryTitle>
           {skills.map((skill) => (
-            <SkillItem key={skill.name} theme={theme}>
+            <SkillItem data-aos="fade-up" key={skill.name} theme={theme}>
               <SkillIcon color={skill.color}>{skill.icon}</SkillIcon>
               <SkillName theme={theme}>{skill.name}</SkillName>
               <ProgressBar>
