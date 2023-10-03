@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import profileImage from "./profile-image.jpeg";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import lightReactRouterIcon from "./react-router-color.png"; // Light tema için ikonun path'ini yazmalısınız
 import darkReactRouterIcon from "./react-router-color-inverted.png"; // Dark tema için ikonun path'ini yazmalısınız
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 import {
   FaHtml5,
@@ -114,6 +116,12 @@ const SkillIcon = styled.span`
 `;
 
 const About = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Animasyonun süresi (milisaniye olarak)
+      // Diğer ayarları burada belirtebilirsiniz.
+    });
+  }, []);
   const language = useSelector((state) => state.language.value);
 
   const theme = useSelector((state) => state.theme.theme);
@@ -135,24 +143,24 @@ const About = () => {
   return (
     <Main theme={theme}>
       <Container>
-        <Article>
+        <Article data-aos="fade-up">
           <Card theme={theme}>
             <LazyProfileImage src={profileImage} alt="Hekimcan" effect="blur" />
             <Title theme={theme}>Hekimcan AKTAŞ</Title>
             <Description theme={theme}>{text.part1}</Description>
           </Card>
         </Article>
-        <Article>
+        <Article data-aos="fade-up">
           <Card theme={theme}>
             <Description theme={theme}>{text.part2}</Description>
           </Card>
         </Article>
-        <Article>
+        <Article data-aos="fade-up">
           <Card theme={theme}>
             <Description theme={theme}>{text.part3}</Description>
           </Card>
         </Article>
-        <Article>
+        <Article data-aos="fade-up">
           <Card theme={theme}>
             <SectionTitle theme={theme}>{sectionTitles.frontEnd}</SectionTitle>
             <SkillsList>
@@ -183,7 +191,7 @@ const About = () => {
             </SkillsList>
           </Card>
         </Article>
-        <Article>
+        <Article data-aos="fade-up">
           <Card theme={theme}>
             <SectionTitle theme={theme}>
               {sectionTitles.librariesFrameworks}
@@ -265,7 +273,7 @@ const About = () => {
             </SkillsList>
           </Card>
         </Article>
-        <Article>
+        <Article data-aos="fade-up">
           <Card theme={theme}>
             <SectionTitle theme={theme}>{sectionTitles.backEnd}</SectionTitle>
             <SkillsList>
@@ -308,7 +316,7 @@ const About = () => {
             </SkillsList>
           </Card>
         </Article>
-        <Article>
+        <Article data-aos="fade-up">
           <Card theme={theme}>
             <SectionTitle theme={theme}>{sectionTitles.databases}</SectionTitle>
 
@@ -327,7 +335,7 @@ const About = () => {
           </Card>
         </Article>
 
-        <Article>
+        <Article data-aos="fade-up">
           <Card theme={theme}>
             <SectionTitle theme={theme}>
               {sectionTitles.mobileDevelopment}
@@ -356,7 +364,7 @@ const About = () => {
             </SkillsList>
           </Card>
         </Article>
-        <Article>
+        <Article data-aos="fade-up">
           <Card theme={theme}>
             <SectionTitle theme={theme}>
               {sectionTitles.versionControl}
