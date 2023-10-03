@@ -325,7 +325,7 @@ const HomePage = () => {
     dispatch(setLoading(true));
     const timer = setTimeout(() => {
       dispatch(setLoading(false));
-    }, 3000);
+    }, 1000);
     return () => clearTimeout(timer);
   }, [dispatch]);
 
