@@ -12,6 +12,8 @@ import NotFound from "./components/NotFound";
 import Footer from "./components/Footer";
 import { useSelector } from "react-redux";
 import { ROUTES } from "./components/Routes";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
   const isLoading = useSelector((state) => state.loading.isLoading);
