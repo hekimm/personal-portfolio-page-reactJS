@@ -48,6 +48,8 @@ const Card = styled.article`
   &:hover {
     transform: scale(1.05);
     background-color: #176b87;
+    color: #fffff0;
+
   }
 `;
 const CardContent = styled.div`
