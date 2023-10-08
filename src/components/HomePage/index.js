@@ -305,7 +305,7 @@ const HomePage = () => {
   };
 
   const navigateToProjects = () => {
-    navigate(ROUTES.PROJECTS); // Varsayımsal bir ROUTE, uygun rota ile değiştirilmelidir
+    navigate(ROUTES.PROJECTS); 
   };
 
   const [modalContent, setModalContent] = useState("");
@@ -383,7 +383,7 @@ const HomePage = () => {
             <Card data-aos="fade-up">
               <CardContent>
                 <ImageCard
-                  onMouseEnter={() => setHovered(true)} // onMouseEnter ve onMouseLeave kullanın
+                  onMouseEnter={() => setHovered(true)} // onMouseEnter ve onMouseLeave kullanılır.
                   onMouseLeave={() => setHovered(false)}
                 >
                   <StyledLazyLoadImage
@@ -404,7 +404,7 @@ const HomePage = () => {
             <Card data-aos="fade-up">
               <CardContent>
                 <ImageCard
-                  onMouseEnter={() => setHovered(true)} // onMouseEnter ve onMouseLeave kullanın
+                  onMouseEnter={() => setHovered(true)} // onMouseEnter ve onMouseLeave kullanılır
                   onMouseLeave={() => setHovered(false)}
                 >
                   <StyledLazyLoadImage
@@ -414,7 +414,7 @@ const HomePage = () => {
                   />
                   {hovered && (
                     <ImageOverlay>
-                      Designed by vectorpouch on Freepik
+                     Image  by vectorpouch on Freepik
                     </ImageOverlay>
                   )}
                   {/* Bu satır eklenmiştir */}
