@@ -392,7 +392,7 @@ const HomePage = () => {
                     effect="blur"
                   />
                   {hovered && (
-                    <ImageOverlay>Image by storyset on Freepik</ImageOverlay>
+                    <ImageOverlay>Image by vectorpouch  on Freepik</ImageOverlay>
                   )}
                   {/* Bu satır eklenmiştir */}
                 </ImageCard>
