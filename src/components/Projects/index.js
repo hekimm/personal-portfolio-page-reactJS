@@ -41,6 +41,11 @@ import EleventhProject1 from "./projects-images/eleventh-project/photo-1.jpg";
 import EleventhProject2 from "./projects-images/eleventh-project/photo-2.jpg";
 import EleventhProject3 from "./projects-images/eleventh-project/photo-3.jpg";
 import EleventhProject4 from "./projects-images/eleventh-project/photo-4.jpg";
+import TwelfthProject1 from "./projects-images/twelfth-project/image-1.png";
+import TwelfthProject2 from "./projects-images/twelfth-project/image-2.png";
+import TwelfthProject3 from "./projects-images/twelfth-project/image-3.png";
+import TwelfthProject4 from "./projects-images/twelfth-project/image-4.png";
+import TwelfthProject5 from "./projects-images/twelfth-project/image-5.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
@@ -662,19 +667,73 @@ cocugumubilinclendiriyorum.com.tr
   {
     id: 12,
     title: {
-      tr: "React.js ile kodlanan Proje 12",
-      en: " Project 12 Coded with React.js",
+      tr: "E-commerce checkout page with React and Redux",
+      en: " E-commerce checkout page with React and Redux",
     },
-    images: [ExampleImage, ExampleImage],
+    images: [
+      TwelfthProject1,
+      TwelfthProject2,
+      TwelfthProject3,
+      TwelfthProject4,
+      TwelfthProject5,
+    ],
     category: "React.js",
-    technologies: ["React.js"],
+    technologies: ["React.js", "React Redux"],
     shortDescription: {
-      tr: `React.js projesi 2 için kısa açıklama.`,
-      en: `Short description for React.js project 2.        `,
+      tr: `👨‍💻 Bu proje, gerçek zamanlı animasyonlu kredi kartı geri bildirimi sunan bir form uygulamasıdır.
+
+Bu projede iyi ve güzel bir kullanıcı deneyimi hedefledim🔄✨`,
+      en: `👨‍💻 This project is a form application that provides real-time animated credit card feedback.
+      In this project, I aimed to provide a good and pleasant user experience🔄✨.`,
     },
     description: {
-      tr: `React.js projesi 2 için detaylı açıklama.`,
-      en: `Detailed description for React.js project 2.        `,
+      tr: `⭐⭐Özellikler:
+
+✨Dinamik Gösterim: Kullanıcının girdiği kredi kartı bilgilerine göre kartın ön yüzü ve arka yüzü canlı olarak güncellenir.
+
+✨Kart Tipleri: Visa, Mastercard ve Troy kart tipleri desteklenmektedir ve belirli bir algoritmaya göre otomatik olarak kart tipi belirlenir.
+
+✨Animasyonlar: "react-spring" kütüphanesi sayesinde kart numarası, kart sahibi adı ve son kullanma tarihi bilgilerinin animasyonlu bir şekilde gösterilmesi sağlanmıştır.
+
+✨Responsive Tasarım: Mobil cihazlarda da uyumlu bir kullanıcı deneyimi sunmak için stil dosyalarında medya sorguları kullanılmıştır.
+
+📚 Kullandığım Teknolojiler:
+
+⚛️React: Fonksiyonel bileşen yapısını kullanarak bu projeyi oluşturmayı hedefledim.
+
+⚛️ React Redux: Uygulama durumunu yönetmeyi hedefledim.
+
+⚛️ styled-components: Bileşenlere şık ve güzel bir görünüm kazandırmak için.
+
+⚛️ react-spring: Bazı animasyonlar için react-spring tercih ettim ve kullanıcı dostu bir deneyim yaşanmasını hedefledim.
+
+📝Formdaki background resmi :Designed by pikisuperstar on Freepik.
+
+📝 Not:Bu proje React ve Redux ile oluşturmuş bir frontend projesidir,sadece eğitim amaçlı hazırlanmış olup sadece eğitim amaçlı kullanılmıştır.`,
+      en: `⭐⭐Features:
+
+      ✨Dynamic Display: The front and back of the card are updated in real-time based on the credit card information entered by the user.
+      
+      ✨ Card Types: Visa, Mastercard, and Troy card types are supported, and the card type is automatically determined based on a specific algorithm.
+      
+      ✨Animations: Thanks to the "react-spring" library, card number, cardholder name, and expiration date are displayed with animations.
+      
+      ✨Responsive Design: Media queries have been used in the style files to ensure a compatible user experience on mobile devices.
+      
+      📚 Technologies I Used:
+
+      ⚛️ React: I aimed to create this project using the functional component structure.
+
+      ⚛️ React Redux: I aimed to manage the application state.
+
+      ⚛️ styled-components: To give a stylish and beautiful appearance to the components.
+
+      ⚛️ react-spring: I chose react-spring for certain animations and aimed to provide a user-friendly experience.
+      
+      📝Background image in the form: Designed by pikisuperstar on Freepik.
+      
+      
+      📝 Note: This project is a frontend project created with React and Redux, prepared solely for educational purposes and used only for educational reasons. `,
     },
   },
   {
