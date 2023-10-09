@@ -14,6 +14,72 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from ".././../actions/loadingActions";
 import { languageDescriptions } from "./LanguageDescriptions";
 import Loading from "../Loading/index";
+import NewTelevisionImage from "./television.png";
+import NewVideoSource from "./video.mp4";
+import { FaDev, FaArrowLeft } from "react-icons/fa";
+
+const mobile = "576px";
+const tablet = "768px";
+const desktop = "992px";
+const largeDesktop = "1200px";
+
+const NewTelevisionContainer = styled.div`
+  position: relative;
+  width: 80vw;
+  height: 60vw;
+  cursor: pointer; // Tıklanabilir olduğunu belirtmek için
+  transition: transform 0.3s ease-in-out; // Ölçeklendirme efektini yumuşatmak için geçiş ekledik.
+
+  &:hover {
+    transform: scale(1.15); // Hover durumunda ölçeklendirme efekti
+  }
+
+  &:active {
+    transform: scale(
+      1
+    ); // Aktif (tıklanma) durumunda ölçeklendirme efektini geri al
+  }
+
+  &::before {
+    content: "";
+    background: url(${(props) => props.televisionImage}) no-repeat center;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  @media (min-width: ${tablet}) and (max-width: ${desktop}) {
+    width: 700px;
+    height: 500px;
+  }
+
+  @media (min-width: ${desktop}) {
+    width: 900px;
+    height: 700px;
+  }
+`;
+
+const NewInnerVideo = styled.video`
+  width: 54.5%; // Televizyonun içine sığdırmak için
+  height: 100%; // Televizyonun içine sığdırmak için
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (max-width: ${mobile}) {
+    width: 54%; // Burada oranı tahmini olarak ayarladım
+    height: 110%; // Burada oranı tahmini olarak ayarladım
+  }
+
+  @media (min-width: ${tablet}) and (max-width: ${desktop}) {
+    width: 52%; // Burada oranı tahmini olarak ayarladım
+    height: 105%; // Burada oranı tahmini olarak ayarladım
+  }
+`;
 
 import {
   FaCss3Alt,
@@ -49,7 +115,6 @@ const Card = styled.article`
     transform: scale(1.05);
     background-color: #176b87;
     color: #fffff0;
-
   }
 `;
 const CardContent = styled.div`
@@ -91,6 +156,50 @@ const ButtonBase = styled.button`
     transform: translateY(
       1px
     ); // butona tıklanıldığında aşağıya doğru hafif hareket
+  }
+`;
+
+const AboutRouteButton = styled(ButtonBase)`
+  background-color: #4a90e2;
+  color: white;
+  position: absolute; // To position it relative to the TelevisionContainer
+  bottom: -10px; // Adjusted from -50px to -10px to move it closer to the television
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 25px; // Rounded edges for a modern look
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Subtle shadow for elevation
+  padding: 15px 30px; // Proper padding
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &:hover {
+    background-color: #357abd;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); // Enhanced shadow on hover for depth
+    transform: translateY(-2px) translateX(-50%); // Slight upward movement for interaction feedback
+  }
+
+  &:active {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); // Subtle shadow on click
+    transform: translateY(0px) translateX(-50%); // Reset to original position when clicked
+  }
+
+  svg {
+    margin-right: 10px; // Spacing between icon and text
+  }
+  @media (max-width: ${mobile}) {
+    bottom: -5px; // Adjust position for mobile
+    padding: 12px 20px; // Reduce padding for mobile
+  }
+
+  @media (min-width: ${tablet}) and (max-width: ${desktop}) {
+    bottom: -8px; // Adjust position for tablet
+    padding: 14px 25px; // Adjust padding for tablet
+  }
+
+  @media (min-width: ${largeDesktop}) {
+    bottom: -15px; // Adjust position for larger desktops
+    padding: 18px 35px; // Increase padding for larger desktops
   }
 `;
 
@@ -292,8 +401,36 @@ const ThirdCardImage = styled(StyledLazyLoadImage)`
   }
 `;
 
+const Description = styled.p`
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+  font-weight: 500;
+  padding: 1.5rem 0; // Padding eklenerek yükseklik arttırılır.
+
+  &:after {
+    content: none; // Removing the content property will prevent the pseudo-element from being generated.
+  }
+
+  &:last-child:after {
+    display: none;
+  }
+
+  @media (min-width: ${tablet}) {
+    font-size: 1.4rem;
+  }
+
+  @media (min-width: ${desktop}) {
+    font-size: 1.5rem;
+  }
+`;
+
 const HomePage = () => {
   const [showArticles, setShowArticles] = useState(false);
+  const aboutButtonText = useSelector(
+    (state) => languageDescriptions.aboutButton[state.language.value],
+  );
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -305,9 +442,13 @@ const HomePage = () => {
   };
 
   const navigateToProjects = () => {
-    navigate(ROUTES.PROJECTS); 
+    navigate(ROUTES.PROJECTS);
   };
-
+  const handleTelevisionClick = () => {
+    // Örnek olarak bir rota yönlendirmesi yapabilirsiniz.
+    // İstediğiniz bir işlevsellik eklemek için bu fonksiyonu değiştirebilirsiniz.
+    console.log("The computer has been clicked");
+  };
   const [modalContent, setModalContent] = useState("");
   const [showModal, setShowModal] = useState(false);
   const language = useSelector((state) => state.language.value);
@@ -370,6 +511,21 @@ const HomePage = () => {
               <ModalContent>{modalContent}</ModalContent>
             </Modal>
           </ModalOverlay>
+          <Description>
+            <NewTelevisionContainer
+              onClick={handleTelevisionClick}
+              televisionImage={NewTelevisionImage}
+            >
+              <NewInnerVideo playsInline muted autoPlay loop>
+                <source src={NewVideoSource} type="video/mp4" />
+                Tarayıcınız bu video formatını desteklemiyor.
+              </NewInnerVideo>
+
+              <AboutRouteButton onClick={navigateToAbout}>
+                <FaDev /> {aboutButtonText} <FaArrowLeft />
+              </AboutRouteButton>
+            </NewTelevisionContainer>
+          </Description>
           <ProjectButton onClick={navigateToProjects}>
             <FaProjectDiagram /> {languageDescriptions.projectsButton[language]}
           </ProjectButton>
@@ -392,7 +548,7 @@ const HomePage = () => {
                     effect="blur"
                   />
                   {hovered && (
-                    <ImageOverlay>Image by vectorpouch  on Freepik</ImageOverlay>
+                    <ImageOverlay>Image by vectorpouch on Freepik</ImageOverlay>
                   )}
                   {/* Bu satır eklenmiştir */}
                 </ImageCard>
@@ -413,9 +569,7 @@ const HomePage = () => {
                     effect="blur"
                   />
                   {hovered && (
-                    <ImageOverlay>
-                     Image  by vectorpouch on Freepik
-                    </ImageOverlay>
+                    <ImageOverlay>Image by vectorpouch on Freepik</ImageOverlay>
                   )}
                   {/* Bu satır eklenmiştir */}
                 </ImageCard>

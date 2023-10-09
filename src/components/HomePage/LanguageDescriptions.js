@@ -225,8 +225,8 @@ Due to its non-blocking nature, Node.js is particularly suitable for tasks that 
   },
 
   profileTitle: {
-    tr: "Full Stack Web Geliştiricisi | Mobil Uygulama Geliştiricisi | English Master(C1+)",
-    en: "Full Stack Web Developer | Mobile App Developer | English Master(C1+)",
+    tr: "Full Stack Web Developer | Mobil Uygulama Geliştirici | English Master(C1)",
+    en: "Full Stack Web Developer | Mobile App Developer | English Master(C1)",
   },
   card1: {
     tr: `Merhaba. Ben Hekimcan Aktaş, Kişisel gelişim sürecinin sürekli bir öğrenme ve yenilenme süreci olduğuna inanıyorum ve bu inançla, her yeni günü bir fırsat olarak görüp, bilgimi ve yeteneklerimi artırmaya devam ediyorum.
@@ -266,7 +266,11 @@ Due to its non-blocking nature, Node.js is particularly suitable for tasks that 
   },
 
   startJourneyButton: {
-    tr: "Yazılım  Geliştirme  ve Programlama Yolculuğum Nasıl Başladı?",
-    en: "How Did My Software Development and Programming Journey Begin?", // İsterseniz başka dilleri de ekleyebilirsiniz.
+    tr: "Yazılım Yolculuğum Nasıl Başladı?",
+    en: "How Did My Software Journey Begin?", // İsterseniz başka dilleri de ekleyebilirsiniz.
+  },
+  aboutButton: {
+    en: "About me",
+    tr: "Hakkımda",
   },
 };
