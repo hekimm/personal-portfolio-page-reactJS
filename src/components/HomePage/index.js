@@ -31,7 +31,7 @@ const NewTelevisionContainer = styled.div`
   transition: transform 0.3s ease-in-out; // Ölçeklendirme efektini yumuşatmak için geçiş ekledik.
 
   &:hover {
-    transform: scale(1.15); // Hover durumunda ölçeklendirme efekti
+    transform: scale(1.05); // Hover durumunda ölçeklendirme efekti
   }
 
   &:active {
