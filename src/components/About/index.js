@@ -305,6 +305,16 @@ const About = () => {
                 </SkillIcon>
                 Node.js (Express.js)
               </Skill>
+              <Skill>
+                <SkillIcon color="#007396">
+                  <img
+                    src="https://www.vectorlogo.zone/logos/java/java-icon.svg"
+                    alt="Java"
+                    style={{ width: "60px", height: "60px" }}
+                  />
+                </SkillIcon>
+                Java
+              </Skill>
             </SkillsList>
           </Card>
         </Article>
@@ -344,14 +354,24 @@ const About = () => {
                 React Native
               </Skill>
               <Skill>
-                <SkillIcon color="#02569B">
+                <SkillIcon color="#0095D5">
                   <img
-                    src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg"
-                    alt="Flutter"
+                    src="https://www.vectorlogo.zone/logos/kotlinlang/kotlinlang-icon.svg"
+                    alt="Kotlin"
                     style={{ width: "60px", height: "60px" }}
                   />
                 </SkillIcon>
-                Flutter
+                Kotlin
+              </Skill>
+              <Skill>
+                <SkillIcon color="#FA7343">
+                  <img
+                    src="https://www.vectorlogo.zone/logos/swift/swift-icon.svg"
+                    alt="Swift"
+                    style={{ width: "60px", height: "60px" }}
+                  />
+                </SkillIcon>
+                Swift
               </Skill>
             </SkillsList>
           </Card>
