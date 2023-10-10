@@ -521,7 +521,7 @@ Security: iOS is often lauded for its secure ecosystem. Developers are required 
   },
 
   profileTitle: {
-    tr: "Full Stack Web Gelişticirisi | Mobil Uygulama Geliştiricisi | English Master(C1+)",
+    tr: "Full Stack Web Geliştiricisi | Mobil Uygulama Geliştiricisi | English Master(C1+)",
     en: "Full Stack Web Developer | Mobile App Developer | English Master(C1+ )",
   },
   card1: {
