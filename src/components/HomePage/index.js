@@ -17,6 +17,7 @@ import Loading from "../Loading/index";
 import NewTelevisionImage from "./television.png";
 import NewVideoSource from "./video.mp4";
 import { FaDev, FaArrowLeft } from "react-icons/fa";
+import { FaJava, FaAndroid, FaApple, FaSwift } from "react-icons/fa";
 
 const mobile = "576px";
 const tablet = "768px";
@@ -29,11 +30,7 @@ const NewTelevisionContainer = styled.div`
   height: 60vw;
   cursor: pointer; // Tıklanabilir olduğunu belirtmek için
   transition: transform 0.3s ease-in-out; // Ölçeklendirme efektini yumuşatmak için geçiş ekledik.
-
-  &:hover {
-    transform: scale(1.05); // Hover durumunda ölçeklendirme efekti
-  }
-
+  margin-top: 40px;
   &:active {
     transform: scale(
       1
@@ -79,13 +76,16 @@ const NewInnerVideo = styled.video`
     width: 52%; // Burada oranı tahmini olarak ayarladım
     height: 105%; // Burada oranı tahmini olarak ayarladım
   }
+  &[disablePictureInPicture] {
+    // Bu özelliği devre dışı bırakmak için
+    disablepictureinpicture: true;
+  }
 `;
 
 import {
   FaCss3Alt,
   FaBootstrap,
   FaJsSquare,
-  FaAngular,
   FaReact,
   FaNodeJs,
   FaProjectDiagram,
@@ -495,9 +495,19 @@ const HomePage = () => {
             <FaCss3Alt size={50} onClick={() => openModal("CSS")} />
             <FaBootstrap size={50} onClick={() => openModal("Bootstrap")} />
             <FaJsSquare size={50} onClick={() => openModal("JavaScript")} />
-            <FaAngular size={50} onClick={() => openModal("Angular")} />
+
             <FaReact size={50} onClick={() => openModal("React.js")} />
             <FaNodeJs size={50} onClick={() => openModal("Node.js")} />
+            <FaJava size={50} onClick={() => openModal("Java")} />
+            <FaAndroid
+              size={50}
+              onClick={() => openModal("Android App Development")}
+            />
+            <FaSwift size={50} onClick={() => openModal("Swift")} />
+            <FaApple
+              size={50}
+              onClick={() => openModal("IOS App Development")}
+            />
           </TechnologyIcons>
           <ModalOverlay show={showModal} onClick={() => setShowModal(false)}>
             <Modal onClick={(e) => e.stopPropagation()}>
@@ -516,7 +526,13 @@ const HomePage = () => {
               onClick={handleTelevisionClick}
               televisionImage={NewTelevisionImage}
             >
-              <NewInnerVideo playsInline muted autoPlay loop>
+              <NewInnerVideo
+                disablePictureInPicture
+                playsInline
+                muted
+                autoPlay
+                loop
+              >
                 <source src={NewVideoSource} type="video/mp4" />
                 Tarayıcınız bu video formatını desteklemiyor.
               </NewInnerVideo>
