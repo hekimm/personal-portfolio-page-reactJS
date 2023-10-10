@@ -91,52 +91,94 @@ Asynchronous capabilities, like those provided by AJAX, allow the content of web
 Despite the similarity in their names, it is important to note that JavaScript is distinct from Java.
     `,
   },
-  Angular: {
+  "Android App Development": {
     tr: `
-    Angular, HTML, CSS ve TypeScript ile istemci tarafı uygulamaları oluşturmak için bir platform ve çerçevedir.
+    Android Uygulama Geliştirmesi, Android işletim sistemini kullanan cihazlar için uygulamalar oluşturma sürecidir.
+    
+     Google, Android'i öncelikle akıllı telefonlar için bir işletim sistemi olarak geliştirdi, ancak daha sonra uygulamayı tabletler, akıllı televizyonlar ve giyilebilir cihazlar (örneğin saatler) gibi diğer cihazlara da genişletti.
 
-Google tarafından geliştirilen ve bakımı yapılan Angular, geleneksel çok sayfalı web sitelerine kıyasla daha dinamik ve etkileşimli bir kullanıcı deneyimi sunan tek sayfalı uygulamalar (SPAs) oluşturmayı geliştiricilere olanak tanır.
 
-Angular'ın ana özellikleri şunlardır:
+Diller ve Çerçeveler: Android uygulama geliştirmesi, geleneksel olarak Java kullanılarak yapılmıştır.
 
-Bileşenler: Angular, kullanıcı arayüzünü belirli bir görünüm veya işlevsellikten sorumlu yeniden kullanılabilir bileşenlere böler.
+Ancak son yıllarda Kotlin, Android için daha modern ve tercih edilen bir dil olarak ortaya çıkmıştır.
 
-Çift Yönlü Veri Bağlama: Bu, uygulama durumundaki değişikliklerin UI'ı otomatik olarak güncellediği ve tersi durumda, bunları senkronize etmek için ek kod gerektirmediği anlamına gelir.
+Google, Android geliştirmesi için resmi olarak Kotlin'i desteklemekte olup, Java'ya göre daha özlü, güvenli ve entegrasyon açısından birçok avantaj sunar.
 
-Bağımlılık Enjeksiyonu: Hizmetlerin veya nesnelerin sınıflara manuel olarak örneklenmeden "enjekte edildiği" bir tasarım kalıbıdır. Bu, modüler ve bakımı kolay koda olanak tanır.
+Android Studio: Bu, Android geliştirmesi için resmi entegre geliştirme ortamıdır (IDE). 
 
-Direktifler: Geliştiricilere yeni, özel davranışlar oluşturma olanağı tanıyarak HTML'in gücünü genişletir.
+Uygulamaları oluşturmak için bir kod düzenleyici, hata ayıklayıcı, emülatör ve daha birçok araç sunar.
 
-Hizmetler: Paylaşılan işlevselliği veya veriyi sağlamak için bileşenlere enjekte edilebilen singleton nesneler.
+Android SDK (Yazılım Geliştirme Kiti): Bu, kapsamlı bir geliştirme araçları, kütüphaneler, bir el emülatörü, dokümantasyon, örnek kod ve öğreticiler setini içerir.
 
-Yönlendirme: Görünümler arasında gezinmeyi sağlar ve tarayıcı geçmişini destekler.
+ SDK, Android işletim sistemiyle eş zamanlı olarak sık sık güncellenir.
 
-Angular uygulamaları genellikle TypeScript'te yazılır, bu da statik tipler, arayüzler ve geliştirmeyle yardımcı olacak diğer özellikleri tanıtan JavaScript'in bir üst kümesidir.
+UI/UX Tasarımı: Tasarımların çeşitli tarayıcılara hitap etmesi gerektiği web geliştirmeden farklı olarak, Android geliştiricileri genellikle farklı ekran boyutlarına, çözünürlüklere ve donanım yeteneklerine sahip çok çeşitli cihazlar için tasarım yapar. 
 
-Burada tanımlanan Angular çerçevesinin Angular 2 ve sonrasını ifade ettiğini belirtmek önemlidir. AngularJS, biraz farklı bir yapıya sahip ilk Angular sürümüdür.
+Material Design, Android için Google'ın tasarım dilidir ve uygulamanın görünümü ve davranışı için yönergeler sağlar.
+
+API'lar ve Servisler: Birçok uygulama, web hizmetleri, API'lar veya arka uç sunucularıyla etkileşim gerektirir.
+
+Retrofit, Volley ve OkHttp, bu ağ işlemlerini gerçekleştirmek için popüler kütüphanelerdir.
+
+Test Etme: Başlangıçta emülatörler sıkça kullanılsa da, farklı özelliklere sahip çok sayıda Android cihazı olduğundan gerçek cihaz testi çok önemlidir.
+
+Espresso ve JUnit popüler test çerçevelerindendir.
+
+Uygulama Mağazası: Uygulama geliştirildikten ve test edildikten sonra genellikle Google Play Store'da yayınlanır.
+
+Yayınlamadan önce geliştiricilerin uygulama listelerini hazırlaması, para kazanma stratejilerine karar vermesi (örn. reklamlar, uygulama içi satın almalar) ve potansiyel olarak uygulama inceleme sürecini aşması gerekir.
+
+Sürekli Güncellemeler ve Bakım: Uygulama başlatıldıktan sonra, geliştiricilerin performansını izlemesi, kullanıcı geri bildirimlerini toplaması, hataları gidermesi ve potansiyel olarak yeni özellikler eklemesi gerekir.
+
+ Android OS'nin her yeni sürümüyle veya yeni cihazlarla uyumluluk sorunları olabilir.
+
+Güvenlik: Android cihazlarının çok sayıda olması ve işletim sisteminin açık yapısı nedeniyle güvenlik birincil bir endişedir. 
+
+Geliştiricilerin veri gizliliğini sağlaması, güvenli ağ iletişimi kurması ve potansiyel zafiyetlere karşı koruma sağlaması gerekir.
     `,
     en: `
-    Angular is a platform and framework for building client-side applications with HTML, CSS, and TypeScript.
+    Android App Development is the process of creating applications for devices powered by the Android operating system. 
+    
+    Google primarily developed Android as an operating system for smartphones, but it has since extended its application to various other devices like tablets, smart TVs, and wearables (like watches).
 
-Developed and maintained by Google, Angular allows developers to create Single Page Applications (SPAs), offering a more dynamic and interactive user experience compared to traditional multi-page websites.
 
-The key features of Angular are:
-
-Components: Angular breaks down the user interface into reusable components, each responsible for a specific look or functionality.
-
-Two-Way Data Binding: This means that changes in the application state automatically update the UI and vice versa, requiring no additional code to synchronize them.
-
-Dependency Injection: This is a design pattern where services or objects are "injected" into classes without being manually instantiated. This allows for modular and easily maintainable code.
-
-Directives: These extend the power of HTML by giving developers the ability to create new, custom behaviors.
-
-Services: Singleton objects that can be injected into components to provide shared functionality or data.
-
-Routing: Enables navigation between views and supports browser history.
-
-Angular applications are typically written in TypeScript, which is a superset of JavaScript, introducing static types, interfaces, and other features to assist with development.
-
-It’s important to note that the Angular framework described here refers to Angular 2 and subsequent versions. AngularJS is the first version of Angular, having a somewhat different architecture.
+    Languages and Frameworks: Android app development has traditionally been done using Java.
+    
+    However, in recent years, Kotlin has emerged as a more modern and preferred language for Android. 
+    
+    Google officially supports Kotlin for Android development, and it provides many advantages over Java in terms of conciseness, safety, and interoperability.
+    
+    Android Studio: This is the official integrated development environment (IDE) for Android development.
+    
+    It provides a range of tools for building apps, including a code editor, debugger, emulator, and more.
+    
+    Android SDK (Software Development Kit): This includes a comprehensive set of development tools, libraries, a handset emulator, documentation, sample code, and tutorials. 
+    
+    The SDK gets updated frequently in tandem with the Android operating system.
+    
+    UI/UX Design: Unlike web development, where designs have to cater to various browsers, Android developers often design for a vast range of devices with different screen sizes, resolutions, and hardware capabilities. 
+    
+    Material Design is Google's design language for Android, providing guidelines for app appearances and behavior.
+    
+    APIs and Services: Many apps require interactions with web services, APIs, or backend servers.
+    
+    Retrofit, Volley, and OkHttp are popular libraries to handle these network operations.
+    
+    Testing: Emulators are often used initially, but real-device testing is crucial since there are so many Android devices with different specs.
+    
+    Espresso and JUnit are popular testing frameworks.
+    
+    App Store: Once the application is developed and tested, it's typically published on the Google Play Store.
+    
+    Before publication, developers need to prepare app listings, decide on monetization strategies (e.g., ads, in-app purchases), and potentially navigate the app review process.
+    
+    Continuous Updates and Maintenance: After launching the app, developers need to monitor its performance, gather user feedback, fix bugs, and potentially introduce new features.
+    
+    With every new version of the Android OS or new devices, there might be compatibility issues that developers need to address.
+    
+    Security: Given the vast number of Android devices and the open nature of the OS, security is a primary concern. 
+    
+    Developers must ensure data privacy, secure network communication, and protect against potential vulnerabilities.
     `,
   },
   "React.js": {
@@ -224,9 +266,263 @@ Due to its non-blocking nature, Node.js is particularly suitable for tasks that 
     `,
   },
 
+  Java: {
+    tr: `
+    Java, platform bağımsızlığı, sağlamlığı ve çok yönlülüğü ile tanınan yüksek seviyeli, nesne tabanlı bir programlama dilidir. 
+    
+    1995'te Sun Microsystems tarafından tanıtılan Java, geliştirme dünyasında hızla temel bir konuma geldi ve bugün en popüler ve etkili dillerden biri olmaya devam ediyor.
+
+    Bir Kere Yaz, Her Yerde Çalıştır (WORA): Java'nın felsefesi bu ilkeye dayanmaktadır ve platformlar arası yeteneklerine vurgu yapmaktadır.
+    
+    Java uygulamaları bytecode'a derlenir ve Java Sanal Makinesi (JVM) üzerinde çalışır.
+    
+    Bu, uygun bir JVM'e sahip herhangi bir cihaz veya işletim sistemi üzerinde Java kodunun çalıştırılabileceği anlamına gelir.
+    
+    Nesne Tabanlı: Java, doğuştan nesne tabanlıdır ve nesnelerin ve sınıfların kullanılmasını teşvik eder.
+    
+    Bu paradigma, kodu modüler, organize ve yeniden kullanılabilir hale getirir, bu da daha sürdürülebilir ve ölçeklenebilir uygulamalara yol açar.
+    
+    Zengin Standart Kütüphane: Java, genellikle Java Standart Edition API olarak adlandırılan geniş bir standart kütüphane sunar. 
+    
+    Bu kütüphane, veri yapılarından ve algoritmalardan ağ ve I/O işlemlerine kadar her şeyi ele almak için sınıflar ve yöntemler sağlar.
+    
+    Bellek Yönetimi: Java, otomatik çöp toplama kullanır, böylece geliştiricilerin manuel olarak belleği dealloke etmesine gerek kalmaz.
+    
+    Bu mekanizma, potansiyel bellek sızıntılarına ve ilgili hatalara engel olmaya yardımcı olur.
+    
+    Eşzamanlılık: Java, çoklu iş parçacığı programlaması için yerleşik destek sağlar, yüksek performanslı uygulamalar için esansiyel olan eşzamanlı işlemlerin etkili bir şekilde çalıştırılmasına olanak tanır.
+    
+    Sağlam ve Güvenli: Java'nın hata kontrolü, çalışma zamanı kontrolü ve çöp toplama için yerleşik mekanizmaları vardır, bu da sağlamlığına katkıda bulunur. Güvenlik özellikleri arasında sağlam bir güvenlik yöneticisi ve bytecode doğrulayıcısı bulunmaktadır.
+    
+    Geniş Uygulama: Java, sadece web veya masaüstü uygulamalarıyla sınırlı değildir.
+    
+    Android uygulamalarını, gömülü sistemleri ve büyük ölçekli kurumsal uygulamaları destekler.
+    
+    Ekosistem ve Topluluk: Java, birçok çerçeve, kütüphane ve araçla geniş bir ekosisteme sahiptir.
+    
+    Örnekler arasında kurumsal uygulamalar için Spring, ORM için Hibernate ve yapılandırma otomasyonu için Maven ve Gradle bulunmaktadır.
+    
+    Yaşı ve popülerliği göz önüne alındığında topluluk desteği geniş ve aktiftir.
+    
+    Sürekli Evrim: Yıllar içinde Java, yeni özellikler, optimizasyonlar ve performans iyileştirmeleri tanıtan sayısız güncelleme gördü. 
+    
+    Lambda ifadeleri, akışlar ve modül sistemi gibi özellikler, dili modernleştirmek ve daha verimli hale getirmek için son sürümlere eklendi.
+    
+    Özetle, Java zamanın sınavını geçmiş, olgun, çok yönlü ve yüksek performanslı bir programlama dilidir. 
+    
+    Modern yazılım geliştirme taleplerini karşılamak için evrilmeye devam ederken, denenmiş ve gerçek ilkelere güçlü bir temelde bulunmaktadır. 
+    `,
+    en: `
+    Java is a high-level, object-oriented programming language that's widely known for its platform independence, robustness, and versatility.
+    
+    Introduced by Sun Microsystems in 1995, Java quickly became a staple in the development world and remains one of the most popular and influential languages today.
+  
+    Write Once, Run Anywhere (WORA): Java's philosophy revolves around this principle, emphasizing its cross-platform capabilities.
+    
+    Java applications are compiled to bytecode, which runs on the Java Virtual Machine (JVM).
+    
+    This means that Java code can be executed on any device or operating system with a suitable JVM.
+    
+    Object-Oriented: Java is inherently object-oriented, promoting the use of objects and classes.
+    
+    This paradigm makes code modular, organized, and reusable, leading to more maintainable and scalable applications.
+    
+    Rich Standard Library: Java offers a vast standard library, often referred to as the Java Standard Edition API.
+    
+    This library provides classes and methods to handle everything from data structures and algorithms to networking and I/O operations.
+    
+    Memory Management: Java uses automatic garbage collection, freeing developers from manually deallocating memory.
+    
+    This mechanism helps prevent potential memory leaks and related bugs.
+    
+    Concurrency: Java provides built-in support for multithreaded programming, allowing for the efficient execution of concurrent operations, essential for high-performance applications.
+    
+    Robust and Secure: Java has built-in mechanisms for error-checking, runtime checking, and garbage collection, which contribute to its robustness.
+    
+    Its security features include a robust security manager and bytecode verifier.
+    
+    Wide Application: Java is not just limited to web or desktop applications.
+    
+    It powers Android apps, embedded systems, and large-scale enterprise applications, among other uses.
+    
+    Ecosystem and Community: Java boasts a vast ecosystem with a multitude of frameworks, libraries, and tools. 
+    
+    Examples include Spring for enterprise applications, Hibernate for ORM, and Maven and Gradle for build automation.
+    
+     The community support, given its age and popularity, is vast and active.
+    
+    Continuous Evolution: Over the years, Java has seen numerous updates, each introducing new features, optimizations, and performance improvements. 
+    
+    Features like lambda expressions, streams, and the module system have been added in recent versions to modernize the language and make it more efficient.
+     
+    In summary, Java is a mature, versatile, and high-performing programming language that has stood the test of time, evolving to meet the demands of modern software development while maintaining a strong foundation in tried-and-true principles. I
+    `,
+  },
+
+  "IOS App Development": {
+    tr: `
+    iOS Uygulama Geliştirmesi, iPhone, iPad, iPod Touch ve Apple Watch gibi cihazları destekleyen Apple'ın iOS platformu için özel olarak uygulamaların tasarlanması, geliştirilmesi ve dağıtılmasını ifade eder.
+
+    Diller ve Çerçeveler: Tarihsel olarak, Objective-C iOS geliştirmesi için ana dildi. 
+    
+    Ancak, Apple 2014 yılında Swift'i tanıttı ve bu, birçok geliştirici için tercih edilen seçenek haline geldi.
+    
+    Swift, performans, güvenlik ve okunabilirlik açısından Objective-C'ye göre birçok avantaja sahip modern, güçlü ve tip güvenli bir dildir.
+    
+    Xcode: Xcode, Apple'ın iOS geliştirmesi için sunduğu resmi entegre geliştirme ortamıdır (IDE).
+    
+    Geliştiricilere uygulamalarını oluşturma ve test etme konusunda yardımcı olacak Interface Builder, kod düzenleyiciler ve simülatörler gibi yazılım geliştirme araçlarından oluşan bir paketi içerir.
+    
+    iOS SDK (Yazılım Geliştirme Kiti): Bu kit, geliştiricilere iOS uygulamalarını oluşturmak için gereken çerçeveleri ve araçları sunar. 
+    
+    Cihaz donanımıyla ve önceden yüklenmiş yazılımla arayüz oluşturan API'ler (Uygulama Programlama Arayüzleri) içerir.
+    
+    UI/UX Tasarımı: iOS uygulama tasarımı, Apple'ın İnsan Arayüzü Kılavuzları tarafından yönlendirilir, bu da uygulamaların platform boyunca tutarlı bir görünüm ve hisse sahip olmasını sağlar.
+    
+    Vurgu, berraklık, derinlik ve sezgisel bir kullanıcı deneyimi üzerinedir.
+    
+    API'lar ve Servisler: Birçok uygulama web hizmetleri veya arka uç veritabanlarıyla arayüz oluşturur. 
+    
+    Bu işlemler için geliştiriciler, genellikle ağ isteklerini işlemek için Alamofire gibi kütüphaneler ve araçları kullanır.
+    
+    Test Etme: Xcode, çeşitli cihazlar için iOS simülatörleri sağlasa da, fiziksel cihaz testi, iOS cihaz yelpazesi boyunca uyumluluğu ve sorunsuz performansı garantilemek için esastır.
+    
+    App Store Gönderimi: Uygulama hazır olduğunda Apple'ın App Store'una gönderilir.
+    
+    Bu süreç, bir App Store listesi oluşturma, fiyatlandırma veya para kazanma stratejilerini seçme ve kalite, güvenlik ve yönergeleri takip etmeye vurgu yapan Apple'ın inceleme sürecini içerir.
+    
+    Sürekli Güncellemeler ve Bakım: Lansmandan sonra uygulama, izleme, kullanıcı geri bildirimini entegre etme, hata düzeltmeleri ve potansiyel özellik geliştirmeleri gerektirir.
+    
+    Apple, iOS'u sık sık güncellediğinden, geliştiricilerin uygulamanın yeni OS sürümleriyle uyumlu olmasını sağlamaları gerekir.
+    
+    Güvenlik: iOS, güvenli ekosistemi için sıkça övgü alır.
+    
+    Geliştiricilerin, veri gizliliğini garanti altına almak, güvenli depolama ve güvenli ağ iletişimi sağlamak için en iyi uygulamaları takip etmeleri gerekir, genellikle Keychain gibi Apple tarafından sağlanan çerçeveleri kullanarak.
+    `,
+    en: `
+    iOS App Development refers to the process of designing, developing, and deploying applications specifically for Apple's iOS platform, which powers devices like the iPhone, iPad, iPod Touch, and Apple Watch. 
+
+Languages and Frameworks: Historically, Objective-C was the primary language for iOS development. 
+
+However, Apple introduced Swift in 2014, which has since become the preferred choice for many developers.
+
+Swift is a modern, powerful, and type-safe language that offers many advantages over Objective-C in terms of performance, safety, and readability.
+
+Xcode: Xcode is the official integrated development environment (IDE) provided by Apple for iOS development.
+
+ It incorporates a suite of software development tools, including Interface Builder, code editors, and simulators, to assist developers in creating and testing their apps.
+
+iOS SDK (Software Development Kit): This kit provides developers with a collection of frameworks and tools necessary to build iOS apps.
+
+It includes APIs (Application Programming Interfaces) that interface with the device hardware and pre-installed software.
+
+UI/UX Design: iOS app design is guided by Apple's Human Interface Guidelines, which help ensure that apps have a consistent look and feel across the platform.
+
+The emphasis is on clarity, depth, and an intuitive user experience.
+
+APIs and Services: Many apps interface with web services or backend databases. 
+
+For these operations, developers often use libraries and tools like Alamofire to handle network requests.
+
+Testing: While Xcode provides iOS simulators for various devices, physical device testing is essential to ensure compatibility and smooth performance across the iOS device spectrum.
+
+App Store Submission: Once the app is ready, it's submitted to Apple's App Store. This process involves creating an App Store listing, selecting pricing or monetization strategies, and undergoing Apple's review process, which emphasizes quality, security, and adherence to guidelines.
+
+Continuous Updates and Maintenance: Post-launch, the app requires monitoring, user feedback incorporation, bug fixes, and potential feature enhancements.
+
+Apple frequently updates iOS, so developers need to ensure app compatibility with new OS versions.
+
+Security: iOS is often lauded for its secure ecosystem. Developers are required to follow best practices to ensure data privacy, secure storage, and safe network communication, often using Apple-provided frameworks like Keychain.
+    `,
+  },
+  Swift: {
+    tr: `
+    Swift, Apple tarafından iOS, macOS, watchOS, tvOS ve ötesi için geliştirilen güçlü ve sezgisel bir programlama dilidir. 
+    
+    2014 yılında Apple'ın Worldwide Developers Conference (WWDC) etkinliğinde tanıtıldı ve o zamandan beri modern sözdizimi, performans ve güvenlik özellikleriyle geliştiriciler arasında önemli bir ilgi kazandı.
+
+    Modern Sözdizimi: Swift'in sözdizimi anlamlı ve özlüdür, kodun hem okunmasını hem de yazılmasını kolaylaştırır.
+    
+    Modern programlama dillerinden birçok özellik içerirken eski konvensiyonlardan sıyrılır, bu da onu Objective-C'den daha akıcı kılar.
+    
+    Performans: Swift, optimize edilmiş performans için tasarlanmıştır. 
+    
+    Apple, belirli kriterler için Swift kodunun C++ kadar hızlı veya daha hızlı çalışabileceğini belirtti, bu da onu sadece geliştirici dostu değil, aynı zamanda son derece verimli kılar.
+    
+    Tip Güvenliği: Swift'in öne çıkan özelliklerinden biri tip güvenliği üzerine olan vurgusudur.
+    
+    Dil, güçlü bir tip sistemini kullanır ve bir değerin olmayabileceğini gösteren seçenekler gibi özellikleri içerir.
+    
+    Bu tasarım, yaygın kodlama hatalarını ve çökme olaylarını azaltmaya ve ortadan kaldırmaya yardımcı olur.
+    
+    Bellek Güvenliği: Swift, bir çöp toplayıcının ek yükü olmadan bellek yönetimi için otomatik referans sayımı (ARC) içerir, bu da bellek kullanımının optimize edilmesini sağlar. 
+    
+    Tasarımı aynı zamanda bellek sızıntısına veya öngörülemeyen davranışlara yol açan yaygın programlama hatalarını en aza indirir.
+    
+    Eşzamanlılık: Swift, Objective-C ile birlikte yaşamak üzere tasarlanmıştır. 
+    
+    Bu, geliştiricilerin Swift kodunu mevcut Objective-C projelerine entegre edebileceği ve tersi anlamına gelir, bu da projelerin ve ekiplerin Objective-C'den Swift'e geçiş için daha sorunsuz olmasını sağlar.
+    
+    Açık Kaynak: 2015'te Apple, Swift'i açık kaynak yaptı, bu da hızla benimsenmesine ve evrimine yol açtı.
+    
+    Açık kaynak olması, birçok geliştiricinin büyümesine katkıda bulunmasına ve Swift'i Apple dışı platformlara getirmesine olanak tanımıştır.
+    
+    Oyun Alanları: Xcode'da benzersiz bir özellik olan Swift Oyun Alanları, geliştiricilere veri çıktılarını gerçek zamanlı olarak görselleştirerek Swift kodunu hızla yazma ve test etme imkanı sunar.
+    
+    Bu araç, prototipleme ve öğrenme için özellikle yararlıdır.
+    
+    Hata Yönetimi: Swift, throw, try, catch ve defer anahtar kelimelerini kullanarak robust bir hata yönetimi sunar, bu da geliştiricilere beklenmeyen başarısızlıkları yönetebilen ve bu tür durumlardan kurtulabilen dayanıklı kod yazma olanağı tanır.
+    
+    Modern Eşzamanlılık: Swift 5.5'te Swift Eşzamanlılığının tanıtılmasıyla, dil yapılandırılmış eşzamanlılık, aktörler ve async/await kalıplarını sunar, bu da eşzamanlı ve paralel programlamanın daha basit ve güvenli hale gelmesini sağlar.
+    
+    Özetlemek gerekirse, Swift, geliştirici dostu olma, performans ve güvenlik arasında bir karışım sunan ileriye dönük bir programlama dilidir ve bu da onu birçok Apple ekosistem geliştiricisi ve ötesi için tercih edilen bir seçenek haline getirir.
+    `,
+    en: `
+    Swift is a powerful and intuitive programming language developed by Apple for iOS, macOS, watchOS, tvOS, and beyond. 
+    
+    It was introduced at Apple's Worldwide Developers Conference (WWDC) in 2014 and has since gained significant traction among developers for its modern syntax, performance, and safety features. 
+
+    Modern Syntax: Swift's syntax is expressive and concise, making code both easier to read and write.
+    
+    It incorporates many features from modern programming languages while shedding legacy conventions, making it more streamlined than Objective-C.
+    
+    Performance: Swift is designed for optimized performance. 
+    
+    Apple has claimed that Swift code can run as fast, or faster than, C++ for certain benchmarks, making it not only developer-friendly but also highly efficient.
+    
+    Type Safety: One of Swift's hallmark features is its emphasis on type safety. 
+    
+    The language uses a strong typing system and includes features like optionals, which can indicate the possibility of a value being absent. 
+    
+    This design helps reduce and eliminate common coding errors and crashes.
+    
+    Memory Safety: Swift incorporates automatic reference counting (ARC) for memory management without the overhead of a garbage collector, ensuring that memory usage is optimized. 
+    
+    Its design also minimizes common programming errors that lead to memory leaks or unpredictable behavior.
+    
+    Interoperability: Swift is designed to coexist with Objective-C. 
+    
+    This means developers can integrate Swift code into existing Objective-C projects and vice versa, ensuring a smoother transition for projects and teams moving from Objective-C to Swift.
+    
+    Open Source: In 2015, Apple made Swift open source, leading to its rapid adoption and evolution. 
+    
+    The open-source nature has allowed for a vibrant community of developers to contribute to its growth and bring Swift to non-Apple platforms.
+    
+    Playgrounds: A unique feature in Xcode, Swift Playgrounds provide an interactive environment for developers to write and test Swift code quickly, visualizing data outputs in real-time. 
+    
+    This tool is especially beneficial for prototyping and learning.
+    
+    Error Handling: Swift provides robust error handling using throw, try, catch, and defer keywords, enabling developers to write resilient code that can handle and recover from unexpected failures.
+    
+    Modern Concurrency: With the introduction of Swift Concurrency in Swift 5.5, the language offers structured concurrency, actors, and async/await patterns, making concurrent and parallel programming more straightforward and safer.
+    
+      In summary, Swift is a forward-thinking programming language that offers a mix of developer-friendliness, performance, and safety, making it a preferred choice for many Apple ecosystem developers and beyond
+    `,
+  },
+
   profileTitle: {
-    tr: "Full Stack Web Developer | Mobil Uygulama Geliştirici | English Master(C1)",
-    en: "Full Stack Web Developer | Mobile App Developer | English Master(C1)",
+    tr: "Full Stack Web Gelişticirisi | Mobil Uygulama Geliştiricisi | English Master(C1+)",
+    en: "Full Stack Web Developer | Mobile App Developer | English Master(C1+ )",
   },
   card1: {
     tr: `Merhaba. Ben Hekimcan Aktaş, Kişisel gelişim sürecinin sürekli bir öğrenme ve yenilenme süreci olduğuna inanıyorum ve bu inançla, her yeni günü bir fırsat olarak görüp, bilgimi ve yeteneklerimi artırmaya devam ediyorum.
