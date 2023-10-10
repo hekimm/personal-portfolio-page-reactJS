@@ -368,6 +368,19 @@ const Skills = () => {
         proficiency: 70,
         color: "#339933",
       },
+
+      {
+        name: "Java",
+        icon: (
+          <img
+            src="https://www.vectorlogo.zone/logos/java/java-icon.svg"
+            alt="Java"
+            style={{ width: "0.9em", height: "0.9em" }}
+          />
+        ),
+        proficiency: 60, // You can set your proficiency level
+        color: "#007396", // Java color
+      },
     ],
     Veritabanları: [
       {
@@ -386,16 +399,29 @@ const Skills = () => {
 
     "Mobil Uygulama": [
       {
-        name: "Flutter",
+        name: "Kotlin",
         icon: (
           <img
-            src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg"
-            alt="Flutter"
+            src="https://www.vectorlogo.zone/logos/kotlinlang/kotlinlang-icon.svg"
+            alt="Kotlin"
             style={{ width: "0.9em", height: "0.9em" }}
           />
         ),
-        proficiency: 30,
-        color: "#02569B",
+        proficiency: 20, // You can set your proficiency level
+        color: "#0095D5", // Kotlin color
+      },
+      // Swift
+      {
+        name: "Swift",
+        icon: (
+          <img
+            src="https://www.vectorlogo.zone/logos/swift/swift-icon.svg"
+            alt="Swift"
+            style={{ width: "0.9em", height: "0.9em" }}
+          />
+        ),
+        proficiency: 10, // You can set your proficiency level
+        color: "#FA7343", // Swift color
       },
       {
         name: "React Native",
@@ -416,7 +442,7 @@ const Skills = () => {
         icon: (
           <img
             src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg"
-            alt="Flutter"
+            alt="Git"
             style={{ width: "0.9em", height: "0.9em" }}
           />
         ),
