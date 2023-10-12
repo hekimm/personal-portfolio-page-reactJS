@@ -41,8 +41,8 @@ export const languageDescriptions = {
   },
 
   startJourneyButton: {
-    tr: "Yazılım Yolculuğum Nasıl Başladı?",
-    en: "How Did My Software Journey Begin?", // İsterseniz başka dilleri de ekleyebilirsiniz.
+    tr: "Yazılım ve Programlama Yolculuğum Nasıl Başladı?",
+    en: "How Did My Software and Programming Journey Begin?", 
   },
   aboutButton: {
     en: "About me",
