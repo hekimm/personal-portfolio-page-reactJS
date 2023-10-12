@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import profileImage from "./profile-image.jpeg";
+import styled, { keyframes } from "styled-components";
+import profileImage from "./resim-23.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import firstCardImage from "./first-card-image.jpeg";
@@ -23,6 +23,36 @@ const mobile = "576px";
 const tablet = "768px";
 const desktop = "992px";
 const largeDesktop = "1200px";
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const slideInFromRight = keyframes`
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
+const slideInFromLeft = keyframes`
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
 
 const NewTelevisionContainer = styled.div`
   position: relative;
@@ -30,7 +60,7 @@ const NewTelevisionContainer = styled.div`
   height: 60vw;
   cursor: pointer; // Tıklanabilir olduğunu belirtmek için
   transition: transform 0.3s ease-in-out; // Ölçeklendirme efektini yumuşatmak için geçiş ekledik.
-  margin-top: 40px;
+
   &:active {
     transform: scale(
       1
@@ -92,14 +122,16 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 
+// 2. Animasyonu HomeContainer bileşenine ekleyin
 const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 40px 0;
   background-color: #282c34;
-  min-height: 100vh; /* Her zaman tüm ekranı kaplaması için minimum yükseklik değerini ayarladık. */
-  justify-content: space-between; /* Navbar ve Footer arasında içeriği merkezlemek için. */
+  min-height: 100vh;
+  justify-content: space-between;
+  animation: ${fadeIn} 1s ease-in-out;
 `;
 
 const Card = styled.article`
@@ -108,6 +140,7 @@ const Card = styled.article`
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin: 20px 0;
+
   transition:
     transform 0.3s ease-in-out,
     background-color 0.3s ease-in-out;
@@ -235,112 +268,33 @@ const ProfileContainer = styled.div`
 `;
 
 const ProfileImage = styled(LazyLoadImage)`
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 25px; // Bu değeri iPhone 14 Pro Max'e benzer bir yuvarlaklık için ayarlayın
+  animation: ${slideInFromLeft} 1.5s ease-in-out;
   object-fit: cover;
-  border: 5px solid #2c3e50;
   margin-bottom: 20px;
-  transition:
-    transform 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out;
   cursor: pointer;
-
+  transition: transform 0.3s ease-in-out;
   &:hover {
-    transform: scale(1.08);
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px #61dafb;
   }
 `;
-
 const ProfileName = styled.h2`
   color: #61dafb;
   font-size: 24px;
+  animation: ${slideInFromRight} 1s ease-in-out;
+  font-family: "Courier New", Courier, monospace; // Eklenen kısım
 `;
+
 const ProfileTitle = styled.h3`
-  color: #ffffff; // Beyaz renk
-  font-size: 18px; // Font boyutu
-  text-align: center; // Merkez hizalama
-`;
-
-const TechnologyIcons = styled.div`
-  margin-top: 40px;
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  svg {
-    transition:
-      transform 0.2s ease-in-out,
-      color 0.2s ease-in-out;
-    cursor: pointer;
-    color: #61dafb;
-    &:hover {
-      transform: scale(1.2);
-      color: white;
-    }
-  }
-`;
-
-const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: ${(props) => (props.show ? "block" : "none")};
-  z-index: 10;
-`;
-
-const Modal = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #1f2023;
-  padding: 20px;
-  border-radius: 10px;
-  z-index: 11;
-  width: 80%;
-  max-width: 500px;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
-  @media (max-width: 768px) {
-    width: 90%;
-  }
-`;
-
-const ModalHeader = styled.div`
-  font-size: 20px;
-  color: #61dafb;
-  border-bottom: 1px solid #333;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-`;
-
-const ModalContent = styled.pre`
-  color: #61dafb;
+  color: #ffffff;
   font-size: 18px;
-  background-color: #282c34;
-  padding: 10px;
-  border-radius: 5px;
-  overflow-y: auto;
-  max-height: 300px;
-  white-space: pre-wrap;
-`;
-
-const CloseButton = styled.button`
-  background-color: #333;
-  color: #61dafb;
-  border: none;
-  cursor: pointer;
-  background: transparent;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  &:focus {
-    outline: none;
-  }
+  text-align: center;
+  animation: ${slideInFromRight} 1s ease-in-out;
+  font-family: "Courier New", Courier, monospace; // Eklenen kısım
 `;
 
 const ImageOverlay = styled.div`
@@ -491,36 +445,6 @@ const HomePage = () => {
             {languageDescriptions.profileTitle[language]}
           </ProfileTitle>
 
-          <TechnologyIcons>
-            <FaCss3Alt size={50} onClick={() => openModal("CSS")} />
-            <FaBootstrap size={50} onClick={() => openModal("Bootstrap")} />
-            <FaJsSquare size={50} onClick={() => openModal("JavaScript")} />
-
-            <FaReact size={50} onClick={() => openModal("React.js")} />
-            <FaNodeJs size={50} onClick={() => openModal("Node.js")} />
-            <FaJava size={50} onClick={() => openModal("Java")} />
-            <FaAndroid
-              size={50}
-              onClick={() => openModal("Android App Development")}
-            />
-            <FaSwift size={50} onClick={() => openModal("Swift")} />
-            <FaApple
-              size={50}
-              onClick={() => openModal("IOS App Development")}
-            />
-          </TechnologyIcons>
-          <ModalOverlay show={showModal} onClick={() => setShowModal(false)}>
-            <Modal onClick={(e) => e.stopPropagation()}>
-              <CloseButton onClick={() => setShowModal(false)}>X</CloseButton>
-              <ModalHeader>
-                {language === "tr"
-                  ? "Dil/Framework Tanıtımı"
-                  : "Language/Framework Introduction"}
-              </ModalHeader>
-
-              <ModalContent>{modalContent}</ModalContent>
-            </Modal>
-          </ModalOverlay>
           <Description>
             <NewTelevisionContainer
               onClick={handleTelevisionClick}
