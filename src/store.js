@@ -6,7 +6,6 @@ import typingReducer from "./reducers/typingSlice";
 import themeReducer from "./reducers/themeSlice"; // yeni import
 import themeToggleReducer from "./reducers/themeToggleSlice";
 import languageReducer from "./reducers/languageSlice";
-import messageReducer from "./reducers/messageSlice";
 import mediumPostsReducer from "./reducers/mediumPostsSlice"; // New import
 
 const rootReducer = combineReducers({
