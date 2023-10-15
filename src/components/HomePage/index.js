@@ -122,7 +122,7 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 
-// 2. Animasyonu HomeContainer bileşenine ekleyin
+
 const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
@@ -272,7 +272,6 @@ const ProfileImage = styled(LazyLoadImage)`
   max-width: 500px;
   height: auto;
   border-radius: 25px; // Bu değeri iPhone 14 Pro Max'e benzer bir yuvarlaklık için ayarlayın
-  animation: ${slideInFromLeft} 1.5s ease-in-out;
   object-fit: cover;
   margin-bottom: 20px;
   cursor: pointer;
@@ -438,7 +437,7 @@ const HomePage = () => {
             src={profileImage}
             alt="Hekimcan AKTAŞ"
             onClick={navigateToAbout}
-            effect="blur"
+            
           />
           <ProfileName>Hekimcan AKTAŞ</ProfileName>
           <ProfileTitle>
