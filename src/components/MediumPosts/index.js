@@ -113,7 +113,7 @@ function MediumPosts() {
   return (
     <GeneralContainer theme={theme}>
       <div className="container">
-        <Header style={{ color: textColor }}>
+        <Header theme={theme} style={{ color: textColor }}>
           {translations[language].myBlogs}
         </Header>
         {posts.map((post) => (
