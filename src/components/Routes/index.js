@@ -7,4 +7,5 @@ export const ROUTES = {
   EXPERTISE_AREA: "/expertise-area",
   CONTACT: "/contact",
   NOT_FOUND: "*",
+  BLOG: "/blog",
 };
