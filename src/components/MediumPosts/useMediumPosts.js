@@ -1,28 +1,20 @@
-import { useState, useEffect } from "react";
+// useMediumPosts.js
+import { useEffect } from "react";
+
+import { useSelector, useDispatch } from "react-redux";
+import { fetchMediumPosts } from "../../reducers/mediumPostsSlice";
 
 function useMediumPosts() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.mediumPosts.posts);
+  const loading = useSelector((state) => state.mediumPosts.loading);
+  const error = useSelector((state) => state.mediumPosts.error);
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch(
-          "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@hekimcanaktas",
-        );
-        const data = await response.json();
-        setPosts(data.items);
-      } catch (error) {
-        console.error("There was an error fetching the posts", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    dispatch(fetchMediumPosts());
+  }, [dispatch]);
 
-    fetchPosts();
-  }, []);
-
-  return { posts, loading };
+  return { posts, loading, error };
 }
 
 export default useMediumPosts;
