@@ -15,7 +15,6 @@ const rootReducer = combineReducers({
   theme: themeReducer, // yeni state slice
   themeToggle: themeToggleReducer,
   language: languageReducer,
-  message: messageReducer,
   mediumPosts: mediumPostsReducer, // New state slice
 });
 
