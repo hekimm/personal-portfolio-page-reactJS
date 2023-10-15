@@ -154,7 +154,7 @@ const ProfileLazyImage = styled(LazyLoadImage)`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
   margin-right: 10px;
   border: 3px solid #2c3e50;
 
@@ -365,6 +365,7 @@ const NAV_TEXTS = {
     CONTACT: "İletişim",
     MENU: "Menü",
     CLOSE_MENU: "Menüyü Kapatmak için Tıklayınız",
+    BLOG: " Blog Yazılarım",
   },
   en: {
     ABOUT: "About",
@@ -375,6 +376,7 @@ const NAV_TEXTS = {
     CONTACT: "Contact",
     MENU: "Menu",
     CLOSE_MENU: "Click to Close the Menu",
+    BLOG: "My Blog Posts",
   },
 };
 
@@ -500,6 +502,14 @@ const Navbar = () => {
               className={location.pathname === ROUTES.PROJECTS ? "active" : ""}
             >
               {NAV_TEXTS[language].PROJECTS}
+            </StyledNavLink>
+          </li>
+          <li className="nav-item">
+            <StyledNavLink
+              to={ROUTES.BLOG}
+              className={location.pathname === ROUTES.BLOG ? "active" : ""}
+            >
+              {NAV_TEXTS[language].BLOG}
             </StyledNavLink>
           </li>
           <li className="nav-item">
