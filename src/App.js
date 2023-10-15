@@ -10,6 +10,8 @@ import Contact from "./components/Contact";
 import HomePage from "./components/HomePage";
 import NotFound from "./components/NotFound";
 import Footer from "./components/Footer";
+import MediumPosts from "./components/MediumPosts/index";
+
 import { useSelector } from "react-redux";
 import { ROUTES } from "./components/Routes";
 import AOS from "aos";
@@ -27,6 +29,7 @@ function App() {
         <Route path={ROUTES.SKILLS} element={<Skills />} />
         <Route path={ROUTES.EDUCATION} element={<Education />} />
         <Route path={ROUTES.PROJECTS} element={<Projects />} />
+        <Route path={ROUTES.BLOG} element={<MediumPosts />} />
         <Route path={ROUTES.EXPERTISE_AREA} element={<ExpertiseArea />} />
         <Route path={ROUTES.CONTACT} element={<Contact />} />
         <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
