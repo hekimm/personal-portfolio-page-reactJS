@@ -88,9 +88,11 @@ const translations = {
 };
 
 function MediumPosts() {
+
   const theme = useSelector((state) => state.theme.theme);
   const language = useSelector((state) => state.language.value);
   const textColor = theme === "light" ? "#333" : "#f4f4f4";
+  
 
   const { posts, loading } = useMediumPosts();
 
