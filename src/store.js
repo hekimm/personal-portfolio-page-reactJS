@@ -1,6 +1,4 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // default olarak localStorage kullanır
 import thunk from "redux-thunk";
 import projectsReducer from "./reducers/projectsReducer";
 import loadingReducer from "./reducers/loadingReducer";
@@ -22,24 +20,6 @@ const rootReducer = combineReducers({
   mediumPosts: mediumPostsReducer, // New state slice
 });
 
-const persistConfig = {
-  key: "root",
-  storage,
-  whitelist: [
-    "projects",
-    "loading",
-    "typing",
-    "theme",
-    "themeToggle",
-    "language",
-    "message",
-  ], 
-};
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-const store = createStore(persistedReducer, applyMiddleware(thunk));
-
-export const persistor = persistStore(store);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;
