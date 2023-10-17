@@ -46,6 +46,15 @@ import TwelfthProject2 from "./projects-images/twelfth-project/image-2.png";
 import TwelfthProject3 from "./projects-images/twelfth-project/image-3.png";
 import TwelfthProject4 from "./projects-images/twelfth-project/image-4.png";
 import TwelfthProject5 from "./projects-images/twelfth-project/image-5.png";
+import ThirteenthProject1 from "./projects-images/thirteenth-project/netflix-clone-9.png";
+import ThirteenthProject2 from "./projects-images/thirteenth-project/netflix-clone-10.png";
+import ThirteenthProject3 from "./projects-images/thirteenth-project/netflix-clone-11.png";
+import ThirteenthProject4 from "./projects-images/thirteenth-project/netflix-clone-12.png";
+import ThirteenthProject5 from "./projects-images/thirteenth-project/netflix-clone-13.png";
+import ThirteenthProject6 from "./projects-images/thirteenth-project/netflix-clone-14.png";
+import ThirteenthProject7 from "./projects-images/thirteenth-project/netflix-clone-15.png";
+import ThirteenthProject8 from "./projects-images/thirteenth-project/netflix-clone-16.png";
+import ThirteenthProject9 from "./projects-images/thirteenth-project/netflix-clone-17.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
@@ -736,22 +745,82 @@ Bu projede iyi ve güzel bir kullanıcı deneyimi hedefledim🔄✨`,
       📝 Note: This project is a frontend project created with React and Redux, prepared solely for educational purposes and used only for educational reasons. `,
     },
   },
-  {
+   {
     id: 13,
     title: {
-      tr: "React.js ile kodlanan Proje 13",
-      en: " Project 13 Coded with React.js",
+      tr: "Netflix Clone Projesi",
+      en: " Netflix Clone Project",
     },
-    images: [ExampleImage, ExampleImage],
+    images: [
+      ThirteenthProject1,
+      ThirteenthProject2,
+      ThirteenthProject3,
+      ThirteenthProject4,
+      ThirteenthProject5,
+      ThirteenthProject6,
+      ThirteenthProject7,
+      ThirteenthProject8,
+      ThirteenthProject9,
+    ],
     category: "React.js",
-    technologies: ["React.js"],
+    technologies: ["React.js", "React Redux", "Node.js"],
     shortDescription: {
-      tr: `React.js projesi 3 için kısa açıklama.`,
-      en: `Short description for React.js project 3.        `,
+      tr: `13.10.2023 'te Enes Doğan ile Netflix Clone kodlanması projesine başladık.
+      
+      Her gün adım adım ilerliyoruz.
+      
+      Bu süreçte ben Frontend 'i tasarlayıp kodlarken Enes Doğan ise Backend kodlarını kodlamaktadır.
+      Şu anda bu proje üzerinde çalışıyoruz ve kodlanmaya devam edilmektedir.
+  `,
+      en: `On October 13, 2023, Enes Doğan and I started working on a Netflix Clone coding project.
+
+      We're making progress step by step each day.
+      
+      During this process, I've been designing and coding the Frontend, while Enes Doğan has been handling the Backend coding.
+      
+      We are currently working on this project, and the coding is ongoing.       `,
     },
     description: {
-      tr: `React.js projesi 3 için detaylı açıklama.`,
-      en: `Detailed description for React.js project 3.        `,
+      tr: `13.10.2023 'te Enes Doğan ile Netflix Clone kodlanması projesine başladık.
+      
+      Her gün adım adım ilerliyoruz.
+      
+      Bu süreçte ben Frontend 'i tasarlayıp kodlarken Enes Doğan ise Backend kodlarını kodlamaktadır.
+
+      Şu anda bu proje üzerinde çalışıyoruz ve kodlanmaya devam edilmektedir.
+
+      Kullanılan Teknojiler:
+      Frontend:
+      🟣Bootstrap 
+      ⚛️ React.js
+      ⚛️React Styled Components
+      ⚛️React Router
+      ⚛️ Redux
+      
+      Backend ve Veri Tabanları:
+      🖥️ Node.js
+      👨‍💻Express.js
+      🌱MongoDB`,
+      en: `On October 13, 2023, Enes Doğan and I started working on a Netflix Clone coding project.
+
+      We're making progress step by step each day.
+      
+      During this process, I've been designing and coding the Frontend, while Enes Doğan has been handling the Backend coding.
+      
+      We are currently working on this project, and the coding is ongoing.
+      
+      Technology Stack:
+      Frontend:
+      🟣Bootstrap
+      ⚛️ React.js
+      ⚛️React Styled Components
+      ⚛️React Router
+      ⚛️ Redux
+      
+      Backend and Databases:
+      🖥️ Node.js
+      👨‍💻Express.js
+      🌱MongoDB        `,
     },
   },
   {
