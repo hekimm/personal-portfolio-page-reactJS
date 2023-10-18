@@ -154,7 +154,7 @@ const ProfileLazyImage = styled(LazyLoadImage)`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  object-fit: contain;
+  object-fit: cover;
   margin-right: 10px;
   border: 3px solid #2c3e50;
 
