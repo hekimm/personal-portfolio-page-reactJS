@@ -368,19 +368,6 @@ const Skills = () => {
         proficiency: 70,
         color: "#339933",
       },
-
-      {
-        name: "Java",
-        icon: (
-          <img
-            src="https://www.vectorlogo.zone/logos/java/java-icon.svg"
-            alt="Java"
-            style={{ width: "0.9em", height: "0.9em" }}
-          />
-        ),
-        proficiency: 60, // You can set your proficiency level
-        color: "#007396", // Java color
-      },
     ],
     Veritabanları: [
       {
@@ -399,31 +386,6 @@ const Skills = () => {
 
     "Mobil Uygulama": [
       {
-        name: "Kotlin",
-        icon: (
-          <img
-            src="https://www.vectorlogo.zone/logos/kotlinlang/kotlinlang-icon.svg"
-            alt="Kotlin"
-            style={{ width: "0.9em", height: "0.9em" }}
-          />
-        ),
-        proficiency: 20, // You can set your proficiency level
-        color: "#0095D5", // Kotlin color
-      },
-      // Swift
-      {
-        name: "Swift",
-        icon: (
-          <img
-            src="https://www.vectorlogo.zone/logos/swift/swift-icon.svg"
-            alt="Swift"
-            style={{ width: "0.9em", height: "0.9em" }}
-          />
-        ),
-        proficiency: 10, // You can set your proficiency level
-        color: "#FA7343", // Swift color
-      },
-      {
         name: "React Native",
         icon: (
           <img
@@ -436,6 +398,7 @@ const Skills = () => {
         color: "#61DBFB",
       },
     ],
+
     "Versiyon(Sürüm) Kontrolü": [
       {
         name: "Git",
