@@ -106,6 +106,7 @@ const Footer = () => {
       EXPERTISE_AREA: "Yazılım ve Programlama Alanım",
       CONTACT: "İletişim",
       SKILLS: "Öğrendiğim Diller ve Araçlar",
+      BLOG: "Blog Yazılarım",
     },
     en: {
       ABOUT: "About",
@@ -114,6 +115,7 @@ const Footer = () => {
       EXPERTISE_AREA: "My Software and Programming Area",
       CONTACT: "Contact",
       SKILLS: "Languages and Tools I’ve Learned",
+      BLOG: "My Blog Posts",
     },
   };
   return (
@@ -127,6 +129,9 @@ const Footer = () => {
         </RouteButton>
         <RouteButton to="/projects">
           <FontAwesomeIcon icon={faProjectDiagram} /> {TEXTS[language].PROJECTS}
+        </RouteButton>
+        <RouteButton to="/blog">
+          <FontAwesomeIcon icon={faMediumM} /> {TEXTS[language].BLOG}
         </RouteButton>
         <RouteButton to="/expertise-area">
           <FontAwesomeIcon icon={faLaptopCode} />{" "}
