@@ -13,36 +13,21 @@ import { FaTimes, FaCheck } from "react-icons/fa";
 import { setLanguage, selectLanguage } from "../../reducers/languageSlice"; // Import setLanguage ve selectLanguage
 import { RiGlobalLine } from "react-icons/ri";
 import { FaArrowLeft } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 
-const blink = keyframes`
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-`;
-
-const MenuText = styled.span`
-  display: ${(props) => (props.isOpen ? "inline" : "none")};
-  color: white;
-  font-weight: bold;
-  animation: ${(props) =>
-    !props.isOpen &&
-    css`
-      ${blink} 1s infinite
-    `};
-  &:hover {
-    animation: ${(props) =>
-      !props.isOpen &&
-      css`
-        ${blink} 1s infinite, ${rotate} 2s infinite linear
-      `};
-  }
+const Sidebar = styled.div`
+  position: fixed;
+  top: 0;
+  right: ${(props) => (props.isOpen ? "0" : "-100%")};
+  width: 320px;
+  height: 100vh;
+  background-color: #2c3e50;
+  transition: right 0.3s;
+  z-index: 9999;
+  padding: 15px;
 
   @media (max-width: 768px) {
-    display: inline;
-    margin-left: 10px;
+    width: 100%;
   }
 `;
 
@@ -53,14 +38,6 @@ const rotate = keyframes`
   to {
     transform: rotate(360deg);
   }
-`;
-const AnimatedFaArrowLeft = styled(FaArrowLeft)`
-  animation: ${(props) =>
-    !props.isOpen
-      ? css`
-          ${blink} 1s infinite linear
-        `
-      : "none"};
 `;
 
 const LanguageIcon = styled(RiGlobalLine)`
@@ -151,15 +128,14 @@ const Nav = styled.nav`
 `;
 
 const ProfileLazyImage = styled(LazyLoadImage)`
-  width: 60px;
-  height: 60px;
+  width: 120px; // Resmin boyutunu artırdım
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 10px;
+  margin: 0 auto; // Resmi ortaya hizalamak için
+  display: block; // Resmi blok olarak ayarladım
   border: 3px solid #2c3e50;
-
   @media (max-width: 768px) {
-    margin-right: 0;
     margin-bottom: 10px;
   }
 `;
@@ -179,7 +155,7 @@ const StyledLink = styled(Link)`
 const IconLink = styled.a`
   margin-left: 10px;
   color: #fff;
-  font-size: 32px;
+  font-size: 24px;
   transition: color 0.3s ease-in-out;
 
   &:hover {
@@ -197,17 +173,23 @@ const underlineAnimation = keyframes`
 `;
 
 const StyledNavLink = styled(Link)`
-  color: #fff;
-  margin-right: 15px;
+  color: #e1e1e1;
+  margin: 10px 0;
   text-decoration: none;
   position: relative;
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  border-radius: 5px;
 
   &:hover {
+    background-color: #34495e;
     color: #61dafb;
     text-decoration: none;
   }
 
   &.active {
+    background-color: #34495e;
     font-weight: bold;
     color: #61dafb;
 
@@ -225,7 +207,20 @@ const StyledNavLink = styled(Link)`
 
   @media (max-width: 768px) {
     display: block;
-    margin: 5px 0;
+  }
+`;
+
+const ToggleButton = styled.button`
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000; // diğer elemanların üzerinde olmasını sağlar
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  &:focus {
+    outline: none;
   }
 `;
 const ThemeToggle = styled.label`
@@ -234,7 +229,7 @@ const ThemeToggle = styled.label`
   display: inline-block;
   width: 64px;
   height: 38px;
-  margin: 0 15px;
+  margin: 15px 0;
 
   input {
     opacity: 0;
@@ -434,173 +429,140 @@ const Navbar = () => {
   };
 
   return (
-    <Nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <StyledLink className="navbar-brand" to="/">
-        <ProfileLazyImage src={profileImage} alt="Profil" effect="blur" />
-        Hekimcan AKTAŞ
-      </StyledLink>
-      <button
-        className="navbar-toggler"
-        type="button"
-        onClick={handleToggle}
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        {isOpen ? (
-          <FaTimes
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-          />
-        ) : (
-          <span
-            className="navbar-toggler-icon"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-          />
+    <>
+      <ToggleButton onClick={handleToggle}>
+        {isOpen ? <FaTimes /> : <FaBars />}
+      </ToggleButton>
+
+      <Sidebar isOpen={isOpen}>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <StyledLink className="navbar-brand" to="/">
+                <ProfileLazyImage
+                  src={profileImage}
+                  alt="Profil"
+                  effect="blur"
+                />
+                Hekimcan AKTAŞ
+                <div style={{ textAlign: "center", marginTop: "10px" }}>
+                  <IconLink href="#" aria-label="Github">
+                    <FaGithub />
+                  </IconLink>
+                  <IconLink href="#" aria-label="LinkedIn">
+                    <FaLinkedin />
+                  </IconLink>
+                  <IconLink href="#" aria-label="Google">
+                    <FaGoogle />
+                  </IconLink>
+                </div>
+              </StyledLink>
+              <StyledNavLink
+                to={ROUTES.ABOUT}
+                className={location.pathname === ROUTES.ABOUT ? "active" : ""}
+              >
+                {NAV_TEXTS[language].ABOUT}
+              </StyledNavLink>
+            </li>
+            <li className="nav-item">
+              <StyledNavLink
+                to={ROUTES.SKILLS}
+                className={location.pathname === ROUTES.SKILLS ? "active" : ""}
+              >
+                {NAV_TEXTS[language].SKILLS}
+              </StyledNavLink>
+            </li>
+            <li className="nav-item">
+              <StyledNavLink
+                to={ROUTES.EDUCATION}
+                className={
+                  location.pathname === ROUTES.EDUCATION ? "active" : ""
+                }
+              >
+                {NAV_TEXTS[language].EDUCATION}
+              </StyledNavLink>
+            </li>
+            <li className="nav-item">
+              <StyledNavLink
+                to={ROUTES.PROJECTS}
+                className={
+                  location.pathname === ROUTES.PROJECTS ? "active" : ""
+                }
+              >
+                {NAV_TEXTS[language].PROJECTS}
+              </StyledNavLink>
+            </li>
+            <li className="nav-item">
+              <StyledNavLink
+                to={ROUTES.BLOG}
+                className={location.pathname === ROUTES.BLOG ? "active" : ""}
+              >
+                {NAV_TEXTS[language].BLOG}
+              </StyledNavLink>
+            </li>
+            <li className="nav-item">
+              <StyledNavLink
+                to={ROUTES.EXPERTISE_AREA}
+                className={
+                  location.pathname === ROUTES.EXPERTISE_AREA ? "active" : ""
+                }
+              >
+                {NAV_TEXTS[language].EXPERTISE_AREA}
+              </StyledNavLink>
+            </li>
+            <li className="nav-item">
+              <StyledNavLink
+                to={ROUTES.CONTACT}
+                className={location.pathname === ROUTES.CONTACT ? "active" : ""}
+              >
+                {NAV_TEXTS[language].CONTACT}
+              </StyledNavLink>
+            </li>
+          </ul>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <ThemeToggle theme={theme}>
+                <input
+                  type="checkbox"
+                  checked={theme === "dark"}
+                  onChange={handleThemeToggle}
+                />
+
+                <span className="slider round"></span>
+                {theme === "light" && <FaSun className="icon sun" />}
+                <FaMoon className="icon moon" />
+              </ThemeToggle>
+            </li>
+            <li className="nav-item">
+              <LanguageDropdown>
+                <LanguageToggle onClick={handleLanguageToggle}>
+                  <LanguageIcon />
+                  <span>{language === "tr" ? "EN" : "TR"}</span>
+                </LanguageToggle>
+
+                <DropdownContent>
+                  <DropdownItem
+                    active={language === "tr"}
+                    onClick={() => dispatch(setLanguage("tr"))}
+                  >
+                    Türkçe
+                  </DropdownItem>
+                  <DropdownItem
+                    active={language === "en"}
+                    onClick={() => dispatch(setLanguage("en"))}
+                  >
+                    English
+                  </DropdownItem>
+                </DropdownContent>
+              </LanguageDropdown>
+            </li>
+          </ul>
+        </div>
+        {toastMessage && (
+          <Toast message={toastMessage.text} error={toastMessage.error} />
         )}
-        <MenuText isOpen={isOpen}>
-          {isOpen ? NAV_TEXTS[language].CLOSE_MENU : NAV_TEXTS[language].MENU}{" "}
-          <AnimatedFaArrowLeft isOpen={isOpen} />
-        </MenuText>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
-            <StyledNavLink
-              to={ROUTES.ABOUT}
-              className={location.pathname === ROUTES.ABOUT ? "active" : ""}
-            >
-              {NAV_TEXTS[language].ABOUT}
-            </StyledNavLink>
-          </li>
-          <li className="nav-item">
-            <StyledNavLink
-              to={ROUTES.SKILLS}
-              className={location.pathname === ROUTES.SKILLS ? "active" : ""}
-            >
-              {NAV_TEXTS[language].SKILLS}
-            </StyledNavLink>
-          </li>
-          <li className="nav-item">
-            <StyledNavLink
-              to={ROUTES.EDUCATION}
-              className={location.pathname === ROUTES.EDUCATION ? "active" : ""}
-            >
-              {NAV_TEXTS[language].EDUCATION}
-            </StyledNavLink>
-          </li>
-          <li className="nav-item">
-            <StyledNavLink
-              to={ROUTES.PROJECTS}
-              className={location.pathname === ROUTES.PROJECTS ? "active" : ""}
-            >
-              {NAV_TEXTS[language].PROJECTS}
-            </StyledNavLink>
-          </li>
-          <li className="nav-item">
-            <StyledNavLink
-              to={ROUTES.BLOG}
-              className={location.pathname === ROUTES.BLOG ? "active" : ""}
-            >
-              {NAV_TEXTS[language].BLOG}
-            </StyledNavLink>
-          </li>
-          <li className="nav-item">
-            <StyledNavLink
-              to={ROUTES.EXPERTISE_AREA}
-              className={
-                location.pathname === ROUTES.EXPERTISE_AREA ? "active" : ""
-              }
-            >
-              {NAV_TEXTS[language].EXPERTISE_AREA}
-            </StyledNavLink>
-          </li>
-          <li className="nav-item">
-            <StyledNavLink
-              to={ROUTES.CONTACT}
-              className={location.pathname === ROUTES.CONTACT ? "active" : ""}
-            >
-              {NAV_TEXTS[language].CONTACT}
-            </StyledNavLink>
-          </li>
-        </ul>
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <IconLink
-              href="https://github.com/hekimm"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaGithub />
-            </IconLink>
-          </li>
-          <li className="nav-item">
-            <IconLink
-              href="https://www.linkedin.com/in/hekimcanaktas/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaLinkedin />
-            </IconLink>
-          </li>
-          <li className="nav-item">
-            <IconLink
-              href="mailto:hekimcanaktas@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaGoogle />
-            </IconLink>
-          </li>
-          <li className="nav-item">
-            <ThemeToggle theme={theme}>
-              <input
-                type="checkbox"
-                checked={theme === "dark"}
-                onChange={handleThemeToggle}
-              />
-
-              <span className="slider round"></span>
-              {theme === "light" && <FaSun className="icon sun" />}
-              <FaMoon className="icon moon" />
-            </ThemeToggle>
-          </li>
-          <li className="nav-item">
-            <LanguageDropdown>
-              <LanguageToggle onClick={handleLanguageToggle}>
-                <LanguageIcon />
-                <span>{language === "tr" ? "EN" : "TR"}</span>
-              </LanguageToggle>
-
-              <DropdownContent>
-                <DropdownItem
-                  active={language === "tr"}
-                  onClick={() => dispatch(setLanguage("tr"))}
-                >
-                  Türkçe
-                </DropdownItem>
-                <DropdownItem
-                  active={language === "en"}
-                  onClick={() => dispatch(setLanguage("en"))}
-                >
-                  English
-                </DropdownItem>
-              </DropdownContent>
-            </LanguageDropdown>
-          </li>
-        </ul>
-      </div>
-      {toastMessage && (
-        <Toast message={toastMessage.text} error={toastMessage.error} />
-      )}
-    </Nav>
+      </Sidebar>
+    </>
   );
 };
 
