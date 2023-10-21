@@ -33,7 +33,12 @@ const ProfileImage = styled.img`
   box-shadow:
     0 0 25px #61dafb,
     0 0 5px #61dafb;
-  animation: ${heartbeat} 1.5s infinite; // Heartbeat animasyonunu ekledik.
+  animation: ${heartbeat} 1.5s infinite;
+
+  @media (max-width: 768px) {
+    width: 80px;
+    height: 80px;
+  }
 `;
 
 const rotate = keyframes`
@@ -104,6 +109,11 @@ const Spinner = styled.svg`
     stroke: #ff6b6b; // Canlı bir kırmızı ton kullandık.
     stroke-linecap: round;
     animation: ${dashTwo} 2.3s ease-in-out infinite;
+  }
+  @media (max-width: 768px) {
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
   }
 `;
 
