@@ -20,7 +20,7 @@ const heartbeat = keyframes`
     transform: translate(-50%, -50%) scale(1);
   }
 `;
-z
+
 const ProfileImage = styled.img`
   position: absolute;
   width: 100px;
