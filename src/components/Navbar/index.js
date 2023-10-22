@@ -12,39 +12,67 @@ import { FaSun, FaMoon } from "react-icons/fa";
 import { FaTimes, FaCheck } from "react-icons/fa";
 import { setLanguage, selectLanguage } from "../../reducers/languageSlice"; // Import setLanguage ve selectLanguage
 import { RiGlobalLine } from "react-icons/ri";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaBars, FaArrowLeft } from "react-icons/fa";
+const ProfileWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+`;
+
+const SocialLinks = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 150px; // Bu değeri ihtiyaca göre ayarlayabilirsiniz
+  margin-bottom: 1rem;
+`;
+
+const COLORS = {
+  primary: "#61dafb",
+  dark: "#20232a", // Darker tone
+  light: "#e1e1e1",
+  white: "#ffffff",
+  gradient: "linear-gradient(45deg, #20232a, #343a40)", // New gradient
+};
 
 const blink = keyframes`
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 `;
 
-const MenuText = styled.span`
-  display: ${(props) => (props.isOpen ? "inline" : "none")};
-  color: white;
-  font-weight: bold;
-  animation: ${(props) =>
-    !props.isOpen &&
-    css`
-      ${blink} 1s infinite
-    `};
-  &:hover {
-    animation: ${(props) =>
-      !props.isOpen &&
-      css`
-        ${blink} 1s infinite, ${rotate} 2s infinite linear
-      `};
+const Sidebar = styled.div`
+  position: fixed;
+  width: 280px;
+  height: 100vh; // Yüksekliği ekran boyutuna ayarlayın
+  overflow-y: auto; // Yatayda kaydırma çubuğu ekleyin
+  background: ${COLORS.gradient};
+  padding: 1.5rem 2.5rem;
+  z-index: 1000;
+  top: 0;
+  left: ${(props) => (props.isOpen ? "0" : "-100%")};
+  transition: left 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+
+  /* Kaydırma çubuğunu özelleştirmek için */
+  &::-webkit-scrollbar {
+    width: 10px;
   }
 
+  &::-webkit-scrollbar-track {
+    background: #20232a; // Track rengini değiştirebilirsiniz
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #61dafb; // Thumb rengini değiştirebilirsiniz
+    border-radius: 20px;
+    border: 3px solid #20232a; // Thumb sınır rengini değiştirebilirsiniz
+  }
   @media (max-width: 768px) {
-    display: inline;
-    margin-left: 10px;
+    width: 100%;
   }
 `;
+
+// Daha önce tanımlanmış bileşenleri (StyledLink, StyledNavLink, etc.) kullanarak sidebar içeriğini oluşturabiliriz.
 
 const rotate = keyframes`
   from {
@@ -53,14 +81,6 @@ const rotate = keyframes`
   to {
     transform: rotate(360deg);
   }
-`;
-const AnimatedFaArrowLeft = styled(FaArrowLeft)`
-  animation: ${(props) =>
-    !props.isOpen
-      ? css`
-          ${blink} 1s infinite linear
-        `
-      : "none"};
 `;
 
 const LanguageIcon = styled(RiGlobalLine)`
@@ -139,28 +159,29 @@ const DropdownItem = styled.div`
     color: #fff;
   }
 `;
-const Nav = styled.nav`
-  background-color: #343a40;
-  padding: 1rem 5%;
-  position: relative;
-  z-index: 1000;
+
+const ProfileLazyImage = styled(LazyLoadImage)`
+  width: 150px; // genişliği arttırdık
+  height: 150px; // yüksekliği arttırdık
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 3px solid ${COLORS.primary};
 
   @media (max-width: 768px) {
-    text-align: center;
+    width: 100px; // Mobil cihazlar için daha küçük boyut
+    height: 100px; // Mobil cihazlar için daha küçük boyut
+    margin-top: 40px;
   }
 `;
 
-const ProfileLazyImage = styled(LazyLoadImage)`
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 10px;
-  border: 3px solid #2c3e50;
-
-  @media (max-width: 768px) {
-    margin-right: 0;
-    margin-bottom: 10px;
+const LanguageIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 10px;
+  &:hover {
+    color: ${COLORS.primary};
   }
 `;
 
@@ -197,37 +218,28 @@ const underlineAnimation = keyframes`
 `;
 
 const StyledNavLink = styled(Link)`
-  color: #fff;
-  margin-right: 15px;
-  text-decoration: none;
-  position: relative;
-
+  color: ${COLORS.light};
+  display: block;
+  padding: 10px 20px; // Increase padding for better touch
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  font-weight: 300; // Lighter font-weight for better contrast
+  transition:
+    color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  border-radius: 8px;
   &:hover {
-    color: #61dafb;
+    color: ${COLORS.white};
+    background-color: rgba(97, 218, 251, 0.1);
     text-decoration: none;
   }
-
   &.active {
-    font-weight: bold;
-    color: #61dafb;
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: #61dafb;
-      animation: ${underlineAnimation} 0.3s forwards;
-    }
-  }
-
-  @media (max-width: 768px) {
-    display: block;
-    margin: 5px 0;
+    font-weight: 500; // Bold for active links
+    color: ${COLORS.primary};
+    background-color: rgba(97, 218, 251, 0.1);
   }
 `;
+
 const ThemeToggle = styled.label`
   cursor: pointer;
   position: relative;
@@ -379,6 +391,12 @@ const NAV_TEXTS = {
     BLOG: "My Blog Posts",
   },
 };
+const UserName = styled.h2`
+  color: #61dafb;
+  font-size: 1.2rem;
+  font-weight: 600; // Koyu font ağırlığı
+  margin-bottom: 10px;
+`;
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -411,6 +429,46 @@ const Navbar = () => {
         "Error message: Dark Theme feature is only valid on pages other than the Home Page. The Dark Theme feature was not integrated for the Home Page as it was not deemed necessary.",
     },
   };
+  const ToggleButton = styled.button`
+    position: fixed;
+    top: 10px;
+    left: ${(props) => (props.isOpen ? "250px" : "10px")};
+    background-color: #343a40;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1010; // to be above the sidebar
+
+    &:hover {
+      color: #61dafb;
+    }
+
+    @media (max-width: 768px) {
+      left: ${(props) => (props.isOpen ? "200px" : "10px")};
+    }
+  `;
+  const MenuText = styled.span`
+    display: inline;
+    color: white;
+    font-weight: bold;
+    animation: ${(props) =>
+      !props.isOpen &&
+      css`
+        ${blink} 1s infinite
+      `};
+    &:hover {
+      animation: ${(props) =>
+        !props.isOpen &&
+        css`
+          ${blink} 1s infinite, ${rotate} 2s infinite linear
+        `};
+    }
+
+    @media (max-width: 768px) {
+      margin-left: 10px;
+    }
+  `;
 
   const handleThemeToggle = (e) => {
     if (location.pathname === "/") {
@@ -434,44 +492,71 @@ const Navbar = () => {
   };
 
   return (
-    <Nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <StyledLink className="navbar-brand" to="/">
-        <ProfileLazyImage src={profileImage} alt="Profil" effect="blur" />
-        Hekimcan AKTAŞ
-      </StyledLink>
-      <button
-        className="navbar-toggler"
-        type="button"
-        onClick={handleToggle}
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        {isOpen ? (
-          <FaTimes
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-          />
-        ) : (
-          <span
-            className="navbar-toggler-icon"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-          />
-        )}
-        <MenuText isOpen={isOpen}>
-          {isOpen ? NAV_TEXTS[language].CLOSE_MENU : NAV_TEXTS[language].MENU}{" "}
-          <AnimatedFaArrowLeft isOpen={isOpen} />
-        </MenuText>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav ml-auto">
+    <>
+      <ToggleButton isOpen={isOpen} onClick={handleToggle}>
+        {isOpen ? <FaTimes /> : <FaBars />}
+        <MenuText isOpen={isOpen}>{NAV_TEXTS[language].MENU}</MenuText>
+      </ToggleButton>
+
+      <Sidebar isOpen={isOpen}>
+        <ProfileWrapper>
+          <StyledLink className="navbar-brand" to="/">
+            <ProfileLazyImage
+              src={profileImage}
+              alt="Profil"
+              width="150"
+              height="150"
+            />
+          </StyledLink>
+          <UserName>Hekimcan Aktaş</UserName>
+          <SocialLinks>
+            <IconLink
+              href="https://github.com/hekimm"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaGithub />
+            </IconLink>
+            <IconLink
+              href="https://linkedin.com/in/hekimcanaktas"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaLinkedin />
+            </IconLink>
+            <IconLink href="mailto:hekimcanaktas@gmail.com">
+              <FaGoogle />
+            </IconLink>
+          </SocialLinks>
+        </ProfileWrapper>
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <LanguageDropdown>
+              <LanguageToggle onClick={handleLanguageToggle}>
+                <LanguageIconWrapper onClick={handleLanguageToggle}>
+                  <LanguageIcon />
+                  <MenuText isOpen={isOpen}>
+                    {language === "tr" ? "TR" : "EN"}
+                  </MenuText>
+                </LanguageIconWrapper>
+              </LanguageToggle>
+
+              <DropdownContent>
+                <DropdownItem
+                  active={language === "tr"}
+                  onClick={() => dispatch(setLanguage("tr"))}
+                >
+                  Türkçe
+                </DropdownItem>
+                <DropdownItem
+                  active={language === "en"}
+                  onClick={() => dispatch(setLanguage("en"))}
+                >
+                  English
+                </DropdownItem>
+              </DropdownContent>
+            </LanguageDropdown>
+          </li>
           <li className="nav-item">
             <StyledNavLink
               to={ROUTES.ABOUT}
@@ -533,33 +618,6 @@ const Navbar = () => {
         </ul>
         <ul className="navbar-nav">
           <li className="nav-item">
-            <IconLink
-              href="https://github.com/hekimm"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaGithub />
-            </IconLink>
-          </li>
-          <li className="nav-item">
-            <IconLink
-              href="https://www.linkedin.com/in/hekimcanaktas/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaLinkedin />
-            </IconLink>
-          </li>
-          <li className="nav-item">
-            <IconLink
-              href="mailto:hekimcanaktas@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaGoogle />
-            </IconLink>
-          </li>
-          <li className="nav-item">
             <ThemeToggle theme={theme}>
               <input
                 type="checkbox"
@@ -572,35 +630,13 @@ const Navbar = () => {
               <FaMoon className="icon moon" />
             </ThemeToggle>
           </li>
-          <li className="nav-item">
-            <LanguageDropdown>
-              <LanguageToggle onClick={handleLanguageToggle}>
-                <LanguageIcon />
-                <span>{language === "tr" ? "EN" : "TR"}</span>
-              </LanguageToggle>
-
-              <DropdownContent>
-                <DropdownItem
-                  active={language === "tr"}
-                  onClick={() => dispatch(setLanguage("tr"))}
-                >
-                  Türkçe
-                </DropdownItem>
-                <DropdownItem
-                  active={language === "en"}
-                  onClick={() => dispatch(setLanguage("en"))}
-                >
-                  English
-                </DropdownItem>
-              </DropdownContent>
-            </LanguageDropdown>
-          </li>
         </ul>
-      </div>
-      {toastMessage && (
-        <Toast message={toastMessage.text} error={toastMessage.error} />
-      )}
-    </Nav>
+
+        {toastMessage && (
+          <Toast message={toastMessage.text} error={toastMessage.error} />
+        )}
+      </Sidebar>
+    </>
   );
 };
 
