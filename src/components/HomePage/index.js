@@ -174,9 +174,14 @@ const ButtonBase = styled.button`
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
+  width: auto;
+  padding: 12px 24px;
+
+  /* Adding a subtle transition for background and box-shadow */
   transition:
     background-color 0.3s ease-in-out,
-    transform 0.3s ease-in-out;
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
 
   svg {
     margin-right: 10px;
@@ -254,21 +259,39 @@ const AboutRouteButton = styled(ButtonBase)`
 `;
 
 const AboutButton = styled(ButtonBase)`
-  background-color: #64ccc5;
-  color: white;
+    background-color: #64ccc5;
+    color: white;
 
-  &:hover {
-    background-color: #0056b3;
-  }
+    &:hover {
+        background-color: #0056b3;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); // Giving more depth when hovered
+    }
+
+    @media (max-width: ${mobile}) {
+        padding: 12px 20px; // Smaller padding for mobile for better fit
+    }
+
+    @media (min-width: ${tablet}) and (max-width: ${desktop}) {
+        padding: 12px 24px; // Adjusting for tablet
+    }
 `;
 
 const ProjectButton = styled(ButtonBase)`
-  background-color: #64ccc5;
-  color: white;
+    background-color: #64ccc5;
+    color: white;
 
-  &:hover {
-    background-color: #218838;
-  }
+    &:hover {
+        background-color: #218838;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); // Giving more depth when hovered
+    }
+
+    @media (max-width: ${mobile}) {
+        padding: 12px 20px; // Smaller padding for mobile for better fit
+    }
+
+    @media (min-width: ${tablet}) and (max-width: ${desktop}) {
+        padding: 12px 24px; // Adjusting for tablet
+    }
 `;
 
 const MainCard = styled.div`
