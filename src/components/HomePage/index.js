@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; 
 import styled, { keyframes } from "styled-components";
 import profileImage from "./resim-23.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
