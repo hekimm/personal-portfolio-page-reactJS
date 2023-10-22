@@ -1,5 +1,28 @@
 import styled, { keyframes } from "styled-components";
 import profileImage from "./profile-image.jpeg";
+import React, { useEffect, useState } from "react";
+
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
+const fadeOut = keyframes`
+  from { opacity: 1; }
+  to { opacity: 0; }
+`;
+const AnimatedText = styled.div`
+  position: absolute;
+
+  font-size: 2em;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  animation: ${(props) => (props.fadeIn ? fadeIn : fadeOut)} 1s ease;
+  text-align: center;
+  width: 100%;
+  font-family: "Poppins", sans-serif; // Örnek bir font. Dilerseniz başka bir font da seçebilirsiniz.
+`;
+
 const heartbeat = keyframes`
   0% {
     transform: translate(-50%, -50%) scale(1);
@@ -27,7 +50,12 @@ const ProfileImage = styled.img`
   height: 100px;
   object-fit: cover;
   border-radius: 50%;
-  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(
+    -50%,
+    -50%
+  ); // Bu kod profil resmini tam merkeze yerleştiriyor
   z-index: 10;
   border: 3px solid #ffffff;
   box-shadow:
@@ -39,6 +67,38 @@ const ProfileImage = styled.img`
     width: 80px;
     height: 80px;
   }
+`;
+const borderAnimation = keyframes`
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+  }
+`;
+
+const TextBorder = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid #61dafb; // Mavi rengi kullanıyoruz.
+  box-shadow:
+    0 0 25px #61dafb,
+    0 0 5px #61dafb;
+  border-radius: 10px;
+  width: 0;
+  height: 0;
+  animation: ${borderAnimation} 1.5s ease forwards;
+  opacity: 0;
+  z-index: -1; // Metnin altında olmasını sağlar.
 `;
 
 const rotate = keyframes`
@@ -86,11 +146,12 @@ const LoadingContainer = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  transition: background-color 1.5s; // Arka plan renginin yumuşak bir şekilde değişmesini sağlamak için geçiş süresini 1.5 saniye olarak belirledik.
+  background-color: ${(props) => props.bgColor || "rgba(0, 0, 0, 0.9)"};
 `;
 
 const Spinner = styled.svg`
@@ -98,6 +159,10 @@ const Spinner = styled.svg`
   margin: -100px 0 0 -100px;
   width: 200px;
   height: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   & .pathOne {
     stroke: #61dafb; // Mavi renk kullandık.
@@ -117,28 +182,100 @@ const Spinner = styled.svg`
   }
 `;
 
-const Loading = () => (
-  <LoadingContainer>
-    <ProfileImage src={profileImage} alt="Profil Resmi" />
-    <Spinner viewBox="0 0 200 200">
-      <circle
-        className="pathOne"
-        cx="100"
-        cy="100"
-        r="80"
-        fill="none"
-        strokeWidth="4"
-      ></circle>
-      <circle
-        className="pathTwo"
-        cx="100"
-        cy="100"
-        r="60"
-        fill="none"
-        strokeWidth="4"
-      ></circle>
-    </Spinner>
-  </LoadingContainer>
-);
+const Loading = () => {
+  const [loading, setLoading] = useState(true);
+  const [welcome, setWelcome] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(-1);
+  const backgroundColors = [
+    "rgba(0, 0, 0, 0.9)",
+    "#232323",
+    "#464646",
+    "#696969",
+  ];
+
+  const texts = [
+    "Ben Hekimcan Aktaş",
+    "Yazılım Mühendisi",
+    "Full Stack Web Developer",
+    "React Native Mobile App Developer",
+  ];
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+      setWelcome(true);
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
+    let timeout;
+    if (welcome) {
+      timeout = setTimeout(() => {
+        setWelcome(false);
+        setCurrentIndex(0);
+      }, 2000);
+    }
+
+    return () => timeout && clearTimeout(timeout);
+  }, [welcome]);
+
+  useEffect(() => {
+    let timeout;
+    if (currentIndex > -1) {
+      timeout = setTimeout(() => {
+        const nextIndex = currentIndex + 1;
+        if (nextIndex < texts.length) {
+          setCurrentIndex(nextIndex);
+        }
+      }, 1500);
+    }
+
+    return () => timeout && clearTimeout(timeout);
+  }, [currentIndex, texts.length]);
+
+  return (
+    <LoadingContainer bgColor={backgroundColors[currentIndex + 1]}>
+      {loading && (
+        <>
+          <ProfileImage src={profileImage} alt="Profil Resmi" />
+          <Spinner viewBox="0 0 200 200">
+            <circle
+              className="pathOne"
+              cx="100"
+              cy="100"
+              r="80"
+              fill="none"
+              strokeWidth="4"
+            ></circle>
+            <circle
+              className="pathTwo"
+              cx="100"
+              cy="100"
+              r="60"
+              fill="none"
+              strokeWidth="4"
+            ></circle>
+          </Spinner>
+        </>
+      )}
+      {welcome && (
+        <>
+          <AnimatedText fadeIn={true}>Hoşgeldiniz!</AnimatedText>
+          <TextBorder />
+        </>
+      )}
+      {currentIndex > -1 && (
+        <>
+          <AnimatedText fadeIn={currentIndex % 2 === 0}>
+            {texts[currentIndex]}
+          </AnimatedText>
+          <TextBorder />
+        </>
+      )}
+    </LoadingContainer>
+  );
+};
 
 export default Loading;
