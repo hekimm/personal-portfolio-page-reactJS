@@ -295,8 +295,7 @@ const ProfileContainer = styled.div`
 
 const ProfileImage = styled(LazyLoadImage)`
   width: 300px;
-  height: 300px;
-  border: 5px solid #f4f4f4;
+  height: 400px;
   border-radius: 25px;
   cursor: pointer; // Tıklanabilir olduğunu belirtmek için
 
