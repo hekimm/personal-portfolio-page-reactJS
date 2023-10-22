@@ -20,7 +20,7 @@ const AnimatedText = styled.div`
   animation: ${(props) => (props.fadeIn ? fadeIn : fadeOut)} 1s ease;
   text-align: center;
   width: 100%;
-  font-family: "Poppins", sans-serif; // Örnek bir font. Dilerseniz başka bir font da seçebilirsiniz.
+  font-family: "Poppins", sans-serif; 
 `;
 
 const heartbeat = keyframes`
