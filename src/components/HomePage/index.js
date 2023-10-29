@@ -8,6 +8,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import ProfileCard from "./ProfileCard";
 
+
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../Routes";
 import { useDispatch, useSelector } from "react-redux";
@@ -332,15 +333,9 @@ const ProfileTitle = styled.h3`
   color: #ffffff;
   font-size: 1.2rem;
   margin-top: 10px;
-  font-family: "Courier New", Courier, monospace;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
+  font-family: "Poppins", sans-serif; // Örnek bir font. Dilerseniz başka bir font da seçebilirsiniz.
 
-const StyledLazyLoadImage = styled(LazyLoadImage)`
-  width: 100%; // Resmin genişliği parent elementine göre ayarlanır.
-  height: 100%; // Resmin yüksekliği parent elementine göre ayarlanır.
-  object-fit: cover; // Resmin, parent elementini dolduracak şekilde ayarlanır.
-  border-radius: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 const Description = styled.p`
@@ -411,7 +406,7 @@ const HomePage = () => {
   return (
     <HomeContainer>
       <MainCard>
-        <ProfileContainer>
+        <ProfileContainer data-aos="fade-up">
           <ProfileCard />
           <ProfileName>Hekimcan AKTAŞ</ProfileName>
           <ProfileTitle>
@@ -419,7 +414,7 @@ const HomePage = () => {
           </ProfileTitle>
         </ProfileContainer>
 
-        <Description>
+        <Description data-aos="fade-up">
           <NewTelevisionContainer
             onClick={handleTelevisionClick}
             televisionImage={NewTelevisionImage}
@@ -440,16 +435,23 @@ const HomePage = () => {
             </AboutRouteButton>
           </NewTelevisionContainer>
         </Description>
-        <EducationTimeline />
-        <ButtonContainer>
+        <div data-aos="fade-up">
+          {" "}
+          <EducationTimeline />
+        </div>
+
+        <ButtonContainer data-aos="fade-up">
           <ButtonBase onClick={() => navigate("/education")}>
             <FaArrowRight />
             {languageDescriptions.educationButton[language]}
           </ButtonBase>
         </ButtonContainer>
-        <Skills />
+        <div data-aos="fade-up">
+          {" "}
+          <Skills />
+        </div>
 
-        <ButtonContainer>
+        <ButtonContainer data-aos="fade-up">
           <ProjectButton onClick={navigateToProjects}>
             <FaProjectDiagram /> {languageDescriptions.projectsButton[language]}
           </ProjectButton>
