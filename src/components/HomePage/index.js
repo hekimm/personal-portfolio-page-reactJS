@@ -3,13 +3,10 @@ import styled, { keyframes } from "styled-components";
 import profileImage from "./resim-23.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import firstCardImage from "./first-card-image.jpeg";
-import secondCardImage from "./second-card-image.jpeg";
-import thirdCardImage from "./teog-sonuc.png";
+
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ProfileCard from "./ProfileCard";
-import ProjectsComponent from "./ProjectsComponent"; // Yolu projenize göre ayarlayın
 
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../Routes";
