@@ -25,17 +25,27 @@ const SkillsContainer = styled.div`
 `;
 
 const rgbKeyLight = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 `;
 
 const SkillsCard = styled.div`
   border-radius: 15px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: ${rgbKeyLight} 15s linear infinite;
+  background: linear-gradient(
+    -45deg,
+    #ee7752,
+    #e73c7e,
+    #23a6d5,
+    #23d5ab,
+    #ee7752
+  );
+  background-size: 400% 100%;
+  animation: ${rgbKeyLight} 15s ease-in-out infinite;
   padding: 40px;
   margin: 40px;
   display: grid;
@@ -111,7 +121,9 @@ const ExternalIcon = styled.img`
   width: 80px;
   height: 80px;
   cursor: pointer;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transition:
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
   &:hover {
     transform: scale(1.2);
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
