@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; 
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import profileImage from "./resim-23.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -8,6 +8,9 @@ import secondCardImage from "./second-card-image.jpeg";
 import thirdCardImage from "./teog-sonuc.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import ProfileCard from "./ProfileCard";
+import ProjectsComponent from "./ProjectsComponent"; // Yolu projenize göre ayarlayın
+
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../Routes";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,6 +20,8 @@ import Loading from "../Loading/index";
 import NewTelevisionImage from "./television.png";
 import NewVideoSource from "./video.mp4";
 import { FaDev, FaArrowLeft } from "react-icons/fa";
+import EducationTimeline from "./EducationTimeline";
+import Skills from "./Skills"; // Skills bileşenini import edin
 
 const mobile = "576px";
 const tablet = "768px";
@@ -28,28 +33,6 @@ const fadeIn = keyframes`
     opacity: 0;
   }
   to {
-    opacity: 1;
-  }
-`;
-
-const slideInFromRight = keyframes`
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-`;
-
-const slideInFromLeft = keyframes`
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
     opacity: 1;
   }
 `;
@@ -259,39 +242,39 @@ const AboutRouteButton = styled(ButtonBase)`
 `;
 
 const AboutButton = styled(ButtonBase)`
-    background-color: #64ccc5;
-    color: white;
+  background-color: #64ccc5;
+  color: white;
 
-    &:hover {
-        background-color: #0056b3;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); // Giving more depth when hovered
-    }
+  &:hover {
+    background-color: #0056b3;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); // Giving more depth when hovered
+  }
 
-    @media (max-width: ${mobile}) {
-        padding: 12px 20px; // Smaller padding for mobile for better fit
-    }
+  @media (max-width: ${mobile}) {
+    padding: 12px 20px; // Smaller padding for mobile for better fit
+  }
 
-    @media (min-width: ${tablet}) and (max-width: ${desktop}) {
-        padding: 12px 24px; // Adjusting for tablet
-    }
+  @media (min-width: ${tablet}) and (max-width: ${desktop}) {
+    padding: 12px 24px; // Adjusting for tablet
+  }
 `;
 
 const ProjectButton = styled(ButtonBase)`
-    background-color: #64ccc5;
-    color: white;
+  background-color: #64ccc5;
+  color: white;
 
-    &:hover {
-        background-color: #218838;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); // Giving more depth when hovered
-    }
+  &:hover {
+    background-color: #218838;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); // Giving more depth when hovered
+  }
 
-    @media (max-width: ${mobile}) {
-        padding: 12px 20px; // Smaller padding for mobile for better fit
-    }
+  @media (max-width: ${mobile}) {
+    padding: 12px 20px; // Smaller padding for mobile for better fit
+  }
 
-    @media (min-width: ${tablet}) and (max-width: ${desktop}) {
-        padding: 12px 24px; // Adjusting for tablet
-    }
+  @media (min-width: ${tablet}) and (max-width: ${desktop}) {
+    padding: 12px 24px; // Adjusting for tablet
+  }
 `;
 
 const MainCard = styled.div`
@@ -341,12 +324,6 @@ const ProfileImage = styled(LazyLoadImage)`
   }
 `;
 
-const blinkingAnimation = keyframes`
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
-`;
-
 const ProfileName = styled.h2`
   color: #61dafb;
   font-size: 1.5rem;
@@ -362,62 +339,11 @@ const ProfileTitle = styled.h3`
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-const ImageOverlay = styled.div`
-  position: absolute;
-  bottom: -20px; /* overlay'i resmin altına taşıyın */
-  left: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  text-align: center;
-  padding: 5px;
-  font-size: 12px; /* font boyutunu küçültün */
-  border-radius: 0 0 10px 10px; /* yalnızca alt köşeleri yuvarlayın */
-  opacity: 0; /* başlangıçta görünmez yapın */
-  transition: opacity 0.3s ease;
-  position: absolute;
-  bottom: 0; /* altına değil, üstüne yerleştirin */
-  &:hover {
-    opacity: 1; /* hover durumunda görünür yapın */
-  }
-`;
-
-const ImageCard = styled.div`
-  min-width: 90px;
-  min-height: 90px;
-  max-width: 150px; // ya da ihtiyacınıza göre bir değer
-  max-height: 150px; // ya da ihtiyacınıza göre bir değer
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  position: relative;
-
-  transition:
-    transform 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out; // transition ekledik
-  &:hover {
-    transform: scale(1.15); // daha büyük bir scale değeri
-    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.3); // daha belirgin bir shadow
-  }
-`;
-
 const StyledLazyLoadImage = styled(LazyLoadImage)`
   width: 100%; // Resmin genişliği parent elementine göre ayarlanır.
   height: 100%; // Resmin yüksekliği parent elementine göre ayarlanır.
   object-fit: cover; // Resmin, parent elementini dolduracak şekilde ayarlanır.
   border-radius: 10px;
-`;
-const CardContentText = styled.p`
-  white-space: pre-line;
-`;
-const ThirdCardImage = styled(StyledLazyLoadImage)`
-  transition:
-    transform 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out;
-
-  &:hover {
-    transform: scale(1.05); // Belirgin bir scale değeri
-    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.3); // Daha belirgin bir shadow
-  }
 `;
 
 const Description = styled.p`
@@ -446,7 +372,6 @@ const Description = styled.p`
 `;
 
 const HomePage = () => {
-  const [showArticles, setShowArticles] = useState(false);
   const aboutButtonText = useSelector(
     (state) => languageDescriptions.aboutButton[state.language.value],
   );
@@ -464,18 +389,10 @@ const HomePage = () => {
     navigate(ROUTES.PROJECTS);
   };
   const handleTelevisionClick = () => {
-    // Örnek olarak bir rota yönlendirmesi yapabilirsiniz.
-    // İstediğiniz bir işlevsellik eklemek için bu fonksiyonu değiştirebilirsiniz.
     console.log("The computer has been clicked");
   };
 
   const language = useSelector((state) => state.language.value);
-
-  const openModal = (languageKey) => {
-    const description = languageDescriptions[languageKey][language];
-    setModalContent(description);
-    setShowModal(true);
-  };
 
   const dispatch = useDispatch();
   const [hovered, setHovered] = useState(false);
@@ -498,12 +415,7 @@ const HomePage = () => {
     <HomeContainer>
       <MainCard>
         <ProfileContainer>
-          <ProfileImage
-            src={profileImage}
-            alt="Hekimcan AKTAŞ"
-            onClick={navigateToAbout}
-            effect="blur"
-          />
+          <ProfileCard />
           <ProfileName>Hekimcan AKTAŞ</ProfileName>
           <ProfileTitle>
             {languageDescriptions.profileTitle[language]}
@@ -531,73 +443,20 @@ const HomePage = () => {
             </AboutRouteButton>
           </NewTelevisionContainer>
         </Description>
+        <EducationTimeline />
+        <ButtonContainer>
+          <ButtonBase onClick={() => navigate("/education")}>
+            <FaArrowRight />
+            {languageDescriptions.educationButton[language]}
+          </ButtonBase>
+        </ButtonContainer>
+        <Skills />
+
         <ButtonContainer>
           <ProjectButton onClick={navigateToProjects}>
             <FaProjectDiagram /> {languageDescriptions.projectsButton[language]}
           </ProjectButton>
-          <AboutButton onClick={() => setShowArticles(!showArticles)}>
-            {languageDescriptions.startJourneyButton[language]} <FaArrowRight />
-          </AboutButton>
         </ButtonContainer>
-
-        {showArticles && (
-          <>
-            <Card data-aos="fade-up">
-              <CardContent>
-                <ImageCard
-                  onMouseEnter={() => setHovered(true)} // onMouseEnter ve onMouseLeave kullanılır.
-                  onMouseLeave={() => setHovered(false)}
-                >
-                  <StyledLazyLoadImage
-                    src={firstCardImage}
-                    alt="First Card"
-                    effect="blur"
-                  />
-                  {hovered && (
-                    <ImageOverlay>Image by vectorpouch on Freepik</ImageOverlay>
-                  )}
-                  {/* Bu satır eklenmiştir */}
-                </ImageCard>
-                <CardContentText>
-                  {languageDescriptions.card1[language]}
-                </CardContentText>
-              </CardContent>
-            </Card>
-            <Card data-aos="fade-up">
-              <CardContent>
-                <ImageCard
-                  onMouseEnter={() => setHovered(true)} // onMouseEnter ve onMouseLeave kullanılır
-                  onMouseLeave={() => setHovered(false)}
-                >
-                  <StyledLazyLoadImage
-                    src={secondCardImage}
-                    alt="Second Card"
-                    effect="blur"
-                  />
-                  {hovered && (
-                    <ImageOverlay>Image by vectorpouch on Freepik</ImageOverlay>
-                  )}
-                  {/* Bu satır eklenmiştir */}
-                </ImageCard>
-                <CardContentText>
-                  {languageDescriptions.card2[language]}
-                </CardContentText>
-              </CardContent>
-            </Card>
-            <Card data-aos="fade-up">
-              <CardContent>
-                <ThirdCardImage
-                  src={thirdCardImage}
-                  alt="Third Card"
-                  effect="blur"
-                />
-                <CardContentText>
-                  {languageDescriptions.card3[language]}
-                </CardContentText>
-              </CardContent>
-            </Card>
-          </>
-        )}
       </MainCard>
     </HomeContainer>
   );

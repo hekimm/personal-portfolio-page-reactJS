@@ -1,7 +1,7 @@
 export const languageDescriptions = {
   profileTitle: {
-    tr: " Yazılım Mühendisi | Full Stack Web Gelişticirisi | Mobil Uygulama Geliştiricisi",
-    en: "Software Engineer |Full Stack Web Developer | Mobile App Developer",
+    tr: " Yazılım Mühendisi |  Full Stack Web Gelişticirisi | Mobil Uygulama Geliştiricisi | Jr. Veri Bilimci",
+    en: "Software Engineer |Full Stack Web Developer | Mobile App Developer | Jr. Data Scientist",
   },
   card1: {
     tr: `Merhaba. Ben Hekimcan Aktaş, Kişisel gelişim sürecinin sürekli bir öğrenme ve yenilenme süreci olduğuna inanıyorum ve bu inançla, her yeni günü bir fırsat olarak görüp, bilgimi ve yeteneklerimi artırmaya devam ediyorum.
@@ -36,16 +36,21 @@ export const languageDescriptions = {
     Alongside the education I receive in my department, I also persistently continue to learn new technologies, languages, and tools on an individual basis, adhering to the principle of continual learning.`,
   },
   projectsButton: {
-    en: "My Projects",
-    tr: "Projelerim",
+    en: "My all Projects",
+    tr: "Tüm Projelerim",
   },
 
-  startJourneyButton: {
-    tr: "Yazılım ve Programlama Yolculuğum Nasıl Başladı?",
-    en: "How Did My Software and Programming Journey Begin?", 
-  },
   aboutButton: {
     en: "About me",
     tr: "Hakkımda",
+  },
+  educationButton: {
+    en: "For Detailed information about My Education",
+    tr: "Eğitimim Hakkında Detaylı Bilgi İçin",
+  },
+  featuredProjects: {
+    en: "Featured Projects",
+    tr: "Öne Çıkan Projelerim",
+    // Diğer diller...
   },
 };
