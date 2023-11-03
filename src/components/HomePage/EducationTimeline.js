@@ -83,7 +83,7 @@ const translations = {
   tr: {
     title: "Eğitimim",
     educationData: [
-      { date: "2017-2021", info: "Övgü Terzibaşığlu Anadolu Lisesi" },
+      { date: "2017-2021", info: "Övgü Terzibaşıoğlu Anadolu Lisesi" },
       {
         date: "2022 - 2026 (beklenen)",
         info: "Manisa Celal Bayar Üniversitesi - Yazılım Mühendisliği",
@@ -93,7 +93,7 @@ const translations = {
   en: {
     title: "My Education",
     educationData: [
-      { date: "2017-2021", info: "Övgü Terzibaşığlu Anatolian High School" },
+      { date: "2017-2021", info: "Övgü Terzibaşıoğlu Anatolian High School" },
       {
         date: "2022 - 2026 (expected)",
         info: "Manisa Celal Bayar University - Software Engineering",
