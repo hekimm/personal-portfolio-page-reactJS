@@ -2,6 +2,7 @@ import React from "react";
 import useMediumPosts from "./useMediumPosts";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import defaultImage from "./default.jpg"; // Alternatif resim yolu
 
 const GeneralContainer = styled.div`
   padding: 2rem 0;
@@ -88,11 +89,20 @@ const translations = {
 };
 
 function MediumPosts() {
-
   const theme = useSelector((state) => state.theme.theme);
   const language = useSelector((state) => state.language.value);
   const textColor = theme === "light" ? "#333" : "#f4f4f4";
-  
+  // Place this function inside MediumPosts.js at the top or before the MediumPosts component.
+  const getExcerpt = (htmlContent) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlContent, "text/html");
+    const paragraphs = Array.from(doc.querySelectorAll("p"));
+    const excerpt = paragraphs
+      .slice(0, 2)
+      .map((p) => p.innerHTML.replace(/\. /g, ".<br><br>")) // This regex replaces all periods followed by a space with a period followed by two <br> tags.
+      .join("<br><br>"); // Join paragraphs with line breaks as well.
+    return excerpt;
+  };
 
   const { posts, loading } = useMediumPosts();
 
@@ -120,7 +130,14 @@ function MediumPosts() {
         </Header>
         {posts.map((post) => (
           <PostContainer key={post.guid} theme={theme}>
-            <Thumbnail src={post.thumbnail} alt={post.title} />
+            <Thumbnail
+              src={
+                post.thumbnail && post.thumbnail.length > 0
+                  ? post.thumbnail
+                  : defaultImage // Update this line if you have named it defaultThumbnail
+              }
+              alt={post.title}
+            />
             <div style={{ color: textColor }}>
               <h2 style={{ marginBottom: "16px" }}>{post.title}</h2>
               <div style={{ marginBottom: "16px" }}>
@@ -131,6 +148,14 @@ function MediumPosts() {
                   {translations[language].authorBy} {post.author}
                 </span>
               </div>
+              {/* Display the excerpt from the post content */}
+              <p
+                style={{ marginBottom: "16px" }}
+                dangerouslySetInnerHTML={{ __html: getExcerpt(post.content) }}
+              >
+                {/* This will be empty since we're using dangerouslySetInnerHTML */}
+              </p>{" "}
+              {/* Add this line */}
               <a
                 href={post.link}
                 target="_blank"
@@ -138,6 +163,8 @@ function MediumPosts() {
                 style={{
                   backgroundColor: textColor,
                   color: theme === "light" ? "#fff" : "#333",
+                  padding: "10px 15px", // Added padding for better visuals
+                  textDecoration: "none", // Remove underline from the link
                   transition: "background-color 0.3s, color 0.3s",
                 }}
                 className="btn mt-2"
