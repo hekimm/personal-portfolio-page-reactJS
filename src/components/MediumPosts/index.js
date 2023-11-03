@@ -2,7 +2,6 @@ import React from "react";
 import useMediumPosts from "./useMediumPosts";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import defaultImage from "./default.jpg"; // Alternatif resim yolu
 
 const GeneralContainer = styled.div`
   padding: 2rem 0;
