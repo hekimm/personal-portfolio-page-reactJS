@@ -164,9 +164,9 @@ const ProfileLazyImage = styled(LazyLoadImage)`
   width: 150px; // genişliği arttırdık
   height: 150px; // yüksekliği arttırdık
   border-radius: 50%;
+  border: 3px solid #61dafb;
   object-fit: cover;
   margin-bottom: 20px;
-  border: 3px solid ${COLORS.primary};
 
   @media (max-width: 768px) {
     width: 100px; // Mobil cihazlar için daha küçük boyut
@@ -202,9 +202,9 @@ const IconLink = styled.a`
   color: #fff;
   font-size: 32px;
   transition: color 0.3s ease-in-out;
-
   &:hover {
-    color: #61dafb;
+    color: ${COLORS.primary};
+    transform: scale(1.1); // Hafif büyütme efekti
   }
 `;
 
@@ -220,23 +220,23 @@ const underlineAnimation = keyframes`
 const StyledNavLink = styled(Link)`
   color: ${COLORS.light};
   display: block;
-  padding: 10px 20px; // Increase padding for better touch
+  padding: 10px 20px;
   margin-bottom: 8px;
   font-size: 1.1rem;
-  font-weight: 300; // Lighter font-weight for better contrast
+  font-weight: 300;
   transition:
     color 0.3s ease-in-out,
     background-color 0.3s ease-in-out;
   border-radius: 8px;
   &:hover {
     color: ${COLORS.white};
-    background-color: rgba(97, 218, 251, 0.1);
+    background-color: ${COLORS.primary};
     text-decoration: none;
   }
   &.active {
-    font-weight: 500; // Bold for active links
+    font-weight: 500;
     color: ${COLORS.primary};
-    background-color: rgba(97, 218, 251, 0.1);
+    background-color: #666;
   }
 `;
 
@@ -376,7 +376,7 @@ const NAV_TEXTS = {
     EXPERTISE_AREA: "Yazılım ve Programlama Alanım",
     CONTACT: "İletişim",
     MENU: "Menü",
-    CLOSE_MENU: "Menüyü Kapatmak için Tıklayınız",
+    CLOSE_MENU: "Menüyü Kapat",
     BLOG: " Blog Yazılarım",
   },
   en: {
@@ -387,7 +387,7 @@ const NAV_TEXTS = {
     EXPERTISE_AREA: "Software & Programming Area",
     CONTACT: "Contact",
     MENU: "Menu",
-    CLOSE_MENU: "Click to Close the Menu",
+    CLOSE_MENU: " Close the Menu",
     BLOG: "My Blog Posts",
   },
 };
@@ -433,15 +433,20 @@ const Navbar = () => {
     position: fixed;
     top: 10px;
     left: ${(props) => (props.isOpen ? "250px" : "10px")};
-    background-color: #343a40;
+    background-color: rgba(255, 255, 255, 0.2);
     border: none;
     color: #fff;
     font-size: 24px;
     cursor: pointer;
-    z-index: 1010; // to be above the sidebar
+    z-index: 1010;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
 
     &:hover {
-      color: #61dafb;
+      background-color: #4a4a4a;
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
     }
 
     @media (max-width: 768px) {
@@ -495,7 +500,9 @@ const Navbar = () => {
     <>
       <ToggleButton isOpen={isOpen} onClick={handleToggle}>
         {isOpen ? <FaTimes /> : <FaBars />}
-        <MenuText isOpen={isOpen}>{NAV_TEXTS[language].MENU}</MenuText>
+        <MenuText isOpen={isOpen}>
+          {isOpen ? NAV_TEXTS[language].CLOSE_MENU : NAV_TEXTS[language].MENU}
+        </MenuText>
       </ToggleButton>
 
       <Sidebar isOpen={isOpen}>
