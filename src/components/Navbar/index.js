@@ -433,7 +433,10 @@ const Navbar = () => {
     position: fixed;
     top: 10px;
     left: ${(props) => (props.isOpen ? "250px" : "10px")};
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: ${(props) =>
+      props.theme === "dark"
+        ? "rgba(255, 255, 255, 0.2)"
+        : "rgba(0,0,0,0.6)"}; // Temaya göre renk tersine çevrildi
     border: none;
     color: #fff;
     font-size: 24px;
@@ -444,7 +447,8 @@ const Navbar = () => {
     transition: all 0.3s ease;
 
     &:hover {
-      background-color: #4a4a4a;
+      background-color: ${(props) =>
+        props.theme === "dark" ? "#4a4a4a" : "#555"};
       transform: scale(1.05);
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
     }
@@ -453,6 +457,7 @@ const Navbar = () => {
       left: ${(props) => (props.isOpen ? "200px" : "10px")};
     }
   `;
+
   const MenuText = styled.span`
     display: inline;
     color: white;
@@ -498,7 +503,7 @@ const Navbar = () => {
 
   return (
     <>
-      <ToggleButton isOpen={isOpen} onClick={handleToggle}>
+      <ToggleButton isOpen={isOpen} theme={theme} onClick={handleToggle}>
         {isOpen ? <FaTimes /> : <FaBars />}
         <MenuText isOpen={isOpen}>
           {isOpen ? NAV_TEXTS[language].CLOSE_MENU : NAV_TEXTS[language].MENU}
