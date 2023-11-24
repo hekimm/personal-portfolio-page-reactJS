@@ -49,22 +49,26 @@ const SkillsCard = styled.div`
   padding: 40px;
   margin: 40px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  justify-content: center; // Yatayda merkezleme
+  align-items: center; // Dikeyde merkezleme
+  grid-template-columns: repeat(
+    4,
+    1fr
+  ); // Geniş ekranlar için varsayılan olarak 4 sütun
   gap: 40px;
+  width: 90%; // Genişliği artır
+  max-width: 1200px; // Maksimum genişlik sınırlaması
 
   @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
+    // Orta büyüklükte ekranlar için 3 sütun
   }
 
   @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-  }
 
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(2, 1fr); // Daha küçük ekranlar için 2 sütun
   }
 `;
 
@@ -72,8 +76,8 @@ const SkillIcon = styled.div`
   width: 80px;
   height: 80px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; // İkonun kendi içinde yatayda merkezlenmesi
+  align-items: center; // İkonun kendi içinde dikeyde merkezlenmesi
   font-size: 80px;
   color: white;
   cursor: pointer;
@@ -222,7 +226,6 @@ function Skills() {
             alt="Git"
           />
         </SkillIcon>
-        {/* Diğer ikonları da buraya ekleyebilirsiniz. */}
       </SkillsCard>
     </SkillsContainer>
   );
