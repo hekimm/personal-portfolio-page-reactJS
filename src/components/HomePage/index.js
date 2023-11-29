@@ -12,7 +12,7 @@ import {
   FaSass,
   FaBootstrap,
 } from "react-icons/fa";
-import profileImageUrl from "./profile-image.jpeg";
+import profileImageUrl from "./resim-23.png";
 import Loading from "../Loading";
 const GlobalStyle = createGlobalStyle`
   @font-face {
