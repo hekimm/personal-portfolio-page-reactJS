@@ -188,6 +188,9 @@ const ProfileImage = styled.img`
   @media (max-width: 768px) {
     width: 100%; // Küçük ekranlarda genişlik %100
   }
+   @media (min-width: 768px) {
+    width: 400px;
+  }
 `;
 
 const Name = styled.h2`
