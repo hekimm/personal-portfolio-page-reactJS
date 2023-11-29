@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoading } from "../../actions/loadingActions";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
+import { Link } from "react-router-dom";
+
 import {
   FaHtml5,
   FaCss3Alt,
@@ -12,6 +14,8 @@ import {
   FaSass,
   FaBootstrap,
 } from "react-icons/fa";
+import { Carousel } from "react-bootstrap";
+
 import profileImageUrl from "./resim-23.png";
 import Loading from "../Loading";
 const GlobalStyle = createGlobalStyle`
@@ -25,6 +29,63 @@ const GlobalStyle = createGlobalStyle`
     font-family: sans-serif;
     background-color: #282c34;
   }
+`;
+const MoreInfoButton = styled(Link)`
+  display: inline-block;
+  background-color: #61dafb;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 20px;
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
+
+  &:hover {
+    background-color: #4da8da;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+`;
+const FeaturedProjectsContainer = styled.div`
+  width: 100%;
+  padding: 40px 0;
+  background-color: #1c1e22;
+  color: white;
+`;
+const ProjectCarousel = styled(Carousel)`
+  max-width: 1200px;
+  margin: auto;
+  .carousel-item {
+    text-align: center;
+    padding: 20px;
+    background-color: #282c34;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+`;
+
+const ProjectImage = styled.img`
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+`;
+
+const ProjectTitle = styled.h3`
+  margin-bottom: 10px;
+  font-size: 1.75em;
+  color: #61dafb;
+`;
+
+const ProjectDescription = styled.p`
+  font-size: 1em;
+  color: #f4f4f4;
+  line-height: 1.5;
 `;
 
 const SkillsContainer = styled.div`
@@ -166,7 +227,38 @@ const HeroContainer = styled.div`
   min-height: 100vh;
   background-color: #282c34; // Arka plan rengi
 `;
+const AboutSection = styled.div`
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #20232a;
+  box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+  width: 90%;
+  max-width: 600px; // Maksimum genişlik
+  text-align: center; // Metni ortala
 
+  @media (min-width: 768px) {
+    // Büyük ekranlar için ek stil tanımları
+    width: 100%;
+    padding: 20px;
+    text-align: left; // Metni sola hizala
+  }
+`;
+
+const ProfileAndAboutContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr; // Büyük ekranlar için iki sütun
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; // Küçük ekranlar için tek sütun
+  }
+`;
 const ProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -177,8 +269,11 @@ const ProfileContainer = styled.div`
   background-color: #20232a;
   box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.2);
   border: 5px solid;
-  animation: ${rainbow} 8s linear infinite; // Animasyon süresini 8 saniyeye indir
   width: fit-content;
+  @media (min-width: 768px) {
+    // Büyük ekranlar için ek stil tanımları
+    width: 100%;
+  }
 `;
 
 const ProfileImage = styled.img`
@@ -188,7 +283,7 @@ const ProfileImage = styled.img`
   @media (max-width: 768px) {
     width: 100%; // Küçük ekranlarda genişlik %100
   }
-   @media (min-width: 768px) {
+  @media (min-width: 768px) {
     width: 400px;
   }
 `;
@@ -326,8 +421,8 @@ class Hero extends React.Component {
   constructor(props) {
     super(props);
     this.titles = [
-      "Software Developer",
-      "Software Engineer",
+      "Software Engineer ",
+      "Software Developer ",
       "Jr. Data Scientist",
       "Full Stack Web Developer",
     ];
@@ -363,16 +458,43 @@ class Hero extends React.Component {
 
   render() {
     return (
-      <HeroContainer>
-        <ProfileContainer>
-          <ProfileImage src={profileImageUrl} alt="Hekimcan Aktaş" />
-          <Name>Hekimcan Aktaş</Name>
-        </ProfileContainer>
-        <TypingText>
-          {this.state.currentTitle}
-          <Caret>|</Caret>
-        </TypingText>
-      </HeroContainer>
+      <div>
+        <HeroContainer>
+          <ProfileAndAboutContainer>
+            <ProfileContainer>
+              <ProfileImage src={profileImageUrl} alt="Hekimcan Aktaş" />
+              <Name>Hekimcan Aktaş</Name>
+            </ProfileContainer>
+            <TypingText>
+              {this.state.currentTitle}
+              <Caret>|</Caret>
+            </TypingText>
+          </ProfileAndAboutContainer>
+          <AboutSection>
+            <h2>Hakkımda</h2>
+            <p>
+              Ben Hekimcan Aktaş,Yazılım ve Programlama tutkulu bir Yazılım
+              Geliştiricisiyim,
+            </p>
+            <p>Yazılım Mühendisliği - 2. Sınıf</p>
+            <p>
+              Manisa Celal Bayar Üniversitesi Yazılım Mühendisliği bölümünde 2.
+              sınıf öğrencisiyim.
+            </p>
+            <p>
+              Bölümümde aldığım eğitimin yanı sıra, bireysel olarak da sürekli
+              öğrenme ilkesiyle yeni teknolojileri, dilleri ve araçları
+              öğrenmeye devam ediyorum.
+            </p>
+            {/* Hakkımda metni */}
+            <MoreInfoButton to="/about">
+              Hakkımda Detaylı Bilgi İçin
+            </MoreInfoButton>
+          </AboutSection>
+        </HeroContainer>
+
+        {/* Diğer ana sayfa bileşenleri buraya eklenebilir */}
+      </div>
     );
   }
 }
@@ -401,7 +523,88 @@ function App() {
         <div>
           <Hero />
           <Skills />
+
           {/* Diğer ana sayfa bileşenleri buraya eklenebilir */}
+          {/* Öne Çıkan Projeler Carousel */}
+          <FeaturedProjectsContainer>
+            <ProjectCarousel>
+              <Carousel.Item>
+                <ProjectImage
+                  src="https://hekimcanaktas.com/static/media/netflix-clone-9.f076741bb3825cefead7.png"
+                  alt="Project 1"
+                />
+                <ProjectTitle>Netflix Clone Project</ProjectTitle>
+                <ProjectDescription>
+                  13.10.2023 'te Enes Doğan ile Netflix Clone kodlanması
+                  projesine başladık.
+                </ProjectDescription>
+                <ProjectDescription>
+                  Her gün adım adım ilerliyoruz.
+                </ProjectDescription>
+                <ProjectDescription>
+                  Bu süreçte ben Frontend 'i tasarlayıp kodlarken Enes Doğan ise
+                  Backend kodlarını kodlamaktadır. Şu anda bu proje üzerinde
+                  çalışıyoruz ve kodlanmaya devam edilmektedir.
+                </ProjectDescription>
+              </Carousel.Item>
+              <Carousel.Item>
+                <ProjectImage
+                  src="https://hekimcanaktas.com/static/media/image-1.4766aad0641928ea9e88.png"
+                  alt="Project 2"
+                />
+                <ProjectTitle>
+                  E-commerce checkout page with React and Redux
+                </ProjectTitle>
+                <ProjectDescription>
+                  👨‍💻 Bu proje, gerçek zamanlı animasyonlu kredi kartı geri
+                  bildirimi sunan bir form uygulamasıdır.
+                </ProjectDescription>
+                <ProjectDescription>
+                  Bu projede iyi ve güzel bir kullanıcı deneyimi hedefledim🔄✨
+                </ProjectDescription>
+              </Carousel.Item>
+              <Carousel.Item>
+                <ProjectImage
+                  src="https://hekimcanaktas.com/static/media/resim-1.8986daecb21a5e3dc280.jpg"
+                  alt="Project 3"
+                />
+                <ProjectTitle>Weatherly Portal</ProjectTitle>
+                <ProjectDescription>
+                  Bootstrap 4, jQuery ve OpenWeatherMap API ile oluşturulan Hava
+                  Tahmini Portalı, kullanıcıların seçtikleri şehir veya bölge
+                  için mevcut hava durumunu ve yaklaşan saatlik tahminleri
+                  kontrol etmelerine olanak tanır.
+                </ProjectDescription>
+
+                <ProjectDescription>
+                  {" "}
+                  Koyu ve açık mod için tema değiştirme özelliği içerir.
+                </ProjectDescription>
+              </Carousel.Item>
+              <Carousel.Item>
+                <ProjectImage
+                  src="https://hekimcanaktas.com/static/media/photo-2.2499ba8d81a9ccc363b0.jpg"
+                  alt="Project 4"
+                />
+                <ProjectTitle>
+                  Code Editor that compiles HTML-CSS-JS
+                </ProjectTitle>
+                <ProjectDescription>
+                  Code Editor, geliştiricilere HTML, CSS ve JavaScript kodlarını
+                  tarayıcı içinde anında yazma, düzenleme ve görselleştirme
+                  imkanı sunan sofistike ve modern bir integrated development
+                  environment (IDE)dir.
+                </ProjectDescription>
+
+                <ProjectDescription>
+                  {" "}
+                  Güçlü ACE Editör Library kullanarak sözdizimi vurgulama, Emmet
+                  kısaltmaları ve otomatik tamamlama sağlayarak
+                  zenginleştirilmiş bir kodlama deneyimi sunar.
+                </ProjectDescription>
+              </Carousel.Item>
+            </ProjectCarousel>
+          </FeaturedProjectsContainer>
         </div>
       )}
     </>
