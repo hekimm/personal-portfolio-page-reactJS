@@ -10,6 +10,7 @@ import {
   FaSass,
   FaBootstrap,
 } from "react-icons/fa";
+import profileImageUrl from "./resim-23.png";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -356,8 +357,7 @@ class Hero extends React.Component {
   }
 
   render() {
-    const profileImageUrl =
-      "https://hekimcanaktas.com/static/media/resim-23.e9e7275437f06b265eb5.png"; // Profil resmi URL'nizi buraya ekleyin
+   
 
     return (
       <HeroContainer>
