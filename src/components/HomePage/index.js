@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setLoading } from "../../actions/loadingActions";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
 import {
   FaHtml5,
@@ -10,8 +12,8 @@ import {
   FaSass,
   FaBootstrap,
 } from "react-icons/fa";
-import profileImageUrl from "./resim-23.png";
-
+import profileImageUrl from "./profile-image.jpeg";
+import Loading from "../Loading";
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Devicon';
@@ -357,8 +359,6 @@ class Hero extends React.Component {
   }
 
   render() {
-   
-
     return (
       <HeroContainer>
         <ProfileContainer>
@@ -374,11 +374,33 @@ class Hero extends React.Component {
   }
 }
 function App() {
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.loading.isLoading);
+
+  useEffect(() => {
+    // Yüklenme ekranını göstermek için
+    dispatch(setLoading(true));
+
+    const timeout = setTimeout(() => {
+      // Yüklenme ekranını gizlemek için
+      dispatch(setLoading(false));
+    }, 13000); // 13 saniye sonra yüklenme ekranını kapat
+
+    return () => clearTimeout(timeout);
+  }, [dispatch]);
+
   return (
     <>
       <GlobalStyle />
-      <Hero />
-      <Skills />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div>
+          <Hero />
+          <Skills />
+          {/* Diğer ana sayfa bileşenleri buraya eklenebilir */}
+        </div>
+      )}
     </>
   );
 }
