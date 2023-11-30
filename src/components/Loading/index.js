@@ -1,7 +1,9 @@
+import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import profileImage from "./profile-image.jpeg";
-import React, { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setLoading } from "../../actions/loadingActions";
 const fadeIn = keyframes`
   from { opacity: 0; }
   to { opacity: 1; }
@@ -10,6 +12,21 @@ const fadeIn = keyframes`
 const fadeOut = keyframes`
   from { opacity: 1; }
   to { opacity: 0; }
+`;
+const SkipButton = styled.button`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  z-index: 1001; // Üstte olması için z-index.
+  &:hover {
+    background-color: #4da8da;
+  }
 `;
 const AnimatedText = styled.div`
   position: absolute;
@@ -20,7 +37,7 @@ const AnimatedText = styled.div`
   animation: ${(props) => (props.fadeIn ? fadeIn : fadeOut)} 1s ease;
   text-align: center;
   width: 100%;
-  font-family: "Poppins", sans-serif; 
+  font-family: "Poppins", sans-serif; // Örnek bir font. Dilerseniz başka bir font da seçebilirsiniz.
 `;
 
 const heartbeat = keyframes`
@@ -183,7 +200,10 @@ const Spinner = styled.svg`
 `;
 
 const Loading = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoadingState] = useState(true);
+  const [showText, setShowText] = useState(false); // Metinlerin görünürlüğü için yeni bir state
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [welcome, setWelcome] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const backgroundColors = [
@@ -197,13 +217,13 @@ const Loading = () => {
     "Ben Hekimcan Aktaş",
     "Yazılım Mühendisi",
     "Full Stack Web Developer",
-    "React Native Mobile App Developer",
+    "Jr.Data Scientist",
   ];
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setLoading(false);
-      setWelcome(true);
+      setLoadingState(false);
+      setShowText(true); // Metinleri göstermeye başla
     }, 3000);
 
     return () => clearTimeout(timeout);
@@ -211,7 +231,8 @@ const Loading = () => {
 
   useEffect(() => {
     let timeout;
-    if (welcome) {
+    if (showText) {
+      setWelcome(true);
       timeout = setTimeout(() => {
         setWelcome(false);
         setCurrentIndex(0);
@@ -219,7 +240,7 @@ const Loading = () => {
     }
 
     return () => timeout && clearTimeout(timeout);
-  }, [welcome]);
+  }, [showText]);
 
   useEffect(() => {
     let timeout;
@@ -235,8 +256,15 @@ const Loading = () => {
     return () => timeout && clearTimeout(timeout);
   }, [currentIndex, texts.length]);
 
+  const handleSkip = () => {
+    dispatch(setLoading(false));
+    navigate("/");
+  };
+
   return (
     <LoadingContainer bgColor={backgroundColors[currentIndex + 1]}>
+      <SkipButton onClick={handleSkip}>Intro'yu Atla</SkipButton>
+
       {loading && (
         <>
           <ProfileImage src={profileImage} alt="Profil Resmi" />
@@ -248,7 +276,7 @@ const Loading = () => {
               r="80"
               fill="none"
               strokeWidth="4"
-            ></circle>
+            />
             <circle
               className="pathTwo"
               cx="100"
@@ -256,7 +284,7 @@ const Loading = () => {
               r="60"
               fill="none"
               strokeWidth="4"
-            ></circle>
+            />
           </Spinner>
         </>
       )}
