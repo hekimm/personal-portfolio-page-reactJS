@@ -11,14 +11,15 @@ import {
   faGoogle,
 } from "@fortawesome/free-brands-svg-icons";
 import { faXTwitter as faTwitter } from "@fortawesome/free-brands-svg-icons/faXTwitter";
+
 import {
-  faHome,
   faUserAlt,
+  faGraduationCap,
   faBriefcase,
   faEnvelope,
-  faGraduationCap,
   faCode,
   faBlog,
+  faHome,
 } from "@fortawesome/free-solid-svg-icons";
 
 const FooterContainer = styled.footer`
@@ -32,31 +33,19 @@ const FooterContainer = styled.footer`
   border-top: 1px solid #343a40;
   z-index: 2;
 `;
-
-const SocialIcons = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 15px;
-  flex-wrap: wrap;
-`;
-
-const SocialIcon = styled.a`
-  color: #d3d3d3;
-  font-size: 24px;
-  transition:
-    color 0.3s,
-    transform 0.3s ease-in-out;
-
-  &:hover {
-    color: #ffffff;
-    transform: scale(1.2);
-  }
+const DesktopFooterContainer = styled(FooterContainer)`
   @media (max-width: 768px) {
-    font-size: 0;
+    display: none;
   }
 `;
 
+const MobileFooterContainer = styled(FooterContainer)`
+  background-color: #20232a; // Koyu renk arka plan
+  // Üst kısma hafif bir gölge ekleme
+  @media (min-width: 769px) {
+    display: none;
+  }
+`;
 const RouteButtons = styled.nav`
   display: flex;
   justify-content: space-around;
@@ -74,49 +63,76 @@ const RouteButtons = styled.nav`
 `;
 
 const activeButtonStyle = css`
-  color: #61dafb; // Active button color
+  color: #61dafb;
   svg {
-    transform: scale(1.25); // Make the active icon larger
+    transform: scale(1.25);
   }
 `;
 
-// Update the RouteButton styled component to use the props to determine if it's active
 const RouteButton = styled(Link)`
-  color: #adb5bd;
-  font-size: 14px;
-  transition:
-    color 0.3s,
-    transform 0.3s ease-in-out;
+  color: #bdc3c7; // Daha açık renk
+  font-size: 16px; // İkonların boyutunu artır
+  padding: 10px; // Daha fazla padding
   display: flex;
   align-items: center;
   justify-content: center;
+  transition:
+    color 0.2s,
+    transform 0.2s;
+
+  svg {
+    font-size: 24px; // İkon boyutunu artır
+  }
+
+  &:hover {
+    color: #ecf0f1; // Hover durumunda renk değişikliği
+  }
+
+  ${(props) =>
+    props.isActive &&
+    css`
+      color: #3498db; // Aktif ikon rengi
+      svg {
+        transform: scale(1.1); // Aktif ikonu biraz büyüt
+      }
+    `}
+`;
+
+const DesktopRouteButton = styled(RouteButton)`
+  padding: 10px;
+`;
+
+const SocialMediaContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+`;
+
+const SocialMediaIcon = styled(FontAwesomeIcon)`
+  color: #adb5bd;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: color 0.3s ease;
 
   &:hover {
     color: #61dafb;
   }
-
-  svg {
-    font-size: 24px;
-  }
-
-  ${(props) => props.isActive && activeButtonStyle}
 `;
 
 const FooterText = styled.p`
   color: #adb5bd;
-  font-size: 12px; // Smaller font size for a more discreet copyright message
-  padding: 8px 0; // Padding for spacing
-  background-color: #20232a; // Slightly darker to differentiate from main footer area
+  font-size: 12px;
+  padding: 8px 0;
+  background-color: #20232a;
   width: 100%;
   @media (max-width: 768px) {
-    font-size: 0;
+    display: none;
   }
 `;
 
 const Footer = () => {
-  const location = useLocation(); // Hook to get the current location
+  const location = useLocation();
   const language = useSelector(selectLanguage);
-  // Function to determine if the route is active
   const isActive = (path) => location.pathname === path;
   const TEXTS = {
     tr: {
@@ -138,50 +154,101 @@ const Footer = () => {
       BLOG: "My Blog Posts",
     },
   };
+
   return (
-    <FooterContainer>
-      <RouteButtons>
-        {/* Apply the active style conditionally based on the current route */}
-        <RouteButton
-          to="/about"
-          aria-label="About"
-          isActive={isActive("/about")}
-        >
-          <FontAwesomeIcon icon={faUserAlt} />
-        </RouteButton>
-        <RouteButton
-          to="/skills"
-          aria-label="Skills"
-          isActive={isActive("/skills")}
-        >
-          <FontAwesomeIcon icon={faCode} />
-        </RouteButton>
-        <RouteButton
-          to="/education"
-          aria-label="Education"
-          isActive={isActive("/education")}
-        >
-          <FontAwesomeIcon icon={faGraduationCap} />
-        </RouteButton>
-        <RouteButton
-          to="/projects"
-          aria-label="Projects"
-          isActive={isActive("/projects")}
-        >
-          <FontAwesomeIcon icon={faBriefcase} />
-        </RouteButton>
-        <RouteButton to="/blog" aria-label="Blog" isActive={isActive("/blog")}>
-          <FontAwesomeIcon icon={faBlog} />
-        </RouteButton>
-        <RouteButton
-          to="/contact"
-          aria-label="Contact"
-          isActive={isActive("/contact")}
-        >
-          <FontAwesomeIcon icon={faEnvelope} />
-        </RouteButton>
-      </RouteButtons>
-    </FooterContainer>
+    <>
+      <DesktopFooterContainer>
+        <SocialMediaContainer>
+          <a href="https://twitter.com/yourtwitter">
+            <SocialMediaIcon icon={faTwitter} size="lg" />
+          </a>
+          <a href="https://linkedin.com/yourlinkedin">
+            <SocialMediaIcon icon={faLinkedin} size="lg" />
+          </a>
+          <a href="https://github.com/yourgithub">
+            <SocialMediaIcon icon={faGithub} size="lg" />
+          </a>
+          <a href="https://medium.com/yourmedium">
+            <SocialMediaIcon icon={faMediumM} size="lg" />
+          </a>
+        </SocialMediaContainer>
+        <RouteButtons>
+          {Object.entries(TEXTS[language]).map(([key, value]) => (
+            <DesktopRouteButton
+              key={key}
+              to={`/${key}`}
+              aria-label={value}
+              isActive={isActive(`/${key}`)}
+            >
+              <FontAwesomeIcon
+                icon={
+                  key === "ABOUT"
+                    ? faUserAlt
+                    : key === "EDUCATION"
+                    ? faGraduationCap
+                    : key === "PROJECTS"
+                    ? faBriefcase
+                    : key === "CONTACT"
+                    ? faEnvelope
+                    : key === "SKILLS"
+                    ? faCode
+                    : faBlog
+                }
+              />
+              {value}
+            </DesktopRouteButton>
+          ))}
+        </RouteButtons>
+      </DesktopFooterContainer>
+
+      <MobileFooterContainer>
+        <RouteButtons>
+          {/* Apply the active style conditionally based on the current route */}
+          <RouteButton
+            to="/about"
+            aria-label="About"
+            isActive={isActive("/about")}
+          >
+            <FontAwesomeIcon icon={faUserAlt} />
+          </RouteButton>
+          <RouteButton
+            to="/skills"
+            aria-label="Skills"
+            isActive={isActive("/skills")}
+          >
+            <FontAwesomeIcon icon={faCode} />
+          </RouteButton>
+          <RouteButton
+            to="/education"
+            aria-label="Education"
+            isActive={isActive("/education")}
+          >
+            <FontAwesomeIcon icon={faGraduationCap} />
+          </RouteButton>
+          <RouteButton
+            to="/projects"
+            aria-label="Projects"
+            isActive={isActive("/projects")}
+          >
+            <FontAwesomeIcon icon={faBriefcase} />
+          </RouteButton>
+          <RouteButton
+            to="/blog"
+            aria-label="Blog"
+            isActive={isActive("/blog")}
+          >
+            <FontAwesomeIcon icon={faBlog} />
+          </RouteButton>
+          <RouteButton
+            to="/contact"
+            aria-label="Contact"
+            isActive={isActive("/contact")}
+          >
+            <FontAwesomeIcon icon={faEnvelope} />
+          </RouteButton>
+        </RouteButtons>
+      </MobileFooterContainer>
+    </>
   );
 };
 
