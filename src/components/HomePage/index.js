@@ -55,15 +55,74 @@ const FeaturedProjectsContainer = styled.div`
   background-color: #1c1e22;
   color: white;
 `;
+const ControlIcon = styled.span`
+  background-color: #343a40;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:after {
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: white;
+    mask: url("data:image/svg+xml;utf8,<svg ...></svg>") no-repeat 50% 50%;
+    mask-size: 100%;
+  }
+`;
 const ProjectCarousel = styled(Carousel)`
   max-width: 1200px;
   margin: auto;
+
   .carousel-item {
     text-align: center;
     padding: 20px;
     background-color: #282c34;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .carousel-indicators {
+    button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin: 0 5px;
+      border: none;
+      background-color: #adb5bd;
+    }
+
+    .active {
+      background-color: #61dafb;
+    }
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: #343a40;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .carousel-control-prev:hover,
+  .carousel-control-next:hover {
+    background-color: rgba(52, 58, 64, 0.8);
   }
 `;
 
@@ -405,7 +464,18 @@ function Skills() {
             alt="Python"
           />
         </SkillIcon>
-
+        <ExternalIcon
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg"
+          alt="csharp"
+        />
+        <ExternalIcon
+          src="https://www.svgrepo.com/show/303229/microsoft-sql-server-logo.svg"
+          alt="sqlserver"
+        />
+        <ExternalIcon
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dot-net/dot-net-original-wordmark.svg"
+          alt="dotnet"
+        />
         <SkillIcon>
           <ExternalIcon
             src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg"
@@ -527,7 +597,22 @@ function App() {
           {/* Diğer ana sayfa bileşenleri buraya eklenebilir */}
           {/* Öne Çıkan Projeler Carousel */}
           <FeaturedProjectsContainer>
-            <ProjectCarousel>
+            <ProjectCarousel
+              prevIcon={
+                <span
+                  aria-hidden="true"
+                  className="carousel-control-prev-icon"
+                />
+              }
+              nextIcon={
+                <span
+                  aria-hidden="true"
+                  className="carousel-control-next-icon"
+                />
+              }
+              prevLabel=""
+              nextLabel=""
+            >
               <Carousel.Item>
                 <ProjectImage
                   src="https://hekimcanaktas.com/static/media/netflix-clone-9.f076741bb3825cefead7.png"
