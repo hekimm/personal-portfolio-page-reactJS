@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setLoading } from "../../actions/loadingActions";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
 import { Link } from "react-router-dom";
+import BusinessCard from "./Hero";
 
 import {
   FaHtml5,
@@ -540,6 +541,9 @@ class Hero extends React.Component {
               <Caret>|</Caret>
             </TypingText>
           </ProfileAndAboutContainer>
+          <div className="App">
+            <BusinessCard />
+          </div>
           <AboutSection>
             <h2>Hakkımda</h2>
             <p>
