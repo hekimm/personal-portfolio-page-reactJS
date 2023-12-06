@@ -745,7 +745,7 @@ Bu projede iyi ve güzel bir kullanıcı deneyimi hedefledim🔄✨`,
       📝 Note: This project is a frontend project created with React and Redux, prepared solely for educational purposes and used only for educational reasons. `,
     },
   },
-   {
+  {
     id: 13,
     title: {
       tr: "Netflix Clone Projesi",
@@ -821,133 +821,6 @@ Bu projede iyi ve güzel bir kullanıcı deneyimi hedefledim🔄✨`,
       🖥️ Node.js
       👨‍💻Express.js
       🌱MongoDB        `,
-    },
-  },
-  {
-    id: 14,
-    title: {
-      tr: "React.js ile kodlanan Proje 14",
-      en: " Project 14 Coded with React.js",
-    },
-    images: [ExampleImage, ExampleImage],
-    category: "React.js",
-    technologies: ["React.js"],
-    shortDescription: {
-      tr: `React.js projesi 4 için kısa açıklama.`,
-      en: `Short description for React.js project 4.        `,
-    },
-    description: {
-      tr: `React.js projesi 4 için detaylı açıklama.`,
-      en: `Detailed description for React.js project 4.        `,
-    },
-  },
-  {
-    id: 15,
-    title: {
-      tr: "React.js ile kodlanan Proje 15",
-      en: " Project 15 Coded with React.js",
-    },
-    images: [ExampleImage, ExampleImage],
-    category: "React.js",
-    technologies: ["React.js"],
-    shortDescription: {
-      tr: `React.js projesi 5 için kısa açıklama.`,
-      en: `Short description for React.js project 5        `,
-    },
-    description: {
-      tr: `React.js projesi 5 için detaylı açıklama.`,
-      en: `Detailed description for React.js project 5.        `,
-    },
-  },
-  {
-    id: 16,
-    title: {
-      tr: "Python ile kodlanan Proje 16",
-      en: " Project 16 Coded with Python ",
-    },
-    images: [ExampleImage, ExampleImage],
-    category: "Python",
-    technologies: ["Python"],
-    shortDescription: {
-      tr: `Python projesi 1 için kısa açıklama.`,
-      en: `Short description for Python project 1.        `,
-    },
-    description: {
-      tr: `Python projesi 1 için detaylı açıklama.`,
-      en: `Detailed description for Python project 1.        `,
-    },
-  },
-  {
-    id: 17,
-    title: {
-      tr: "Python ile kodlanan Proje 17",
-      en: " Project 17 Coded with Python ",
-    },
-    images: [ExampleImage, ExampleImage],
-    category: "Python",
-    technologies: ["Python"],
-    shortDescription: {
-      tr: `Python projesi 2 için kısa açıklama.`,
-      en: `Short description for Python project 2.        `,
-    },
-    description: {
-      tr: `Python projesi 2 için detaylı açıklama.`,
-      en: `Detailed description for Python project 2.        `,
-    },
-  },
-  {
-    id: 18,
-    title: {
-      tr: "Python ile kodlanan Proje 18",
-      en: " Project 18 Coded with Python ",
-    },
-    images: [ExampleImage, ExampleImage],
-    category: "Python",
-    technologies: ["Python"],
-    shortDescription: {
-      tr: `Python projesi 3 için kısa açıklama.`,
-      en: `Short description for Python project 3.        `,
-    },
-    description: {
-      tr: `Python projesi 3 için detaylı açıklama.`,
-      en: `Detailed description for Python project 3.        `,
-    },
-  },
-
-  {
-    id: 19,
-    title: {
-      tr: "Python ile kodlanan Proje 19",
-      en: " Project 19 Coded with Python ",
-    },
-    images: [ExampleImage, ExampleImage],
-    category: "Python",
-    technologies: ["Python"],
-    shortDescription: {
-      tr: `Python projesi 4 için kısa açıklama.`,
-      en: `Short description for Python project 4.        `,
-    },
-    description: {
-      tr: `Python projesi 4 için detaylı açıklama.`,
-      en: `Detailed description for Python project 4.        `,
-    },
-  },
-  {
-    id: 20,
-    title: {
-      tr: "Python ile kodlanan Proje 20",
-      en: " Project 20 Coded with Python ",
-    },
-    images: [ExampleImage, ExampleImage],
-    category: "Python",
-    technologies: ["Python"],
-    shortDescription: {
-      tr: `Python projesi 5 için kısa açıklama.`,
-      en: `Short description for Python project 5.        `,
-    },
-    description: {
-      tr: `Python projesi 5 için detaylı açıklama.`,
-      en: `Detailed description for Python project 5.        `,
     },
   },
 ];
