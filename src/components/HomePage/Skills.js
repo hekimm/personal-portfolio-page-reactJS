@@ -28,8 +28,8 @@ const VideoWrapper = styled.div`
 
   // Küçük ekranlar için stil ayarlamaları
   @media (max-width: 768px) {
-    top: 40%; // Küçük ekranlarda videoyu biraz daha aşağı taşı
-    width: 55%; // Küçük ekranlarda genişlik
+    top: 35%; // Küçük ekranlarda videoyu biraz daha aşağı taşı
+    width: 60%; // Küçük ekranlarda genişlik
     padding-bottom: 42.1875%; // Küçük ekranlarda yükseklik
   }
 `;
