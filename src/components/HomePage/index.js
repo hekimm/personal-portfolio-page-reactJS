@@ -4,7 +4,7 @@ import { setLoading } from "../../actions/loadingActions";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import BusinessCard from "./Hero";
-
+import Skill from "./Skills";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -16,6 +16,7 @@ import {
   FaBootstrap,
 } from "react-icons/fa";
 import { Carousel } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap"; // React Bootstrap'ten gerekli bileşenleri import et
 
 import profileImageUrl from "./resim-23.png";
 import Loading from "../Loading";
@@ -541,9 +542,17 @@ class Hero extends React.Component {
               <Caret>|</Caret>
             </TypingText>
           </ProfileAndAboutContainer>
-          <div className="App">
-            <BusinessCard />
-          </div>
+          <Container fluid>
+            <Row>
+              {/* Büyük ekranlarda offset ekleyerek bileşenleri merkeze al */}
+              <Col xs={12} md={5} lg={{ span: 4, offset: 1 }}>
+                <BusinessCard />
+              </Col>
+              <Col xs={12} md={5} lg={{ span: 4, offset: 2 }}>
+                <Skill />
+              </Col>
+            </Row>
+          </Container>
           <AboutSection>
             <h2>Hakkımda</h2>
             <p>
