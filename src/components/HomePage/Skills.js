@@ -26,11 +26,17 @@ const VideoWrapper = styled.div`
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); // Daha etkileyici bir gölge
   border-radius: 15px; // Daha yuvarlak köşeler
 
-  // Sadece küçük ekranlar için stil ayarlamaları
+  // Küçük ekranlar için stil ayarlamaları
+  @media (max-width: 768px) {
+    top: 40%; // Küçük ekranlarda videoyu biraz daha aşağı taşı
+    width: 75%; // Küçük ekranlarda genişlik
+    padding-bottom: 42.1875%; // Küçük ekranlarda yükseklik
+  }
+
   @media (max-width: 480px) {
-    top: 40%; // Çok küçük ekranlarda videoyu biraz daha aşağı taşı
-    width: 85%; // Çok küçük ekranlarda genişlik
-    padding-bottom: 47.8125%; // Çok küçük ekranlarda yükseklik
+    top: 45%; // Çok küçük ekranlarda videoyu daha da aşağı taşı
+    width: 90%; // Çok küçük ekranlarda genişlik
+    padding-bottom: 50.625%; // Çok küçük ekranlarda yükseklik
   }
 `;
 
