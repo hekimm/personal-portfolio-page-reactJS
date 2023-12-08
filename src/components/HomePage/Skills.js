@@ -1,234 +1,67 @@
 import React from "react";
-import styled, { createGlobalStyle, keyframes } from "styled-components";
-import {
-  FaHtml5,
-  FaCss3Alt,
-  FaJsSquare,
-  FaReact,
-  FaNodeJs,
-  FaAngular,
-  FaSass,
-  FaBootstrap,
-} from "react-icons/fa";
+import styled from "styled-components";
+import localVideo from "./video.mp4"; // Yerel video dosyasını import et
 
-const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'Devicon';
-    src: url('https://raw.githubusercontent.com/devicons/devicon/master/fonts/devicon.ttf') format('truetype');
-  }
-`;
-const SkillsContainer = styled.div`
+// Arka plan için container
+const VideoBackgroundContainer = styled.div`
+  position: relative;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding-top: 56.25%; // 16:9 aspect ratio
+  background-image: url("https://img.freepik.com/free-vector/red-movie-theater-seats-with-curtains-background_1017-38388.jpg?t=st=1701960771~exp=1701961371~hmac=dd349c53e8bed2b31af703334260bda8856fd47df6343f7c7947d9a02d66f274");
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px; // Yuvarlak köşeler
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5); // Gölge efekti
+  overflow: hidden; // Yuvarlak köşeler için
 `;
 
-const rgbKeyLight = keyframes`
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-`;
+// Video'yu saran ve konumlandıran wrapper
+const VideoWrapper = styled.div`
+  position: absolute;
+  top: 35%; // Videoyu biraz daha aşağıya taşı
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%; // Genişlik
+  padding-bottom: 33.75%; // Yükseklik
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); // Daha etkileyici bir gölge
+  border-radius: 15px; // Daha yuvarlak köşeler
 
-const SkillsCard = styled.div`
-  border-radius: 15px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(
-    -45deg,
-    #ee7752,
-    #e73c7e,
-    #23a6d5,
-    #23d5ab,
-    #ee7752
-  );
-  background-size: 400% 100%;
-  animation: ${rgbKeyLight} 15s ease-in-out infinite;
-  padding: 40px;
-  margin: 40px;
-  display: grid;
-  justify-content: center; // Yatayda merkezleme
-  align-items: center; // Dikeyde merkezleme
-  grid-template-columns: repeat(
-    4,
-    1fr
-  ); // Geniş ekranlar için varsayılan olarak 4 sütun
-  gap: 40px;
-  width: 90%; // Genişliği artır
-  max-width: 1200px; // Maksimum genişlik sınırlaması
-
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    // Orta büyüklükte ekranlar için 3 sütun
-  }
-
-  @media (max-width: 900px) {
-    gap: 20px;
-
-    grid-template-columns: repeat(2, 1fr); // Daha küçük ekranlar için 2 sütun
+  // Sadece küçük ekranlar için stil ayarlamaları
+  @media (max-width: 480px) {
+    top: 40%; // Çok küçük ekranlarda videoyu biraz daha aşağı taşı
+    width: 85%; // Çok küçük ekranlarda genişlik
+    padding-bottom: 47.8125%; // Çok küçük ekranlarda yükseklik
   }
 `;
 
-const SkillIcon = styled.div`
-  width: 80px;
-  height: 80px;
-  display: flex;
-  justify-content: center; // İkonun kendi içinde yatayda merkezlenmesi
-  align-items: center; // İkonun kendi içinde dikeyde merkezlenmesi
-  font-size: 80px;
-  color: white;
-  cursor: pointer;
-  transition:
-    transform 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out;
-  &:hover {
-    transform: scale(1.2);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-  }
-`;
-const HtmlIcon = styled(FaHtml5)`
-  color: #e34c26;
+// Yerel video'yu gösteren video etiketi
+const StyledVideo = styled.video`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 15px; // Video için yuvarlak köşeler
 `;
 
-const CssIcon = styled(FaCss3Alt)`
-  color: #1572b6;
-`;
-
-const JsIcon = styled(FaJsSquare)`
-  color: #f7df1e;
-`;
-
-const ReactIcon = styled(FaReact)`
-  color: #61dbfb;
-`;
-
-const NodeIcon = styled(FaNodeJs)`
-  color: #68a063;
-`;
-
-const AngularIcon = styled(FaAngular)`
-  color: #b52e31;
-`;
-
-const SassIcon = styled(FaSass)`
-  color: #cc6699;
-`;
-
-const BootstrapIcon = styled(FaBootstrap)`
-  color: #563d7c;
-`;
-
-const ExternalIcon = styled.img`
-  width: 80px;
-  height: 80px;
-  cursor: pointer;
-  transition:
-    transform 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out;
-  &:hover {
-    transform: scale(1.2);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-  }
-`;
-
-function Skills() {
+// Bileşen
+const VideoBackground = () => {
   return (
-    <SkillsContainer>
-      <GlobalStyle />
-      <SkillsCard>
-        <SkillIcon>
-          <HtmlIcon />
-        </SkillIcon>
-        <SkillIcon>
-          <CssIcon />
-        </SkillIcon>
-
-        <SkillIcon>
-          <SassIcon />
-        </SkillIcon>
-        <SkillIcon>
-          <BootstrapIcon />
-        </SkillIcon>
-        <SkillIcon>
-          <JsIcon />
-        </SkillIcon>
-        <SkillIcon>
-          <ExternalIcon
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jquery/jquery-original-wordmark.svg"
-            alt="jQuery"
-          />
-        </SkillIcon>
-        <SkillIcon>
-          <ExternalIcon
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg"
-            alt="TypeScript"
-          />
-        </SkillIcon>
-        <SkillIcon>
-          <AngularIcon />
-        </SkillIcon>
-        <SkillIcon>
-          <ReactIcon />
-        </SkillIcon>
-        <SkillIcon>
-          <ExternalIcon
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg"
-            alt="Redux"
-          />
-        </SkillIcon>
-        <SkillIcon>
-          <ExternalIcon
-            src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg"
-            alt="Next.js"
-          />
-        </SkillIcon>
-        <SkillIcon>
-          <ExternalIcon
-            src="https://reactnative.dev/img/header_logo.svg"
-            alt="React Native"
-          />
-        </SkillIcon>
-        <SkillIcon>
-          <NodeIcon />
-        </SkillIcon>
-        <SkillIcon>
-          <ExternalIcon
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg"
-            alt="MongoDB"
-          />
-        </SkillIcon>
-
-        <SkillIcon>
-          <ExternalIcon
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
-            alt="C"
-          />
-        </SkillIcon>
-        <SkillIcon>
-          <ExternalIcon
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg"
-            alt="C++"
-          />
-        </SkillIcon>
-        <SkillIcon>
-          <ExternalIcon
-            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
-            alt="Python"
-          />
-        </SkillIcon>
-
-        <SkillIcon>
-          <ExternalIcon
-            src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg"
-            alt="Git"
-          />
-        </SkillIcon>
-      </SkillsCard>
-    </SkillsContainer>
+    <VideoBackgroundContainer>
+      <VideoWrapper>
+        <StyledVideo
+          src={localVideo}
+          frameBorder="0"
+          autoPlay
+          loop
+          muted
+          playsInline
+          title="Embedded Video"
+        />
+      </VideoWrapper>
+    </VideoBackgroundContainer>
   );
-}
+};
 
-export default Skills;
+export default VideoBackground;
