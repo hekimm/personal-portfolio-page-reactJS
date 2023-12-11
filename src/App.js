@@ -11,6 +11,7 @@ import HomePage from "./components/HomePage";
 import NotFound from "./components/NotFound";
 import Footer from "./components/Footer";
 import MediumPosts from "./components/MediumPosts/index";
+import CodeEditor from "./components/CodeEditor"; // Import CodeEditor component
 
 import { useSelector } from "react-redux";
 import { ROUTES } from "./components/Routes";
@@ -23,6 +24,7 @@ function App() {
   return (
     <Router>
       {!isLoading && <Navbar />}
+
       <Routes>
         <Route path={ROUTES.HOME} element={<HomePage />} />
         <Route path={ROUTES.ABOUT} element={<About />} />
@@ -32,6 +34,7 @@ function App() {
         <Route path={ROUTES.BLOG} element={<MediumPosts />} />
         <Route path={ROUTES.EXPERTISE_AREA} element={<ExpertiseArea />} />
         <Route path={ROUTES.CONTACT} element={<Contact />} />
+        <Route path={ROUTES.CODE_EDITOR} element={<CodeEditor />} /> {/* Add CodeEditor route */}
         <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
       </Routes>
       {!isLoading && <Footer />}
