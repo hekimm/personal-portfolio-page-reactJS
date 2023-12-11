@@ -8,4 +8,5 @@ export const ROUTES = {
   CONTACT: "/contact",
   NOT_FOUND: "*",
   BLOG: "/blog",
+  CODE_EDITOR:"/code-editor"
 };
