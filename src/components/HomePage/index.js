@@ -5,6 +5,8 @@ import styled, { createGlobalStyle, keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import BusinessCard from "./Hero";
 import Skill from "./Skills";
+import JavaScriptEditor from "./ProjectsComponent"; // Import the component
+
 import {
   FaHtml5,
   FaCss3Alt,
@@ -380,6 +382,12 @@ const Caret = styled.span`
     }
   }
 `;
+const EditorWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+`;
 
 function Skills() {
   return (
@@ -606,6 +614,9 @@ function App() {
         <div>
           <Hero />
           <Skills />
+          <EditorWrapper>
+            <JavaScriptEditor />
+          </EditorWrapper>
 
           {/* Diğer ana sayfa bileşenleri buraya eklenebilir */}
           {/* Öne Çıkan Projeler Carousel */}
