@@ -11,7 +11,7 @@ import HomePage from "./components/HomePage";
 import NotFound from "./components/NotFound";
 import Footer from "./components/Footer";
 import MediumPosts from "./components/MediumPosts/index";
-import CodeEditor from "./components/CodeEditor/index"; // Import CodeEditor component
+import CodeEditor from "./components/CodeEditor"; // Import CodeEditor component
 
 import { useSelector } from "react-redux";
 import { ROUTES } from "./components/Routes";
