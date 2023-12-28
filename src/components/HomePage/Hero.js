@@ -114,7 +114,7 @@ const BusinessCard = () => {
       <CardInner>
         <CardFront>
           <ProfileImage
-            src="https://scontent.fadb3-1.fna.fbcdn.net/v/t39.30808-6/398980843_6737153783041359_5877629588252561537_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=9c7eae&_nc_ohc=33avwIeWduwAX-vSrTv&_nc_ht=scontent.fadb3-1.fna&oh=00_AfCp_JFAx_AcgmYZOXwXJzNhnkisSNLY6gwFi8JImGCGTg&oe=657783E0"
+            src="https://scontent.fadb6-4.fna.fbcdn.net/v/t39.30808-6/398980843_6737153783041359_5877629588252561537_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=9c7eae&_nc_ohc=IGzqKsjw6IgAX8zDADN&_nc_ht=scontent.fadb6-4.fna&oh=00_AfDdcurVkTOdtS5Cjf2ezj6l_ETY0Ao-uNd-JSvG7v7LFQ&oe=65933360"
             alt="Hekimcan Aktaş"
           />
           <Name>Hekimcan Aktaş</Name>
