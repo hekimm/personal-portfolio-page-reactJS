@@ -81,6 +81,8 @@ const ControlIcon = styled.span`
 const ProjectCarousel = styled(Carousel)`
   max-width: 1200px;
   margin: auto;
+  position: relative; // Pozisyonlama için gerekli
+  z-index: 1; // Z-index değeri ayarlama
 
   .carousel-item {
     text-align: center;
@@ -91,6 +93,9 @@ const ProjectCarousel = styled(Carousel)`
   }
 
   .carousel-indicators {
+    bottom: 10px; // Göstergeleri yukarı taşıyarak kartın içinde kalmasını sağla
+    z-index: 5; // Göstergelerin kart üzerinde görünmesini sağla
+
     button {
       width: 12px;
       height: 12px;
@@ -98,8 +103,10 @@ const ProjectCarousel = styled(Carousel)`
       margin: 0 5px;
       border: none;
       background-color: #adb5bd;
+      &:hover {
+        background-color: #61dafb;
+      }
     }
-
     .active {
       background-color: #61dafb;
     }
@@ -107,29 +114,29 @@ const ProjectCarousel = styled(Carousel)`
 
   .carousel-control-prev,
   .carousel-control-next {
-    background-color: transparent;
-    border: none;
-    font-size: 24px;
-  }
+    width: 44px;
+    height: 44px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2; // Butonların diğer öğelerin üzerinde görünmesini sağla
 
-  .carousel-control-prev-icon,
-  .carousel-control-next-icon {
-    background-color: #343a40;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-  }
+    &:hover {
+      background-color: rgba(52, 58, 64, 0.8);
+    }
 
-  .carousel-control-prev:hover,
-  .carousel-control-next:hover {
-    background-color: rgba(52, 58, 64, 0.8);
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-color: #343a40;
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
   }
 `;
-
 const ProjectImage = styled.img`
   width: 100%;
   max-width: 800px;
