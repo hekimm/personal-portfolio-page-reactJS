@@ -81,8 +81,8 @@ const ControlIcon = styled.span`
 const ProjectCarousel = styled(Carousel)`
   max-width: 1200px;
   margin: auto;
-  position: relative; // Pozisyonlama için gerekli
-  z-index: 1; // Z-index değeri ayarlama
+  position: relative; // Pozisyonlandırma için
+  z-index: 1; // Diğer katmanların altında kalması için z-index
 
   .carousel-item {
     text-align: center;
@@ -93,48 +93,51 @@ const ProjectCarousel = styled(Carousel)`
   }
 
   .carousel-indicators {
-    bottom: 10px; // Göstergeleri yukarı taşıyarak kartın içinde kalmasını sağla
-    z-index: 5; // Göstergelerin kart üzerinde görünmesini sağla
-
+    bottom: 10px; // İndikatörlerin konumunu ayarla
     button {
-      width: 12px;
-      height: 12px;
+      width: 15px;
+      height: 15px;
       border-radius: 50%;
       margin: 0 5px;
-      border: none;
-      background-color: #adb5bd;
+      border: 2px solid #61dafb;
+      background-color: transparent;
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
       &:hover {
         background-color: #61dafb;
       }
     }
     .active {
       background-color: #61dafb;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
     }
   }
 
   .carousel-control-prev,
   .carousel-control-next {
-    width: 44px;
-    height: 44px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2; // Butonların diğer öğelerin üzerinde görünmesini sağla
+    width: 44px; // Daha büyük butonlar için genişlik ayarı
+    height: 44px; // Daha büyük butonlar için yükseklik ayarı
+    top: 50%; // Dikey olarak ortala
+    transform: translateY(-50%); // Düzgün konumlandırma için
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer; // Fare imlecini değiştir
 
     &:hover {
       background-color: rgba(52, 58, 64, 0.8);
     }
+  }
 
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-      background-color: #343a40;
-      border-radius: 50%;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-    }
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: #343a40;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
   }
 `;
 const ProjectImage = styled.img`
