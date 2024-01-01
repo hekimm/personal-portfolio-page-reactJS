@@ -59,30 +59,24 @@ const FeaturedProjectsContainer = styled.div`
   background-color: #1c1e22;
   color: white;
 `;
-const ControlIcon = styled.span`
-  background-color: #343a40;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &:after {
-    content: "";
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    background: white;
-    mask: url("data:image/svg+xml;utf8,<svg ...></svg>") no-repeat 50% 50%;
-    mask-size: 100%;
+const CarouselButton = styled.button`
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  &:hover {
+    color: #61dafb;
   }
 `;
 const ProjectCarousel = styled(Carousel)`
   max-width: 1200px;
   margin: auto;
-  position: relative; // Pozisyonlandırma için
-  z-index: 1; // Diğer katmanların altında kalması için z-index
+  position: relative; // Pozisyon ayarı için eklenir
 
   .carousel-item {
     text-align: center;
@@ -92,40 +86,27 @@ const ProjectCarousel = styled(Carousel)`
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   }
 
-  .carousel-indicators {
-    bottom: 10px; // İndikatörlerin konumunu ayarla
-    button {
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      margin: 0 5px;
-      border: 2px solid #61dafb;
-      background-color: transparent;
-      box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-      &:hover {
-        background-color: #61dafb;
-      }
-    }
-    .active {
-      background-color: #61dafb;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-    }
-  }
-
+  // Carousel kontrol butonları için stil tanımlamaları
   .carousel-control-prev,
   .carousel-control-next {
-    width: 44px; // Daha büyük butonlar için genişlik ayarı
-    height: 44px; // Daha büyük butonlar için yükseklik ayarı
-    top: 50%; // Dikey olarak ortala
-    transform: translateY(-50%); // Düzgün konumlandırma için
+    position: absolute;
+    top: 50%; // Yatayda merkezleme
+    transform: translateY(-50%); // Yatayda merkezleme
     background-color: transparent;
     border: none;
     font-size: 24px;
-    cursor: pointer; // Fare imlecini değiştir
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    z-index: 1;
+  }
 
-    &:hover {
-      background-color: rgba(52, 58, 64, 0.8);
-    }
+  .carousel-control-prev {
+    left: 10px; // Sol buton pozisyonu
+  }
+
+  .carousel-control-next {
+    right: 10px; // Sağ buton pozisyonu
   }
 
   .carousel-control-prev-icon,
@@ -138,6 +119,11 @@ const ProjectCarousel = styled(Carousel)`
     align-items: center;
     justify-content: center;
     color: white;
+  }
+
+  .carousel-control-prev-icon:hover,
+  .carousel-control-next-icon:hover {
+    background-color: rgba(52, 58, 64, 0.8);
   }
 `;
 const ProjectImage = styled.img`
