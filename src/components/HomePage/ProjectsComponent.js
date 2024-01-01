@@ -5,6 +5,7 @@ import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-monokai";
 
 const EditorContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,9 +13,10 @@ const EditorContainer = styled.div`
   background-color: #282c34;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  margin: 20px;
+  margin: 20px auto;
   width: 80%;
   max-width: 900px;
+  z-index: 1; // Yükselt z-index değerini
 `;
 
 const StyledButton = styled.button`
@@ -29,6 +31,7 @@ const StyledButton = styled.button`
   transition:
     background-color 0.2s,
     transform 0.2s;
+  z-index: 2; // Düğmenin z-index değerini yükselt
 
   &:hover {
     background-color: #4da8da;
@@ -45,10 +48,11 @@ const OutputSection = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  z-index: 2; // Çıktı bölümünün z-index değerini yükselt
 `;
 
 const TextOutput = styled.pre`
-  color: #e6e6e6; // A bright white tone
+  color: #e6e6e6; // Parlak beyaz ton
   margin: 0;
 `;
 
