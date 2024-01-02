@@ -157,7 +157,7 @@ const BusinessCard = () => {
               alt="Hekimcan Aktaş"
             />
             <Name>Hekimcan Aktaş</Name>
-            <Title>Software Developer | Software Engineer</Title>
+            <Title>Software Developer | Software Engineering Student</Title>
           </CardFront>
           <CardBack>
             <ContactInfo>
