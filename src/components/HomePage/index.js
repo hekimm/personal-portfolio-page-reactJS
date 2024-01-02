@@ -497,7 +497,7 @@ class Hero extends React.Component {
   constructor(props) {
     super(props);
     this.titles = [
-      "Software Engineer ",
+      "Software Engineering Student ",
       "Software Developer ",
       "Jr. Data Scientist",
       "Full Stack Web Developer",
