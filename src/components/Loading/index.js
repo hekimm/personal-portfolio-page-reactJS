@@ -215,7 +215,7 @@ const Loading = () => {
 
   const texts = [
     "Ben Hekimcan Aktaş",
-    "Yazılım Mühendisi",
+    "Yazılım Mühendisliği Öğrencisi",
     "Full Stack Web Developer",
     "Jr.Data Scientist",
   ];
