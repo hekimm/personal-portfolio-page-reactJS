@@ -81,7 +81,7 @@ const Name = styled.h2`
 
 const Title = styled.div`
   display: flex;
-  font-size: 0.7em;
+  font-size: 0.5em;
   margin: 0;
   white-space: nowrap;
 `;
